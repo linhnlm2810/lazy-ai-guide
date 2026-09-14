@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, initial-scale=1">
+<title>Biến Máy Tính Thành Đội AI — Hướng Dẫn Chi Tiết</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1080px;
+  background: #FEFCF8;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container {
+  width: 1080px;
+  padding: 50px 60px;
+}
+
+/* ===== TITLE ===== */
+.title-section {
+  text-align: center;
+  padding: 40px 0 30px;
+  border-bottom: 3px solid #1a1a1a;
+  margin-bottom: 40px;
+}
+.title-section h1 {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+.title-section .subtitle {
+  font-size: 20px;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.title-section .tagline {
+  font-size: 15px;
+  color: #999;
+  font-style: italic;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  margin-bottom: 40px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #E5E5E5;
+}
+.section-number {
+  width: 48px;
+  height: 48px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.section-number.green { background: #16A34A; }
+.section-number.blue { background: #2563EB; }
+.section-number.purple { background: #7C3AED; }
+.section-number.orange { background: #EA580C; }
+.section-number.red { background: #DC2626; }
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+.section-title small {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ===== CONTENT BLOCKS ===== */
+.content-box {
+  background: #fff;
+  border: 2px solid #E5E5E5;
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.content-box.highlight {
+  border-color: #2563EB;
+  background: #F0F7FF;
+}
+.content-box.warning {
+  border-color: #F59E0B;
+  background: #FFFBEB;
+}
+.content-box.success {
+  border-color: #16A34A;
+  background: #F0FDF4;
+}
+.content-box.dark {
+  background: #1a1a1a;
+  color: #E5E5E5;
+  border-color: #333;
+}
+
+.content-box h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.content-box h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+.content-box p {
+  margin-bottom: 10px;
+  color: #444;
+}
+.content-box ul {
+  list-style: none;
+  padding: 0;
+}
+.content-box ul li {
+  padding: 5px 0 5px 24px;
+  position: relative;
+}
+.content-box ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: #2563EB;
+}
+.content-box.warning ul li::before { color: #F59E0B; }
+.content-box.success ul li::before { color: #16A34A; }
+
+/* ===== CODE BLOCKS ===== */
+.code-block {
+  background: #1E293B;
+  color: #E2E8F0;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 12px 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.code-block .comment { color: #64748B; }
+.code-block .cmd { color: #38BDF8; }
+.code-block .string { color: #A5F3FC; }
+.code-block .highlight-line { color: #FBBF24; }
+
+/* ===== CONNECTOR ===== */
+.connector {
+  width: 3px;
+  height: 28px;
+  background: #D4D4D4;
+  margin: 0 auto;
+}
+.connector-arrow {
+  text-align: center;
+  font-size: 20px;
+  color: #D4D4D4;
+  margin: -6px 0;
+}
+
+/* ===== DIAGRAM ===== */
+.diagram-box {
+  background: #F8FAFC;
+  border: 2px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 24px;
+  margin: 12px 0;
+}
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+.flow-node {
+  padding: 10px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  background: #fff;
+}
+.flow-node.dark {
+  background: #1a1a1a;
+  color: #fff;
+}
+.flow-node.blue {
+  background: #EFF6FF;
+  border-color: #2563EB;
+  color: #1E40AF;
+}
+.flow-node.green {
+  background: #F0FDF4;
+  border-color: #16A34A;
+  color: #166534;
+}
+.flow-arrow { font-size: 18px; color: #666; }
+
+/* ===== COMPARISON ===== */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 12px 0;
+}
+.compare-col {
+  border: 2px solid #E5E5E5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.compare-header {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+.compare-col.left .compare-header {
+  background: #F3F4F6;
+  border-bottom: 2px solid #E5E5E5;
+}
+.compare-col.right .compare-header {
+  background: #1a1a1a;
+  color: #fff;
+  border-bottom: 2px solid #1a1a1a;
+}
+.compare-body {
+  padding: 16px;
+  font-size: 15px;
+}
+.compare-body li {
+  list-style: none;
+  padding: 6px 0;
+}
+
+/* ===== TABLE ===== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 15px;
+}
+.data-table th {
+  background: #F3F4F6;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  border: 1.5px solid #E5E5E5;
+}
+.data-table td {
+  padding: 10px 14px;
+  border: 1.5px solid #E5E5E5;
+  vertical-align: top;
+}
+.data-table tr:nth-child(even) td {
+  background: #FAFAFA;
+}
+
+/* ===== CALLOUT ===== */
+.callout {
+  display: flex;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 12px 0;
+  font-size: 15px;
+  align-items: flex-start;
+}
+.callout.info {
+  background: #EFF6FF;
+  border: 1.5px solid #93C5FD;
+}
+.callout.tip {
+  background: #F0FDF4;
+  border: 1.5px solid #86EFAC;
+}
+.callout.warn {
+  background: #FFFBEB;
+  border: 1.5px solid #FCD34D;
+}
+.callout-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ===== CHOICE CARDS ===== */
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 12px 0;
+}
+.choice-card {
+  border: 2px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  background: #fff;
+}
+.choice-card.recommended {
+  border-color: #2563EB;
+  background: #F0F7FF;
+}
+.choice-card .emoji { font-size: 36px; margin-bottom: 8px; }
+.choice-card .name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+.choice-card .desc { font-size: 13px; color: #666; }
+.choice-card .price { font-size: 14px; font-weight: 600; color: #2563EB; margin-top: 6px; }
+
+/* ===== STEP LABEL ===== */
+.step-label {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.step-label.blue { background: #2563EB; }
+.step-label.green { background: #16A34A; }
+.step-label.orange { background: #EA580C; }
+
+/* ===== PREREQ ===== */
+.prereq {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 14px;
+  background: #FEF3C7;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.prereq .icon { font-size: 16px; }
+.prereq .text { color: #92400E; font-weight: 500; }
+
+/* ===== TWO COL ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 30px 0 10px;
+  border-top: 2px solid #E5E5E5;
+  margin-top: 40px;
+}
+.footer .main { font-size: 15px; font-weight: 600; }
+.footer .sub { font-size: 13px; color: #999; margin-top: 4px; }
+
+/* ===== INLINE ===== */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #F1F5F9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.bold { font-weight: 700; }
+.muted { color: #888; }
+.small { font-size: 14px; }
+mark {
+  background: #FEF08A;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== TITLE ==================== -->
+<div class="title-section">
+  <h1>BIẾN MÁY TÍNH THÀNH ĐỘI AI</h1>
+  <div class="subtitle">Hướng dẫn chi tiết từ A→Z · Kịch bản từng bước · Câu lệnh cụ thể</div>
+  <div class="tagline">"Bạn đã có 1 con AI rồi. Giờ hãy cho nó thêm đồng đội."</div>
+</div>
+
+<!-- ==================== PHẦN 0: BỐI CẢNH ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">💡</div>
+    <div class="section-title">
+      Bạn đang ở đâu — và sẽ đi đến đâu?
+      <small>Xuất phát điểm: ai cũng đã có sẵn 1 con AI</small>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h3>Hiện tại bạn đang có gì?</h3>
+    <p>Hầu hết mọi người đều đã dùng ít nhất 1 trong số này:</p>
+    <ul>
+      <li><span class="bold">ChatGPT</span> (OpenAI) — trả phí $20/tháng gói Plus, hoặc $200/tháng gói Pro</li>
+      <li><span class="bold">Claude</span> (Anthropic) — trả phí $20/tháng gói Pro, hoặc $100-200/tháng gói Max</li>
+      <li><span class="bold">Gemini</span> (Google) — miễn phí hoặc có gói Advanced</li>
+      <li><span class="bold">Grok</span> (xAI) — dùng qua X Premium</li>
+    </ul>
+  </div>
+
+  <div class="content-box highlight">
+    <h3>🤔 Vấn đề là gì?</h3>
+    <p><span class="bold">Mỗi AI giỏi 1 thứ khác nhau</span> — Claude viết hay, GPT code tốt, Gemini tìm kiếm giỏi, Grok cập nhật nhanh. Nhưng bạn phải <mark>tự mình nhảy qua nhảy lại</mark> giữa các tab, copy-paste kết quả từ con này sang con kia.</p>
+    <p style="font-weight: 700; font-size: 18px; margin-top: 12px;">→ Giải pháp: Cho chúng nó nói chuyện với nhau và tự phân việc!</p>
+  </div>
+
+  <div class="diagram-box">
+    <h4 style="text-align: center; margin-bottom: 12px;">Trước vs Sau khi setup</h4>
+    <div class="two-col">
+      <div>
+        <p class="bold" style="text-align: center; margin-bottom: 8px;">❌ TRƯỚC — Bạn làm "đưa thư"</p>
+        <div class="flow-row">
+          <div class="flow-node">👤 Bạn</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-node">Claude</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node">👤 Bạn</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-node">GPT</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node">👤 Bạn</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-node">Gemini</div>
+        </div>
+        <p class="muted small" style="text-align: center; margin-top: 8px;">Copy-paste qua lại, mệt mỏi</p>
+      </div>
+      <div>
+        <p class="bold" style="text-align: center; margin-bottom: 8px;">✅ SAU — Đội trưởng lo hết</p>
+        <div class="flow-row">
+          <div class="flow-node">👤 Bạn</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node dark">🎯 Đội trưởng</div>
+        </div>
+        <div class="flow-row" style="margin-top: -4px;">
+          <div class="flow-arrow" style="transform: rotate(90deg);">→</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node blue">Claude</div>
+          <div class="flow-node blue">GPT</div>
+          <div class="flow-node blue">Gemini</div>
+          <div class="flow-node blue">Grok</div>
+        </div>
+        <p class="muted small" style="text-align: center; margin-top: 8px;">Đội trưởng tự phân việc, bạn chỉ nói 1 lần</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 1: CHỌN ĐỘI TRƯỞNG ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">
+      Chọn "Đội trưởng" — AI nào điều phối?
+      <small>Bạn không bị ép dùng AI nào. Chọn con bạn đang dùng.</small>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <p>Đội trưởng (Coordinator) là con AI <span class="bold">thông minh nhất</span> trong đội — nó sẽ:</p>
+    <ul>
+      <li>Nhận yêu cầu từ bạn qua Discord/Telegram</li>
+      <li>Phân tích xem cần ai làm (viết bài? code? nghiên cứu?)</li>
+      <li>Gọi đúng "chuyên gia" và kiểm tra kết quả</li>
+      <li>Trả lời bạn khi mọi thứ xong</li>
+    </ul>
+  </div>
+
+  <div class="choice-grid">
+    <div class="choice-card recommended">
+      <div class="emoji">🟠</div>
+      <div class="name">Claude Opus</div>
+      <div class="desc">Suy luận sâu, điều phối giỏi, ít sai</div>
+      <div class="price">Gói Max $100/th</div>
+    </div>
+    <div class="choice-card">
+      <div class="emoji">🟢</div>
+      <div class="name">GPT-4o / GPT-5</div>
+      <div class="desc">Đa năng, nhanh, ecosystem rộng</div>
+      <div class="price">Gói Plus $20/th</div>
+    </div>
+    <div class="choice-card">
+      <div class="emoji">🔵</div>
+      <div class="name">Gemini Pro</div>
+      <div class="desc">Context dài, tích hợp Google</div>
+      <div class="price">Free hoặc Advanced</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div><span class="bold">Mẹo:</span> Dùng con nào bạn đang trả tiền. Đang dùng Claude Max? → Claude làm đội trưởng. Đang dùng ChatGPT Plus? → GPT làm đội trưởng. Không cần mua thêm gì.</div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 2: HIỂU VỀ API & CLI PROXY ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number blue">2</div>
+    <div class="section-title">
+      Hiểu về "chìa khoá" API — Tại sao không tốn thêm tiền?
+      <small>Phần quan trọng nhất — đọc kỹ trước khi làm</small>
+    </div>
+  </div>
+
+  <div class="content-box warning">
+    <h3>⚠️ Hiểu lầm phổ biến</h3>
+    <p>"Dùng API = tốn tiền theo token, rất đắt!" — <span class="bold">Đúng nếu mua API key riêng</span>. Nhưng chúng ta <mark>không làm vậy</mark>.</p>
+  </div>
+
+  <div class="content-box highlight">
+    <h3>✅ Cách chúng ta làm: Dùng gói đăng ký (subscription) đã trả</h3>
+    <p>Bạn đang trả $20-200/tháng cho Claude Max hoặc ChatGPT Plus. Gói này cho bạn <span class="bold">dùng không giới hạn</span> (hoặc giới hạn rất cao) trên web/app. Vấn đề là: gói này <span class="bold">không cho API key</span> để phần mềm khác dùng.</p>
+    <p style="margin-top: 10px;"><span class="bold">Giải pháp: CLIProxyAPI</span> — phần mềm trung gian biến gói subscription thành API.</p>
+  </div>
+
+  <div class="diagram-box">
+    <h4 style="text-align: center; margin-bottom: 14px;">🔄 CLIProxyAPI hoạt động như thế nào?</h4>
+    <p style="text-align: center; margin-bottom: 14px; color: #666;">Ví von: Giống như bạn thuê 1 người <span class="bold">đi dịch hộ</span>. App của bạn nói "tiếng OpenAI", CLIProxy dịch sang "tiếng Claude" rồi dùng tài khoản đăng ký của bạn để gửi đi.</p>
+
+    <div class="flow-row">
+      <div class="flow-node">🤖 Hermes<br><span class="small muted">gửi yêu cầu</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node dark">🔄 CLIProxyAPI<br><span class="small" style="color: #aaa;">chạy trên máy bạn<br>port 8317</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node blue">☁️ Claude / GPT<br><span class="small" style="color:#1E40AF;">dùng token đăng ký<br>KHÔNG tốn thêm tiền</span></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 14px;">
+      <div class="flow-row">
+        <div class="flow-node green" style="padding: 12px 24px;">
+          📌 Tóm lại: Bạn đã trả $20-200/tháng → CLIProxy giúp bạn tận dụng<br>
+          gói đó cho <span class="bold">tất cả 7 bot</span>, không tốn thêm đồng nào
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h3>So sánh 2 cách trả tiền AI</h3>
+    <table class="data-table">
+      <tr>
+        <th width="30%">Tiêu chí</th>
+        <th width="35%">❌ Mua API Key riêng</th>
+        <th width="35%">✅ Dùng CLIProxy + Subscription</th>
+      </tr>
+      <tr>
+        <td class="bold">Cách tính tiền</td>
+        <td>Trả theo token (mỗi từ AI đọc/viết)</td>
+        <td>Trả theo tháng, dùng bao nhiêu cũng được</td>
+      </tr>
+      <tr>
+        <td class="bold">Chi phí ước tính</td>
+        <td>$50-500/tháng tùy dùng nhiều/ít</td>
+        <td>$20-200/tháng cố định (gói bạn đã mua)</td>
+      </tr>
+      <tr>
+        <td class="bold">Rủi ro</td>
+        <td>Bill bất ngờ nếu bot chạy nhiều</td>
+        <td>Không có bill bất ngờ</td>
+      </tr>
+      <tr>
+        <td class="bold">Giới hạn</td>
+        <td>Không giới hạn (nhưng tốn tiền)</td>
+        <td>Rate limit theo gói (đủ dùng cho team nhỏ)</td>
+      </tr>
+      <tr>
+        <td class="bold">Setup</td>
+        <td>Đơn giản — chỉ cần API key</td>
+        <td>Cần cài CLIProxy (1 lần, ~10 phút)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 3: CÀI CLIProxyAPI ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number green">3</div>
+    <div class="section-title">
+      Cài CLIProxyAPI — "Người phiên dịch"
+      <small>Biến gói đăng ký thành API cho đội AI dùng</small>
+    </div>
+  </div>
+
+  <div class="prereq">
+    <span class="icon">📋</span>
+    <span class="text">Cần trước: Tài khoản Claude Max/Pro hoặc ChatGPT Plus/Pro đang hoạt động</span>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 3.1</span>
+    <h3>Mở Terminal (ứng dụng dòng lệnh)</h3>
+    <p>Terminal là nơi bạn gõ câu lệnh để máy tính thực hiện. Mỗi hệ điều hành có cách mở khác nhau:</p>
+    <ul>
+      <li><span class="bold">Mac:</span> Mở app <code>Terminal</code> (tìm trong Spotlight: ⌘+Space, gõ "Terminal")</li>
+      <li><span class="bold">Windows:</span> Mở <code>PowerShell</code> (Start → gõ "PowerShell")</li>
+      <li><span class="bold">Linux:</span> Mở <code>Terminal</code> (Ctrl+Alt+T)</li>
+    </ul>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 3.2</span>
+    <h3>Cài CLIProxyAPI</h3>
+
+    <h4>Trên Mac (dùng Homebrew):</h4>
+    <div class="code-block"><span class="comment"># Cài Homebrew trước (nếu chưa có):</span>
+<span class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span>
+
+<span class="comment"># Cài CLIProxyAPI:</span>
+<span class="cmd">brew tap router-for-me/tap</span>
+<span class="cmd">brew install cliproxyapi</span></div>
+
+    <h4>Trên Linux/Windows (WSL):</h4>
+    <div class="code-block"><span class="comment"># Dùng script cài tự động:</span>
+<span class="cmd">curl -fsSL https://raw.githubusercontent.com/router-for-me/CLIProxyAPI/main/scripts/install.sh | bash</span></div>
+
+    <div class="callout info">
+      <div class="callout-icon">📖</div>
+      <div><span class="bold">Trang chủ CLIProxyAPI:</span> github.com/router-for-me/CLIProxyAPI — xem hướng dẫn đầy đủ và hỗ trợ</div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 3.3</span>
+    <h3>Đăng nhập tài khoản AI vào CLIProxy</h3>
+    <p>CLIProxy cần bạn đăng nhập 1 lần để lấy "vé" (OAuth token) từ tài khoản đăng ký của bạn:</p>
+
+    <div class="code-block"><span class="comment"># Đăng nhập Claude (nếu đang dùng Claude Max/Pro):</span>
+<span class="cmd">cliproxyapi --claude-login</span>
+<span class="comment"># → Trình duyệt mở ra, đăng nhập bằng tài khoản Claude của bạn</span>
+<span class="comment"># → Xác nhận quyền truy cập → Xong!</span>
+
+<span class="comment"># Đăng nhập ChatGPT/Codex (nếu đang dùng OpenAI):</span>
+<span class="cmd">cliproxyapi --openai-login</span>
+
+<span class="comment"># Đăng nhập Gemini (nếu đang dùng Google):</span>
+<span class="cmd">cliproxyapi --gemini-login</span>
+
+<span class="comment"># Đăng nhập Grok (nếu đang dùng xAI):</span>
+<span class="cmd">cliproxyapi --grok-login</span></div>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div><span class="bold">Đăng nhập bao nhiêu con tuỳ bạn!</span> Có Claude Max + ChatGPT Plus? Đăng nhập cả 2. CLIProxy sẽ tự động phân luồng — khi Claude bận thì dùng GPT.</div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 3.4</span>
+    <h3>Chạy CLIProxy</h3>
+
+    <div class="code-block"><span class="comment"># Trên Mac (chạy như dịch vụ nền, tự bật khi mở máy):</span>
+<span class="cmd">brew services start cliproxyapi</span>
+
+<span class="comment"># Hoặc chạy thủ công để test:</span>
+<span class="cmd">cliproxyapi --config ~/.cli-proxy-api/config.yaml</span>
+
+<span class="comment"># Kiểm tra xem đã chạy chưa:</span>
+<span class="cmd">curl http://localhost:8317/v1/models</span>
+<span class="comment"># → Nếu thấy danh sách model = thành công! 🎉</span></div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 4: CÀI HERMES AGENT ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number blue">4</div>
+    <div class="section-title">
+      Cài Hermes Agent — "Bộ não điều hành"
+      <small>Phần mềm miễn phí biến máy tính thành trung tâm quản lý đội AI</small>
+    </div>
+  </div>
+
+  <div class="prereq">
+    <span class="icon">📋</span>
+    <span class="text">Cần trước: Terminal đang mở · CLIProxy đang chạy (bước 3)</span>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label blue">BƯỚC 4.1</span>
+    <h3>Cài Hermes Agent</h3>
+    <p>Chỉ 1 dòng lệnh, chạy trên cả Mac, Linux, và Windows (WSL):</p>
+
+    <div class="code-block"><span class="cmd">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash</span></div>
+
+    <p>Script sẽ tự động:</p>
+    <ul>
+      <li>Cài Python (nếu chưa có)</li>
+      <li>Tạo môi trường ảo (virtual environment)</li>
+      <li>Tải và cài đặt Hermes Agent</li>
+      <li>Tạo lệnh <code>hermes</code> để dùng từ Terminal</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-icon">🌐</div>
+      <div><span class="bold">Trang chủ:</span> hermes-agent.nousresearch.com — tài liệu đầy đủ, cộng đồng hỗ trợ. Mã nguồn mở, miễn phí mãi mãi.</div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label blue">BƯỚC 4.2</span>
+    <h3>Cấu hình lần đầu</h3>
+
+    <div class="code-block"><span class="comment"># Chạy setup wizard — trả lời vài câu hỏi đơn giản:</span>
+<span class="cmd">hermes setup</span>
+
+<span class="comment"># Wizard sẽ hỏi:</span>
+<span class="comment"># 1. Chọn provider → chọn "custom" (vì dùng CLIProxy)</span>
+<span class="comment"># 2. Nhập base URL → gõ: http://localhost:8317/v1</span>
+<span class="comment"># 3. Nhập API key → gõ: not-needed (CLIProxy không cần key)</span>
+<span class="comment"># 4. Chọn model → gõ tên model AI bạn đã đăng nhập ở bước 3</span></div>
+
+    <h4 style="margin-top: 14px;">Ví dụ tên model phổ biến:</h4>
+    <table class="data-table">
+      <tr>
+        <th>Nếu bạn dùng...</th>
+        <th>Gõ tên model</th>
+      </tr>
+      <tr><td>Claude Opus</td><td><code>claude-opus-4-20250514</code></td></tr>
+      <tr><td>Claude Sonnet</td><td><code>claude-sonnet-4-20250514</code></td></tr>
+      <tr><td>GPT-4o</td><td><code>gpt-4o</code></td></tr>
+      <tr><td>Gemini Pro</td><td><code>gemini-2.5-pro</code></td></tr>
+    </table>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div>Không nhớ tên model? Chạy <code>curl http://localhost:8317/v1/models | jq</code> để xem danh sách tất cả model có sẵn.</div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label blue">BƯỚC 4.3</span>
+    <h3>Test Hermes lần đầu</h3>
+
+    <div class="code-block"><span class="comment"># Chat thử với Hermes:</span>
+<span class="cmd">hermes chat -q "Xin chào! Bạn là ai?"</span>
+
+<span class="comment"># Nếu nhận được câu trả lời = setup thành công! 🎉</span>
+<span class="comment"># Hermes đang nói chuyện với AI thông qua CLIProxy → subscription của bạn</span></div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 5: TẠO DISCORD SERVER & BOT ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number purple">5</div>
+    <div class="section-title">
+      Tạo "Văn phòng" trên Discord
+      <small>Discord = nơi bạn và đội AI giao tiếp hàng ngày</small>
+    </div>
+  </div>
+
+  <div class="prereq">
+    <span class="icon">📋</span>
+    <span class="text">Cần trước: Tài khoản Discord (miễn phí tại discord.com)</span>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 5.1</span>
+    <h3>Tạo Discord Server riêng</h3>
+    <ul>
+      <li>Mở Discord → bấm dấu <span class="bold">+</span> ở thanh server bên trái</li>
+      <li>Chọn <span class="bold">"Create My Own"</span> → <span class="bold">"For me and my friends"</span></li>
+      <li>Đặt tên server (ví dụ: "Đội AI của tôi")</li>
+      <li>Tạo các kênh (channel) theo ý muốn: #workspace, #research, #code, ...</li>
+    </ul>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 5.2</span>
+    <h3>Tạo Bot trên Discord Developer Portal</h3>
+    <p>Mỗi bot AI cần 1 "hộ chiếu" riêng trên Discord. Tạo bao nhiêu bot = lặp lại bấy nhiêu lần.</p>
+
+    <h4>Truy cập: <code>discord.com/developers/applications</code></h4>
+
+    <p class="bold" style="margin-top: 10px;">Cho mỗi bot, làm theo thứ tự:</p>
+    <ol style="padding-left: 20px; list-style: decimal;">
+      <li style="padding: 4px 0;">Bấm <span class="bold">"New Application"</span> → Đặt tên (VD: "Coordinator")</li>
+      <li style="padding: 4px 0;">Vào tab <span class="bold">"Bot"</span> bên trái</li>
+      <li style="padding: 4px 0;">Bấm <span class="bold">"Reset Token"</span> → <mark>Copy token ngay</mark> (chỉ hiện 1 lần!)</li>
+      <li style="padding: 4px 0;">Bật <span class="bold">3 toggle quan trọng</span> ở mục "Privileged Gateway Intents":
+        <ul style="margin-top: 4px;">
+          <li>✅ Server Members Intent</li>
+          <li>✅ Message Content Intent</li>
+          <li>✅ Presence Intent</li>
+        </ul>
+      </li>
+      <li style="padding: 4px 0;">Vào tab <span class="bold">"OAuth2"</span> → chọn scope <code>bot</code> → chọn permissions cần thiết</li>
+      <li style="padding: 4px 0;">Copy link invite → Mở link → Chọn server → <span class="bold">Authorize</span></li>
+    </ol>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><span class="bold">Lưu ý bảo mật:</span> Token của bot giống như mật khẩu — không chia sẻ, không đăng lên mạng, không commit vào code. Lưu vào file <code>.env</code> trên máy thôi.</div>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label">BƯỚC 5.3</span>
+    <h3>Lấy Discord User ID của bạn</h3>
+    <p>Hermes cần biết <span class="bold">bạn là ai</span> để chỉ trả lời bạn (bảo mật):</p>
+
+    <div class="code-block"><span class="comment"># Trong Discord:</span>
+<span class="highlight-line">Settings → Advanced → Bật "Developer Mode"</span>
+<span class="highlight-line">Click phải vào tên bạn → "Copy User ID"</span>
+<span class="comment"># Kết quả ví dụ: 284102345871466496</span></div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 6: CẤU HÌNH HERMES + DISCORD ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number orange">6</div>
+    <div class="section-title">
+      Kết nối Hermes với Discord
+      <small>Cho bot "vào phòng" và bắt đầu hoạt động</small>
+    </div>
+  </div>
+
+  <div class="prereq">
+    <span class="icon">📋</span>
+    <span class="text">Cần trước: Hermes đã cài (bước 4) · Bot token đã copy (bước 5) · User ID đã copy</span>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label orange">BƯỚC 6.1</span>
+    <h3>Cấu hình kết nối Discord</h3>
+    <p>Có 2 cách — chọn cách nào bạn thấy dễ hơn:</p>
+
+    <h4>Cách 1: Dùng wizard (khuyên dùng cho người mới):</h4>
+    <div class="code-block"><span class="cmd">hermes gateway setup</span>
+<span class="comment"># → Chọn "Discord" khi được hỏi</span>
+<span class="comment"># → Paste bot token khi được hỏi</span>
+<span class="comment"># → Paste User ID của bạn khi được hỏi</span></div>
+
+    <h4>Cách 2: Chỉnh file thủ công (cho người quen Terminal):</h4>
+    <div class="code-block"><span class="comment"># Mở file cấu hình bí mật:</span>
+<span class="cmd">nano ~/.hermes/.env</span>
+
+<span class="comment"># Thêm các dòng sau:</span>
+<span class="string">DISCORD_BOT_TOKEN=paste-token-bot-ở-đây</span>
+<span class="string">DISCORD_ALLOWED_USERS=paste-user-id-của-bạn</span>
+<span class="string">DISCORD_HOME_CHANNEL=paste-id-kênh-chính</span>
+
+<span class="comment"># Lưu file: Ctrl+X → Y → Enter</span></div>
+  </div>
+
+  <div class="content-box">
+    <span class="step-label orange">BƯỚC 6.2</span>
+    <h3>Bật gateway — Bot lên mạng!</h3>
+
+    <div class="code-block"><span class="comment"># Chạy gateway:</span>
+<span class="cmd">hermes gateway start</span>
+
+<span class="comment"># Kiểm tra trạng thái:</span>
+<span class="cmd">hermes gateway status</span>
+
+<span class="comment"># Xem log nếu cần debug:</span>
+<span class="cmd">hermes logs</span></div>
+  </div>
+
+  <div class="content-box success">
+    <span class="step-label green">TEST</span>
+    <h3>✅ Kiểm tra kết quả</h3>
+    <p>Mở Discord → vào server → mention bot:</p>
+    <div class="code-block" style="background: #166534; color: #D1FAE5;"><span class="highlight-line">@Coordinator Xin chào! Giới thiệu bản thân đi</span>
+
+<span class="comment" style="color: #86EFAC;"># Nếu bot trả lời = THÀNH CÔNG! 🎉🎉🎉</span>
+<span class="comment" style="color: #86EFAC;"># Nếu không trả lời → kiểm tra:</span>
+<span class="comment" style="color: #86EFAC;">#   1. Bot có online (chấm xanh) trên Discord không?</span>
+<span class="comment" style="color: #86EFAC;">#   2. Message Content Intent đã bật chưa?</span>
+<span class="comment" style="color: #86EFAC;">#   3. DISCORD_ALLOWED_USERS có đúng ID không?</span></div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 7: THÊM BOT CHUYÊN GIA ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number red">7</div>
+    <div class="section-title">
+      Mở rộng đội — Thêm bot chuyên gia
+      <small>Nâng cấp từ 1 bot lên đội 7 bot (tuỳ chọn, làm dần)</small>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h3>Chiến lược: Bắt đầu nhỏ, mở rộng dần</h3>
+    <p>Không cần 7 bot ngay từ đầu! Bắt đầu với 1 Coordinator, rồi thêm dần:</p>
+    <table class="data-table">
+      <tr>
+        <th>Giai đoạn</th>
+        <th>Đội hình</th>
+        <th>Khi nào nên mở rộng</th>
+      </tr>
+      <tr>
+        <td class="bold">Bước 1</td>
+        <td>1 bot Coordinator — làm mọi thứ</td>
+        <td>Bắt đầu từ đây!</td>
+      </tr>
+      <tr>
+        <td class="bold">Bước 2</td>
+        <td>+ 1 Developer (code) hoặc 1 Writer (viết)</td>
+        <td>Khi bạn thấy 1 bot không đủ nhanh</td>
+      </tr>
+      <tr>
+        <td class="bold">Bước 3</td>
+        <td>+ Researcher + Reviewer</td>
+        <td>Khi cần nghiên cứu + kiểm duyệt chất lượng</td>
+      </tr>
+      <tr>
+        <td class="bold">Full</td>
+        <td>7 bot đầy đủ</td>
+        <td>Khi công việc đòi hỏi chuyên môn hoá cao</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content-box">
+    <h3>Với mỗi bot mới, lặp lại 3 bước:</h3>
+    <ol style="padding-left: 20px; list-style: decimal;">
+      <li style="padding: 6px 0;"><span class="bold">Tạo Profile:</span> <code>hermes profile create &lt;tên-bot&gt;</code></li>
+      <li style="padding: 6px 0;"><span class="bold">Cấu hình AI + Discord:</span> Gán model, bot token, system prompt</li>
+      <li style="padding: 6px 0;"><span class="bold">Chạy gateway:</span> Tất cả profile chạy cùng lúc</li>
+    </ol>
+
+    <div class="code-block"><span class="comment"># Ví dụ: Tạo bot Developer dùng GPT</span>
+<span class="cmd">hermes profile create developer</span>
+
+<span class="comment"># Cấu hình profile developer:</span>
+<span class="cmd">hermes -p developer setup</span>
+<span class="comment"># → Chọn provider: custom</span>
+<span class="comment"># → Base URL: http://localhost:8317/v1</span>
+<span class="comment"># → Model: gpt-4o (hoặc model bạn muốn)</span>
+
+<span class="comment"># Thêm Discord token cho bot developer vào .env:</span>
+<span class="cmd">echo "DISCORD_BOT_TOKEN=token-của-bot-developer" >> ~/.hermes/profiles/developer/.env</span>
+
+<span class="comment"># Chạy tất cả bot cùng lúc:</span>
+<span class="cmd">hermes gateway start --all</span></div>
+  </div>
+
+  <div class="content-box">
+    <h3>Bảng đội hình tham khảo (setup của tác giả)</h3>
+    <table class="data-table">
+      <tr>
+        <th>Vai trò</th>
+        <th>Model AI</th>
+        <th>Giỏi cái gì</th>
+        <th>Nguồn</th>
+      </tr>
+      <tr>
+        <td class="bold">🎯 Coordinator</td>
+        <td>Claude Opus</td>
+        <td>Điều phối, suy luận sâu</td>
+        <td>Claude Max → CLIProxy</td>
+      </tr>
+      <tr>
+        <td class="bold">👨‍💻 Developer</td>
+        <td>GPT 5.5</td>
+        <td>Code, debug, kiến trúc</td>
+        <td>ChatGPT Pro → CLIProxy</td>
+      </tr>
+      <tr>
+        <td class="bold">🔍 Researcher</td>
+        <td>Gemini Pro</td>
+        <td>Tìm kiếm, tổng hợp</td>
+        <td>Gemini → CLIProxy</td>
+      </tr>
+      <tr>
+        <td class="bold">✍️ Writer</td>
+        <td>Claude Sonnet</td>
+        <td>Viết bài, nội dung</td>
+        <td>Claude Max → CLIProxy</td>
+      </tr>
+      <tr>
+        <td class="bold">🔎 Reviewer</td>
+        <td>Grok</td>
+        <td>Kiểm duyệt, phản biện</td>
+        <td>Kira API (miễn phí)</td>
+      </tr>
+      <tr>
+        <td class="bold">🎨 Designer</td>
+        <td>Kira Flash</td>
+        <td>Thiết kế nhanh</td>
+        <td>Kira API (miễn phí)</td>
+      </tr>
+      <tr>
+        <td class="bold">🧪 QA</td>
+        <td>DeepSeek</td>
+        <td>Kiểm thử kỹ lưỡng</td>
+        <td>Kira API (miễn phí)</td>
+      </tr>
+    </table>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div><span class="bold">Kira API (kiraai.vn):</span> Có model miễn phí — dùng cho các bot phụ để tiết kiệm. Không cần CLIProxy, dùng API key trực tiếp.</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 8: SO SÁNH VPS ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">🔄</div>
+    <div class="section-title">
+      So sánh: Setup này vs VPS truyền thống
+      <small>Thực chất bạn đang tạo "VPS tại nhà" chuyên cho AI</small>
+    </div>
+  </div>
+
+  <div class="comparison-grid">
+    <div class="compare-col left">
+      <div class="compare-header">☁️ VPS truyền thống</div>
+      <div class="compare-body">
+        <ul>
+          <li>💸 Thuê máy ảo trên cloud: $10-50/tháng</li>
+          <li>🖥️ Cần biết Linux, SSH, dòng lệnh</li>
+          <li>🔧 Tự cài đặt, bảo trì, cập nhật server</li>
+          <li>⌨️ Quản lý qua SSH terminal — khó</li>
+          <li>🌍 Chạy ở data center xa → lag ít</li>
+          <li>🔌 Không phụ thuộc điện/mạng nhà</li>
+        </ul>
+      </div>
+    </div>
+    <div class="compare-col right">
+      <div class="compare-header">🏠 Setup tại nhà (Hermes)</div>
+      <div class="compare-body" style="color: #1a1a1a;">
+        <ul>
+          <li>🆓 Dùng máy có sẵn: $0 tiền server</li>
+          <li>💬 Không cần biết Linux — quản lý qua Discord</li>
+          <li>🤖 Hermes tự quản lý — ít bảo trì</li>
+          <li>📱 Quản lý qua Discord/Telegram — dễ</li>
+          <li>🏠 Chạy tại nhà → phụ thuộc mạng nhà</li>
+          <li>🔌 Máy tắt = bot offline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-box success">
+    <h3 style="text-align: center;">✅ Giống nhau — Chạy 24/7 · Truy cập từ xa · Tự động hoá · Nhiều "dịch vụ" cùng lúc</h3>
+    <p style="text-align: center; margin-top: 8px;">Bản chất: setup này biến máy tính cá nhân thành <mark>VPS tại nhà chuyên chạy đội AI</mark>. Ai quen VPS sẽ thấy rất quen thuộc!</p>
+  </div>
+</div>
+
+<div class="connector"></div>
+<div class="connector-arrow">▼</div>
+
+<!-- ==================== PHẦN 9: ƯU/NHƯỢC ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">📊</div>
+    <div class="section-title">Ưu điểm & Lưu ý thực tế</div>
+  </div>
+
+  <div class="two-col">
+    <div class="content-box success" style="margin-bottom: 0;">
+      <h3>✅ Ưu điểm</h3>
+      <ul>
+        <li>💰 <span class="bold">Tiết kiệm</span> — tận dụng subscription đã trả, không bill bất ngờ</li>
+        <li>💬 <span class="bold">Dễ quản lý</span> — nhắn tin trên Discord như chat bình thường</li>
+        <li>🔄 <span class="bold">Linh hoạt</span> — đổi model AI bất kỳ lúc nào, thêm/bớt bot tuỳ ý</li>
+        <li>🎯 <span class="bold">Chuyên môn hoá</span> — mỗi bot giỏi 1 việc → kết quả tốt hơn</li>
+        <li>📱 <span class="bold">Từ xa</span> — nhắn từ điện thoại qua Discord/Telegram</li>
+        <li>🔓 <span class="bold">Mã nguồn mở</span> — miễn phí, cộng đồng hỗ trợ</li>
+      </ul>
+    </div>
+    <div class="content-box warning" style="margin-bottom: 0;">
+      <h3>⚠️ Lưu ý</h3>
+      <ul>
+        <li>🔌 <span class="bold">Máy phải chạy liên tục</span> — tắt máy = bot offline</li>
+        <li>🌐 <span class="bold">Internet phải ổn</span> — mất mạng = mất kết nối</li>
+        <li>📊 <span class="bold">Rate limit</span> — subscription có giới hạn, dùng quá nhiều sẽ bị chậm</li>
+        <li>⏱️ <span class="bold">Setup lần đầu</span> — mất 1-2 tiếng cho người mới</li>
+        <li>🔄 <span class="bold">CLIProxy có thể bị chặn</span> — nhà cung cấp AI có thể thay đổi chính sách</li>
+        <li>🔧 <span class="bold">Debug</span> — khi lỗi cần biết đọc log cơ bản</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <div class="main">Hermes Agent — Mã nguồn mở · hermes-agent.nousresearch.com</div>
+  <div class="sub">CLIProxyAPI — github.com/router-for-me/CLIProxyAPI · Kira API — kiraai.vn</div>
+  <div class="sub" style="margin-top: 8px;">Hướng dẫn bởi Đội Hermes "Sân 7" · 2026</div>
+</div>
+
+</div>
+</body>
+</html>

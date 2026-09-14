@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt cài đặt tự động — Hermes AI Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #FEFCF8;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nav */
+.nav {
+  background: #1a1a1a;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.nav a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav a:hover, .nav a.active {
+  color: #fff;
+}
+.nav .brand {
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  margin-right: auto;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #fff;
+  text-align: center;
+  padding: 48px 24px 40px;
+}
+.hero h1 {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 0 auto 12px;
+}
+.hero p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Main content */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  width: 100%;
+  flex: 1;
+}
+
+/* Mode cards */
+.mode-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+@media (max-width: 640px) {
+  .mode-intro { grid-template-columns: 1fr; }
+}
+.mode-card {
+  background: #fff;
+  border: 2px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 24px;
+}
+.mode-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.mode-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #E5E5E5;
+  margin-bottom: 0;
+}
+.tab-btn {
+  padding: 12px 28px;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover {
+  color: #1a1a1a;
+}
+.tab-btn.active {
+  color: #1a1a1a;
+  border-bottom-color: #4F46E5;
+}
+
+/* Prompt area */
+.tab-content {
+  display: none;
+  position: relative;
+}
+.tab-content.active {
+  display: block;
+}
+.prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #2d2d2d;
+  border-radius: 10px 10px 0 0;
+}
+.prompt-filename {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.prompt-actions {
+  display: flex;
+  gap: 8px;
+}
+.btn {
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-copy {
+  background: #4F46E5;
+  color: #fff;
+}
+.btn-copy:hover { background: #4338CA; }
+.btn-copy.copied {
+  background: #059669;
+}
+.btn-download {
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+}
+.btn-download:hover {
+  background: rgba(255,255,255,0.25);
+}
+.prompt-box {
+  background: #1a1a1a;
+  color: #d4d4d4;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  tab-size: 2;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid #E5E5E5;
+  font-size: 13px;
+  color: #aaa;
+}
+.footer a {
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="brand">Lazy AI Guide</a>
+  <a href="index.html">Trang chủ</a>
+  <a href="part1.html">Phần 1</a>
+  <a href="part2.html">Phần 2</a>
+  <a href="part3.html">Phần 3</a>
+  <a href="prompt.html" class="active">Prompt</a>
+</nav>
+
+<div class="hero">
+  <h1>Prompt cài đặt tự động</h1>
+  <p>Copy prompt bên dưới, paste vào AI — để nó hướng dẫn hoặc tự cài hết cho bạn.</p>
+</div>
+
+<div class="container">
+
+  <div class="mode-intro">
+    <div class="mode-card">
+      <h3>Agent Mode</h3>
+      <p>Dùng khi bạn có AI agent chạy trên terminal — Claude Code, Codex, hoặc Hermes. Paste prompt vào, agent sẽ tự chạy lệnh cài đặt. Bạn chỉ cần trả lời vài câu hỏi và làm phần Discord thủ công.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Guide Mode</h3>
+      <p>Dùng khi bạn chat với AI trên web — ChatGPT, Claude.ai, Gemini. Paste prompt vào, AI sẽ hướng dẫn bạn từng bước với lệnh copy-paste. Bạn tự chạy lệnh, AI chỉ hướng dẫn.</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('agent')">Agent Mode</button>
+    <button class="tab-btn" onclick="switchTab('guide')">Guide Mode</button>
+  </div>
+
+  <div id="tab-agent" class="tab-content active">
+    <div class="prompt-header">
+      <span class="prompt-filename">prompt-agent.md</span>
+      <div class="prompt-actions">
+        <button class="btn btn-download" onclick="downloadFile('prompt-agent.md', 'agent')">Tải .md</button>
+        <button class="btn btn-copy" id="copy-agent" onclick="copyPrompt('agent')">Copy</button>
+      </div>
+    </div>
+    <pre class="prompt-box" id="prompt-agent">Đang tải...</pre>
+  </div>
+
+  <div id="tab-guide" class="tab-content">
+    <div class="prompt-header">
+      <span class="prompt-filename">prompt-guide.md</span>
+      <div class="prompt-actions">
+        <button class="btn btn-download" onclick="downloadFile('prompt-guide.md', 'guide')">Tải .md</button>
+        <button class="btn btn-copy" id="copy-guide" onclick="copyPrompt('guide')">Copy</button>
+      </div>
+    </div>
+    <pre class="prompt-box" id="prompt-guide">Đang tải...</pre>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="https://github.com/linhnlm">linhnlm</a> · © 2026
+</div>
+
+<script>
+const prompts = { agent: '', guide: '' };
+
+async function loadPrompt(name) {
+  try {
+    const res = await fetch('prompt-' + name + '.md');
+    if (!res.ok) throw new Error(res.status);
+    const text = await res.text();
+    prompts[name] = text;
+    document.getElementById('prompt-' + name).textContent = text;
+  } catch (e) {
+    document.getElementById('prompt-' + name).textContent = 'Không tải được file. Thử tải trực tiếp bằng nút "Tải .md".';
+  }
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector('[onclick="switchTab(\'' + name + '\')"]').classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function copyPrompt(name) {
+  const text = prompts[name];
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-' + name);
+    btn.textContent = 'Đã copy';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function downloadFile(filename, name) {
+  const text = prompts[name];
+  if (!text) return;
+  const blob = new Blob([text], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+loadPrompt('agent');
+loadPrompt('guide');
+</script>
+
+</body>
+</html>

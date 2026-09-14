@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, initial-scale=1">
+<title>Biến Máy Tính Thành Đội AI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1080px;
+  background: #FEFCF8;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.container {
+  width: 1080px;
+  padding: 40px 60px;
+}
+
+/* Title */
+.title-section {
+  text-align: center;
+  padding: 50px 0 30px;
+  border-bottom: 3px solid #1a1a1a;
+  margin-bottom: 40px;
+}
+.title-section h1 {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.title-section .subtitle {
+  font-size: 20px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Section */
+.section {
+  margin-bottom: 36px;
+  position: relative;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.section-icon {
+  width: 44px;
+  height: 44px;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Connector line */
+.connector {
+  width: 3px;
+  height: 30px;
+  background: #1a1a1a;
+  margin: 0 auto;
+  position: relative;
+}
+.connector::after {
+  content: '▼';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #1a1a1a;
+}
+
+/* Idea section */
+.idea-box {
+  border: 2.5px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  background: #fff;
+}
+.idea-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.stick-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stick-figure .head {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+}
+.stick-figure .body {
+  font-size: 10px;
+  font-weight: 600;
+  color: #666;
+}
+.computer-icon {
+  width: 80px;
+  height: 64px;
+  border: 3px solid #1a1a1a;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: #f5f5f0;
+  position: relative;
+}
+.computer-icon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #1a1a1a;
+  border-radius: 2px;
+}
+.idea-text {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.idea-sub {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Prep section */
+.prep-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.prep-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  background: #fff;
+}
+.prep-number {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.prep-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.prep-text {
+  font-size: 16px;
+}
+.prep-text strong {
+  font-weight: 700;
+}
+.prep-text .note {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Steps */
+.step-box {
+  border: 2.5px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 24px 28px;
+  background: #fff;
+}
+.step-label {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #FEFCF8;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.step-content {
+  font-size: 16px;
+  color: #444;
+}
+.step-content li {
+  list-style: none;
+  padding: 4px 0;
+  padding-left: 24px;
+  position: relative;
+}
+.step-content li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Bot mapping */
+.bot-map {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 6px 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+.bot-name {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 8px;
+  background: #f5f5f0;
+}
+.bot-arrow {
+  font-size: 16px;
+  color: #1a1a1a;
+  text-align: center;
+}
+.bot-model {
+  font-size: 15px;
+  padding: 6px 12px;
+  border: 1.5px solid #3B82F6;
+  border-radius: 8px;
+  color: #3B82F6;
+  font-weight: 600;
+  background: #EFF6FF;
+}
+
+/* Flow */
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.flow-node {
+  padding: 10px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background: #fff;
+}
+.flow-node.highlight {
+  background: #1a1a1a;
+  color: #FEFCF8;
+}
+.flow-arrow {
+  font-size: 20px;
+  color: #1a1a1a;
+}
+
+/* Comparison */
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.compare-col {
+  border: 2px solid #1a1a1a;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.compare-header {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.compare-col.vps .compare-header {
+  background: #F3F4F6;
+  border-bottom: 2px solid #1a1a1a;
+}
+.compare-col.hermes .compare-header {
+  background: #1a1a1a;
+  color: #FEFCF8;
+  border-bottom: 2px solid #1a1a1a;
+}
+.compare-body {
+  padding: 16px;
+}
+.compare-body li {
+  list-style: none;
+  padding: 6px 0;
+  font-size: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.compare-body li .icon {
+  flex-shrink: 0;
+}
+.shared-features {
+  text-align: center;
+  padding: 14px;
+  background: #F0FDF4;
+  border: 2px solid #22C55E;
+  border-radius: 10px;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #166534;
+}
+
+/* Pros/Cons */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.pros-col, .cons-col {
+  border-radius: 14px;
+  padding: 20px;
+}
+.pros-col {
+  border: 2px solid #22C55E;
+  background: #F0FDF4;
+}
+.cons-col {
+  border: 2px solid #F59E0B;
+  background: #FFFBEB;
+}
+.pros-col h3, .cons-col h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.pros-col h3 { color: #166534; }
+.cons-col h3 { color: #92400E; }
+.pros-col li, .cons-col li {
+  list-style: none;
+  padding: 5px 0;
+  font-size: 15px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-top: 2px solid #1a1a1a;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #888;
+}
+.footer strong {
+  color: #1a1a1a;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- TITLE -->
+  <div class="title-section">
+    <h1>BIẾN MÁY TÍNH THÀNH ĐỘI AI</h1>
+    <div class="subtitle">Hướng dẫn setup Hermes Team — Kiểu IKEA, ai cũng làm được</div>
+  </div>
+
+  <!-- IDEA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div class="section-title">Ý tưởng</div>
+    </div>
+    <div class="idea-box">
+      <div class="idea-illustration">
+        <div class="stick-figure"><div class="head"></div><div class="body">🔧</div></div>
+        <div class="stick-figure"><div class="head"></div><div class="body">🔍</div></div>
+        <div class="stick-figure"><div class="head"></div><div class="body">✍️</div></div>
+        <div class="computer-icon">🖥️</div>
+        <div class="stick-figure"><div class="head"></div><div class="body">🎨</div></div>
+        <div class="stick-figure"><div class="head"></div><div class="body">📋</div></div>
+        <div class="stick-figure"><div class="head"></div><div class="body">⚙️</div></div>
+        <div class="stick-figure"><div class="head"></div><div class="body">✅</div></div>
+      </div>
+      <div class="idea-text">Máy tính của bạn = Văn phòng AI</div>
+      <div class="idea-sub">7 bot AI · 1 đội trưởng + 6 chuyên gia · Giao tiếp qua Discord</div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- CHUẨN BỊ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🛒</div>
+      <div class="section-title">Chuẩn bị — 3 thứ cần có</div>
+    </div>
+    <div class="prep-grid">
+      <div class="prep-item">
+        <div class="prep-number">1</div>
+        <div class="prep-icon">🖥️</div>
+        <div class="prep-text">
+          <strong>Máy tính chạy liên tục</strong><br>
+          <span class="note">Mac Mini lý tưởng (~10W điện) · Laptop cũ, PC đều OK</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-number">2</div>
+        <div class="prep-icon">💬</div>
+        <div class="prep-text">
+          <strong>Tài khoản Discord + tạo Bot</strong><br>
+          <span class="note">Miễn phí · discord.com/developers</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-number">3</div>
+        <div class="prep-icon">🔑</div>
+        <div class="prep-text">
+          <strong>API Key — "chìa khoá" truy cập AI</strong><br>
+          <span class="note">cliproxy / OpenRouter / Kira API (kiraai.vn — có free)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- STEP 1 -->
+  <div class="section">
+    <div class="step-box">
+      <span class="step-label">BƯỚC 1</span>
+      <div class="step-title">Cài Hermes Agent</div>
+      <div class="step-content">
+        <ul>
+          <li>Phần mềm <strong>miễn phí</strong>, mã nguồn mở</li>
+          <li>1 dòng lệnh → cài xong</li>
+          <li>Hỗ trợ Mac · Windows · Linux</li>
+          <li>Chạy <code>hermes setup</code> để cấu hình lần đầu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- STEP 2 -->
+  <div class="section">
+    <div class="step-box">
+      <span class="step-label">BƯỚC 2</span>
+      <div class="step-title">Tạo 7 Bot trên Discord</div>
+      <div class="step-content">
+        <ul>
+          <li>Vào <strong>discord.com/developers</strong> → tạo 7 Application</li>
+          <li>Đặt tên theo vai trò: Coordinator, Developer, Researcher, Writer, Reviewer, Designer, QA</li>
+          <li>Copy token (mật khẩu) của mỗi bot</li>
+          <li>Invite tất cả vào server Discord riêng</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- STEP 3 -->
+  <div class="section">
+    <div class="step-box">
+      <span class="step-label">BƯỚC 3</span>
+      <div class="step-title">Gán "Não" AI cho mỗi Bot</div>
+      <div class="bot-map">
+        <div class="bot-name">🎯 Coordinator</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">Claude Opus</div>
+
+        <div class="bot-name">👨‍💻 Developer</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">GPT 5.5</div>
+
+        <div class="bot-name">🔍 Researcher</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">Gemini Pro</div>
+
+        <div class="bot-name">✍️ Writer</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">Claude Sonnet</div>
+
+        <div class="bot-name">🔎 Reviewer</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">Grok</div>
+
+        <div class="bot-name">🎨 Designer</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">Kira Flash</div>
+
+        <div class="bot-name">🧪 QA</div>
+        <div class="bot-arrow">→</div>
+        <div class="bot-model">DeepSeek</div>
+      </div>
+      <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #888;">Mỗi bot 1 chuyên môn — giỏi hơn 1 bot làm tất cả</p>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- STEP 4 -->
+  <div class="section">
+    <div class="step-box">
+      <span class="step-label">BƯỚC 4</span>
+      <div class="step-title">Bật đội & Test ✅</div>
+      <div class="step-content">
+        <ul>
+          <li>Chạy <code>hermes gateway</code> → 7 bot online cùng lúc</li>
+          <li>Mention <strong>@Coordinator</strong> trên Discord</li>
+          <li>Bot phản hồi = <strong>Thành công!</strong> 🎉</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- CÁCH HOẠT ĐỘNG -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div class="section-title">Cách hoạt động</div>
+    </div>
+    <div class="step-box" style="text-align: center;">
+      <div class="flow-diagram">
+        <div class="flow-node">👤 Bạn</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node highlight">🎯 Đội trưởng</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">👨‍💻🔍✍️🎨<br>Chuyên gia</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">🔎 Kiểm duyệt</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">👤 Bạn</div>
+      </div>
+      <p style="font-size: 16px; color: #666; margin-top: 8px;">Bạn chỉ cần nói với đội trưởng — nó tự phân việc cho chuyên gia</p>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- SO SÁNH VỚI VPS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-title">So sánh với VPS</div>
+    </div>
+    <div class="comparison">
+      <div class="compare-col vps">
+        <div class="compare-header">☁️ VPS truyền thống</div>
+        <div class="compare-body">
+          <ul>
+            <li><span class="icon">💸</span> Thuê máy trên cloud: $10-50/tháng</li>
+            <li><span class="icon">🖥️</span> Cần biết Linux, dòng lệnh</li>
+            <li><span class="icon">⌨️</span> Quản lý qua SSH terminal</li>
+            <li><span class="icon">🔧</span> Tự cài đặt, bảo trì server</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare-col hermes">
+        <div class="compare-header">🏠 Setup tại nhà (Hermes)</div>
+        <div class="compare-body">
+          <ul>
+            <li><span class="icon">🆓</span> Dùng máy có sẵn: $0 tiền server</li>
+            <li><span class="icon">❌</span> Không cần biết Linux</li>
+            <li><span class="icon">💬</span> Quản lý qua Discord</li>
+            <li><span class="icon">🤖</span> Hermes lo phần kỹ thuật</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="shared-features">
+      ✅ Chạy 24/7 &nbsp;·&nbsp; ✅ Truy cập từ xa &nbsp;·&nbsp; ✅ Tự động hoá — <em>giống nhau!</em>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- ƯU ĐIỂM & LƯU Ý -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-title">Ưu điểm & Lưu ý</div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros-col">
+        <h3>✅ Ưu điểm</h3>
+        <ul>
+          <li>💰 Tiết kiệm — không thuê server</li>
+          <li>💬 Dễ quản lý — chat qua Discord</li>
+          <li>🔄 Linh hoạt — đổi AI model tuỳ ý</li>
+          <li>🎯 Chuyên môn hoá — mỗi bot giỏi 1 việc</li>
+          <li>📱 Làm việc từ xa — nhắn từ điện thoại</li>
+          <li>🔓 Mã nguồn mở — miễn phí mãi mãi</li>
+        </ul>
+      </div>
+      <div class="cons-col">
+        <h3>⚠️ Lưu ý</h3>
+        <ul>
+          <li>🔌 Máy phải chạy liên tục (tắt = bot offline)</li>
+          <li>🌐 Internet phải ổn định</li>
+          <li>💸 Model mạnh = tốn tiền API</li>
+          <li>⏱️ Setup lần đầu mất 1-2 tiếng</li>
+          <li>🔄 Cần update Hermes định kỳ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>Hermes Agent</strong> — Mã nguồn mở · hermes-agent.nousresearch.com<br>
+    <span style="font-size: 12px; color: #aaa;">Setup bởi Đội Hermes "Sân 7" · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
