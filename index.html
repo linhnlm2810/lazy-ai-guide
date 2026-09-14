@@ -1,184 +1,610 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Q5FQGBV5X2');
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lazy AI Guide — Hướng dẫn dùng AI cho người lười</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: #FEFCF8;
-  font-family: 'Inter', sans-serif;
-  color: #1a1a1a;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.hero {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: #fff;
-  text-align: center;
-  padding: 80px 24px 64px;
-}
-.hero .brand {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 20px;
-}
-.hero h1 {
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.2;
-  max-width: 600px;
-  margin: 0 auto 12px;
-}
-.hero .tagline {
-  font-size: 18px;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 6px;
-}
-.hero .tagline-en {
-  font-size: 15px;
-  color: rgba(255,255,255,0.4);
-  font-style: italic;
-  margin-bottom: 24px;
-}
-.hero .desc {
-  font-size: 16px;
-  color: rgba(255,255,255,0.6);
-  max-width: 520px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-.topics {
-  max-width: 720px;
-  margin: -32px auto 0;
-  padding: 0 24px 64px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  position: relative;
-  z-index: 1;
-}
-@media (max-width: 560px) {
-  .topics { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 32px; }
-}
-.topic-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 32px 28px 28px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  text-decoration: none;
-  color: #1a1a1a;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-.topic-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-.topic-card.coming-soon {
-  opacity: 0.5;
-  pointer-events: none;
-}
-.topic-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  color: #4F46E5;
-  background: #EEF2FF;
-  border-radius: 100px;
-  padding: 4px 12px;
-  margin-bottom: 14px;
-  width: fit-content;
-}
-.topic-card.coming-soon .topic-tag {
-  color: #999;
-  background: #f3f3f3;
-}
-.topic-card h2 {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-.topic-card .en {
-  font-size: 13px;
-  color: #999;
-  margin-bottom: 10px;
-  font-style: italic;
-}
-.topic-card p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-  flex: 1;
-}
-.topic-arrow {
-  margin-top: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #4F46E5;
-}
-.footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 24px;
-  border-top: 1px solid #E5E5E5;
-  font-size: 13px;
-  color: #aaa;
-}
-.footer a {
-  color: #4F46E5;
-  text-decoration: none;
-  font-weight: 600;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy AI Guide — Hướng dẫn dùng AI cho người lười</title>
+    <meta name="description" content="Hướng dẫn setup đội AI cho người không biết code. Miễn phí, có prompt, chạy được ngay.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q5FQGBV5X2');
+    </script>
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #4F46E5;
+            --accent-light: #6366F1;
+            --accent-bg: #EEF2FF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-tertiary: #9CA3AF;
+            --bg-white: #FFFFFF;
+            --bg-light: #F9FAFB;
+            --bg-card: #FFFFFF;
+            --border: #E5E7EB;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-pill: 100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            padding: 96px 24px;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: var(--radius-pill);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            max-width: 560px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .hero-desc em {
+            font-style: normal;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 4px 14px rgba(79,70,229,0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(79,70,229,0.35);
+        }
+
+        /* ── STATS ── */
+        .stats {
+            padding: 48px 24px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-item p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ── GUIDES ── */
+        .guides {
+            background: var(--bg-white);
+        }
+
+        .section-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin-bottom: 48px;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: box-shadow 0.25s, transform 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .guide-card.published {
+            border-color: var(--accent);
+            border-width: 1.5px;
+        }
+
+        .guide-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .guide-status.live {
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .guide-status.soon {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .guide-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .guide-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-tags span {
+            padding: 4px 12px;
+            background: var(--bg-light);
+            border-radius: var(--radius-pill);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .guide-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+
+        .guide-link:hover {
+            gap: 10px;
+        }
+
+        .guide-link::after {
+            content: '→';
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            max-width: 640px;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .about-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-white);
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .fade-in.d1 { animation-delay: 0.1s; }
+        .fade-in.d2 { animation-delay: 0.2s; }
+        .fade-in.d3 { animation-delay: 0.3s; }
+        .fade-in.d4 { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll-triggered fade */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            section {
+                padding: 64px 20px;
+            }
+
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 48px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.82rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+
+            .stat-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 14px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="brand">Lazy AI Guide</div>
-  <h1>Lazy AI Guide</h1>
-  <div class="tagline">Hướng dẫn dùng AI cho người lười</div>
-  <div class="tagline-en">AI guides for lazy people</div>
-  <div class="desc">Tổng hợp các hướng dẫn thực tế để dùng AI hiệu quả — từ setup đến vận hành, viết cho người muốn kết quả nhanh mà không cần đọc tài liệu dài.</div>
-</div>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">Lazy AI Guide</a>
+            <ul class="nav-links">
+                <li><a href="#guides">Guides</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://github.com/linhnlm2810/lazy-ai-guide" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="topics">
-  <a href="discord-setup/" class="topic-card">
-    <div class="topic-tag">3 phần + prompt</div>
-    <h2>Setup đội AI trên Discord</h2>
-    <div class="en">Build your AI team on Discord</div>
-    <p>Cài Hermes Agent, kết nối Discord, tạo đội bot AI chuyên biệt — chạy local, miễn phí, dùng ngay.</p>
-    <div class="topic-arrow">Xem hướng dẫn →</div>
-  </a>
-  <div class="topic-card coming-soon">
-    <div class="topic-tag">Sắp ra mắt</div>
-    <h2>Sắp ra mắt</h2>
-    <div class="en">Coming soon</div>
-    <p>Thêm nhiều hướng dẫn thực tế đang được chuẩn bị.</p>
-  </div>
-</div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge fade-in">AI guides for lazy people</div>
+            <h1 class="fade-in d1">Lazy AI Guide</h1>
+            <p class="hero-sub fade-in d2">Hướng dẫn dùng AI cho người lười</p>
+            <p class="hero-desc fade-in d3">
+                Bạn đã có AI rồi. Vấn đề là <em>làm sao để chúng nó tự làm việc với nhau</em>. Chúng tôi chỉ bạn cách.
+            </p>
+            <a href="#guides" class="btn-primary fade-in d4">Bắt đầu ngay</a>
+        </div>
+    </section>
 
-<div class="footer">
-  <a href="https://github.com/linhnlm">linhnlm</a> · © 2026
-</div>
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <h3>7 bot</h3>
+                <p>Đội hình tham khảo</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>$0</h3>
+                <p>Chi phí server thêm</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>1–2h</h3>
+                <p>Thời gian setup</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section class="guides" id="guides">
+        <div class="container">
+            <p class="section-label reveal">Guides</p>
+            <h2 class="section-title reveal">Chọn hướng dẫn</h2>
+            <p class="section-desc reveal">Mỗi guide đi từ ý tưởng đến chạy được. Có prompt, có template, miễn phí.</p>
+
+            <div class="guides-grid">
+                <!-- Card 1: Discord -->
+                <div class="guide-card published reveal">
+                    <span class="guide-status live">Đã xuất bản</span>
+                    <h3>Setup đội AI trên Discord</h3>
+                    <p>Từ ý tưởng đến chạy được. 3 phần hướng dẫn + prompt tự động.</p>
+                    <div class="guide-tags">
+                        <span>3 phần</span>
+                        <span>Có prompt</span>
+                        <span>Miễn phí</span>
+                    </div>
+                    <a href="discord-setup/" class="guide-link">Xem hướng dẫn</a>
+                </div>
+
+                <!-- Card 2: Coming Soon -->
+                <div class="guide-card reveal">
+                    <span class="guide-status soon">Sắp ra mắt</span>
+                    <h3>Tự động hoá công việc với Hermes Agent</h3>
+                    <p>Biến AI thành trợ lý cá nhân chạy trên máy tính — quản lý file, email, và code giúp bạn.</p>
+                    <div class="guide-tags">
+                        <span>Đang viết</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <p class="section-label reveal">About</p>
+            <h2 class="section-title reveal">Người viết</h2>
+            <div class="about-content reveal">
+                <p>
+                    <strong>linhnlm</strong> — Product Owner tại một ngân hàng Việt Nam. Ngày làm sản phẩm số, tối về nghịch AI. Lazy AI Guide là nơi mình chia sẻ những setup thực tế đã chạy được, dành cho người không biết code.
+                </p>
+                <p>
+                    <a href="https://github.com/linhnlm2810" target="_blank">GitHub →</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-copy">© 2026 linhnlm</p>
+            <ul class="footer-links">
+                <li><a href="https://github.com/linhnlm2810" target="_blank">GitHub</a></li>
+                <li><a href="https://linhnlm2810.github.io/lazy-ai-guide/" target="_blank">Lazy AI Guide</a></li>
+                <li><a href="https://kiraai.vn/?ref=areaoneamusement" target="_blank">Kira AI</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Scroll reveal -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
