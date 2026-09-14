@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn chi tiết tạo đội AI cho riêng mình</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #FEFCF8;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #fff;
+  text-align: center;
+  padding: 64px 24px 56px;
+}
+.hero h1 {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 0 auto 16px;
+}
+.hero p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.7);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.cards {
+  max-width: 960px;
+  margin: -32px auto 0;
+  padding: 0 24px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #1a1a1a;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.card-part {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4F46E5;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.card h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  flex: 1;
+}
+.card-arrow {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4F46E5;
+}
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid #E5E5E5;
+  font-size: 13px;
+  color: #aaa;
+}
+.footer a {
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Hướng dẫn chi tiết tạo đội AI cho riêng mình</h1>
+  <p>Biến máy tính thành đội AI — chạy local, miễn phí, dùng ngay trên Discord</p>
+</div>
+
+<div class="cards">
+  <a href="part1.html" class="card">
+    <div class="card-part">Phần 1</div>
+    <h2>Hiểu ý tưởng & Chuẩn bị</h2>
+    <p>Tìm hiểu Hermes Agent là gì, tại sao nên tự host, và chuẩn bị mọi thứ cần thiết trước khi bắt đầu.</p>
+    <div class="card-arrow">Bắt đầu →</div>
+  </a>
+  <a href="part2.html" class="card">
+    <div class="card-part">Phần 2</div>
+    <h2>Cài đặt & Kết nối</h2>
+    <p>Hướng dẫn từng bước: cài Hermes Agent, thiết lập CLIProxy, tạo bot Discord, và kết nối tất cả lại.</p>
+    <div class="card-arrow">Tiếp tục →</div>
+  </a>
+  <a href="part3.html" class="card">
+    <div class="card-part">Phần 3</div>
+    <h2>Mở rộng đội & Kinh nghiệm thực tế</h2>
+    <p>Tạo nhiều bot chuyên biệt, phân quyền, và chia sẻ kinh nghiệm vận hành thực tế hàng ngày.</p>
+    <div class="card-arrow">Khám phá →</div>
+  </a>
+</div>
+
+<div class="footer">
+  <a href="https://github.com/linhnlm">linhnlm</a> · © 2026
+</div>
+
+</body>
+</html>

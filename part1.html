@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>BIẾN MÁY TÍNH THÀNH ĐỘI AI — Phần 1/3</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  margin: 0 auto;
+  background: #FEFCF8;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.container { width: 1080px; padding: 0 48px; }
+
+/* Title Banner */
+.title-banner {
+  background: #1a1a1a;
+  color: white;
+  padding: 40px 48px 36px;
+  text-align: center;
+  position: relative;
+}
+.title-banner .part-badge {
+  display: inline-block;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 100px;
+  padding: 6px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: rgba(255,255,255,0.7);
+}
+.title-banner h1 {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.title-banner .subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+}
+.title-banner .tagline {
+  display: inline-block;
+  background: #FACC15;
+  color: #1a1a1a;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Section styling */
+.section { padding: 32px 48px 28px; }
+.section + .section { border-top: 2px solid #E5E5E5; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.section-num {
+  width: 40px; height: 40px;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.section-title span {
+  color: #666;
+  font-weight: 500;
+  font-size: 18px;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.card p, .card li {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* AI service pills */
+.ai-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.ai-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ai-pill .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ai-pill .price {
+  font-weight: 400;
+  color: #888;
+  font-size: 13px;
+}
+
+/* Diagram: Before/After */
+.diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  align-items: center;
+  margin: 16px 0;
+}
+.diagram-box {
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: 22px 20px;
+  text-align: center;
+}
+.diagram-box.before { border-color: #FCA5A5; background: #FFF5F5; }
+.diagram-box.after { border-color: #86EFAC; background: #F0FDF4; }
+.diagram-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: #888;
+}
+.diagram-box.before .diagram-label { color: #DC2626; }
+.diagram-box.after .diagram-label { color: #16A34A; }
+.diagram-arrow-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #ccc;
+}
+
+.node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 4px;
+  background: white;
+}
+.node.you {
+  background: #FACC15;
+  border-color: #1a1a1a;
+  font-weight: 800;
+}
+.node.captain {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+.conn-lines {
+  font-size: 22px;
+  color: #999;
+  margin: 8px 0;
+  line-height: 1.2;
+}
+.exhaust-label {
+  font-size: 12px;
+  color: #DC2626;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.easy-label {
+  font-size: 12px;
+  color: #16A34A;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Key message callout */
+.key-message {
+  background: #FFFBEB;
+  border: 2px solid #FACC15;
+  border-radius: 12px;
+  padding: 16px 24px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 16px 0 0;
+  color: #92400E;
+}
+.key-message::before {
+  content: '💡';
+  margin-right: 8px;
+}
+
+/* Choice cards grid */
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.choice-card {
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+}
+.choice-card.recommended {
+  border-color: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.choice-card .rec-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.choice-card .ai-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+.choice-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.choice-card .model-name {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+}
+.choice-card .price-tag {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+.choice-card .price-period {
+  font-size: 12px;
+  color: #888;
+}
+.choice-card .features {
+  list-style: none;
+  margin-top: 14px;
+  text-align: left;
+}
+.choice-card .features li {
+  font-size: 12px;
+  color: #555;
+  padding: 2px 0;
+}
+.choice-card .features li::before {
+  content: '✓ ';
+  color: #16A34A;
+  font-weight: 700;
+}
+
+/* Callout boxes */
+.callout {
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout .icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.callout.info {
+  background: #EFF6FF;
+  border: 2px solid #93C5FD;
+  color: #1E40AF;
+}
+.callout.tip {
+  background: #F0FDF4;
+  border: 2px solid #86EFAC;
+  color: #166534;
+}
+.callout.warning {
+  background: #FFFBEB;
+  border: 2px solid #FCD34D;
+  color: #92400E;
+}
+.callout strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+/* Misconception block */
+.misconception {
+  background: #FFF5F5;
+  border: 2px solid #FCA5A5;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 16px 0;
+}
+.misconception .wrong {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.misconception .wrong .x-mark {
+  background: #DC2626;
+  color: white;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.misconception .wrong p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #991B1B;
+}
+.misconception .right {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.misconception .right .check-mark {
+  background: #16A34A;
+  color: white;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.misconception .right p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #166534;
+}
+
+/* Reality card */
+.reality-card {
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 16px 0;
+}
+.reality-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.step-list {
+  list-style: none;
+  counter-reset: steps;
+}
+.step-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 14px;
+  color: #444;
+  border-bottom: 1px solid #F3F3F3;
+}
+.step-list li:last-child { border-bottom: none; }
+.step-list li .step-num {
+  width: 28px; height: 28px;
+  background: #F3F4F6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #666;
+  flex-shrink: 0;
+}
+
+/* Analogy box */
+.analogy-box {
+  background: #F5F3FF;
+  border: 2px solid #C4B5FD;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 16px 0;
+  text-align: center;
+}
+.analogy-box .emoji-row {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+.analogy-box h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5B21B6;
+  margin-bottom: 8px;
+}
+.analogy-box p {
+  font-size: 15px;
+  color: #6D28D9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Flow diagram */
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 20px 0;
+  padding: 24px 16px;
+  background: white;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+}
+.flow-node {
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  min-width: 150px;
+}
+.flow-node.app {
+  background: #EFF6FF;
+  border: 2px solid #93C5FD;
+}
+.flow-node.proxy {
+  background: #FEF3C7;
+  border: 2px solid #FCD34D;
+}
+.flow-node.cloud {
+  background: #F0FDF4;
+  border: 2px solid #86EFAC;
+}
+.flow-node .flow-icon { font-size: 28px; margin-bottom: 6px; }
+.flow-node .flow-label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.flow-node .flow-sub {
+  font-size: 11px;
+  color: #888;
+  font-family: 'JetBrains Mono', monospace;
+}
+.flow-arrow {
+  font-size: 24px;
+  color: #CBD5E1;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.flow-arrow .arrow-label {
+  font-size: 10px;
+  color: #999;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Comparison table */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 20px 0;
+  font-size: 14px;
+}
+.comparison-table thead th {
+  background: #1E293B;
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+}
+.comparison-table thead th:first-child {
+  width: 140px;
+}
+.comparison-table thead th.bad { background: #991B1B; }
+.comparison-table thead th.good { background: #166534; }
+.comparison-table tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #F3F3F3;
+  vertical-align: top;
+  font-size: 13px;
+}
+.comparison-table tbody tr:last-child td { border-bottom: none; }
+.comparison-table tbody td:first-child {
+  font-weight: 700;
+  color: #555;
+  background: #FAFAFA;
+}
+.comparison-table tbody td:nth-child(2) { background: #FFF5F5; }
+.comparison-table tbody td:nth-child(3) { background: #F0FDF4; }
+.comparison-table .bad-text { color: #DC2626; }
+.comparison-table .good-text { color: #16A34A; font-weight: 600; }
+
+/* Big callout at bottom */
+.big-callout {
+  background: #1a1a1a;
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin: 20px 0;
+}
+.big-callout .formula {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 2;
+  color: rgba(255,255,255,0.85);
+}
+.big-callout .formula strong {
+  color: #FACC15;
+  font-weight: 800;
+}
+.big-callout .result {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 12px;
+  color: #4ADE80;
+}
+
+/* Section connector arrow */
+.section-connector {
+  text-align: center;
+  padding: 4px 0;
+  color: #ccc;
+  font-size: 24px;
+}
+
+/* Code inline */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #F1F5F9;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #334155;
+}
+
+/* Problem list */
+.problem-list {
+  list-style: none;
+  margin: 12px 0;
+}
+.problem-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: #444;
+}
+.problem-list li .emoji { flex-shrink: 0; }
+
+/* Nav Bar */
+.top-nav {
+  background: #fff;
+  border-bottom: 2px solid #E5E5E5;
+  padding: 14px 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.top-nav a {
+  text-decoration: none;
+  color: #666;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.top-nav a:hover { background: #F3F4F6; color: #1a1a1a; }
+.top-nav a.active {
+  background: #4F46E5;
+  color: #fff;
+  font-weight: 700;
+}
+.top-nav .sep { color: #ddd; font-weight: 300; }
+
+/* Bottom Nav */
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.bottom-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+.bottom-nav a:hover { transform: translateY(-2px); }
+.bottom-nav .btn-next {
+  background: #4F46E5;
+  color: #fff;
+}
+.bottom-nav .btn-prev {
+  background: #F3F4F6;
+  color: #1a1a1a;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px 48px;
+  border-top: 2px solid #E5E5E5;
+  color: #aaa;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">← Trang chủ</a>
+  <span class="sep">|</span>
+  <a href="part1.html" class="active">Phần 1</a>
+  <span class="sep">|</span>
+  <a href="part2.html">Phần 2</a>
+  <span class="sep">|</span>
+  <a href="part3.html">Phần 3</a>
+</div>
+<div class="container">
+
+  <!-- ============ TITLE BANNER ============ -->
+  <div class="title-banner">
+    <div class="part-badge">Phần 1 / 3</div>
+    <h1>HƯỚNG DẪN CHI TIẾT<br>TẠO ĐỘI AI CHO RIÊNG MÌNH</h1>
+    <p class="subtitle">Phần 1/3: Hiểu ý tưởng và Chuẩn bị</p>
+  </div>
+
+  <!-- ============ SECTION 0 ============ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">0</div>
+      <div class="section-title">BẠN ĐANG CÓ GÌ?<span>Hầu hết mọi người đã dùng AI — nhưng chỉ dùng 1 con</span></div>
+    </div>
+
+    <div class="card">
+      <h3>🧑‍💻 Bạn chắc đang dùng ít nhất 1 trong các AI này:</h3>
+      <div class="ai-pills">
+        <div class="ai-pill"><div class="dot" style="background:#10A37F"></div>ChatGPT <span class="price">$20/tháng Plus</span></div>
+        <div class="ai-pill"><div class="dot" style="background:#D97706"></div>Claude <span class="price">$20–200/tháng Pro/Max</span></div>
+        <div class="ai-pill"><div class="dot" style="background:#4285F4"></div>Gemini <span class="price">Miễn phí / Advanced</span></div>
+        <div class="ai-pill"><div class="dot" style="background:#1DA1F2"></div>Grok <span class="price">Premium+</span></div>
+        <div class="ai-pill"><div class="dot" style="background:#4D6BFF"></div>DeepSeek <span class="price">Miễn phí / rẻ</span></div>
+        <div class="ai-pill"><div class="dot" style="background:#FF6B35"></div>Llama / Qwen <span class="price">Miễn phí (open-source)</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>😤 Vấn đề: Mỗi con AI giỏi 1 thứ khác nhau</h3>
+      <ul class="problem-list">
+        <li><span class="emoji">✍️</span> <strong>Claude</strong> — viết văn mượt, phân tích sâu, suy luận logic</li>
+        <li><span class="emoji">💻</span> <strong>ChatGPT</strong> — code tốt, plugin phong phú, nhanh</li>
+        <li><span class="emoji">🔍</span> <strong>Gemini</strong> — search giỏi, xử lý dữ liệu Google, miễn phí</li>
+        <li><span class="emoji">⚡</span> <strong>Grok</strong> — realtime X/Twitter, nhanh, ít kiểm duyệt</li>
+      </ul>
+      <p style="font-size:15px; color:#DC2626; font-weight:600; margin-top:12px;">→ Nhưng BẠN phải tự copy-paste giữa các tab, rất mệt! 😵</p>
+    </div>
+
+    <!-- Before / After Diagram -->
+    <div class="diagram-grid">
+      <div class="diagram-box before">
+        <div class="diagram-label">❌ TRƯỚC — Thủ công</div>
+        <div class="node you">🧑 BẠN</div>
+        <div class="conn-lines">↕️ &nbsp; ↕️ &nbsp; ↕️</div>
+        <div>
+          <span class="node">Claude</span>
+          <span class="node">GPT</span>
+          <span class="node">Gemini</span>
+        </div>
+        <div class="exhaust-label">Copy-paste liên tục 😵‍💫</div>
+      </div>
+
+      <div class="diagram-arrow-center">→</div>
+
+      <div class="diagram-box after">
+        <div class="diagram-label">✅ SAU — Tự động</div>
+        <div class="node you">🧑 BẠN</div>
+        <div class="conn-lines">↓</div>
+        <div class="node captain">🎖️ ĐỘI TRƯỞNG</div>
+        <div class="conn-lines">↓ &nbsp;&nbsp; ↓ &nbsp;&nbsp; ↓ &nbsp;&nbsp; ↓</div>
+        <div>
+          <span class="node">Claude</span>
+          <span class="node">GPT</span>
+          <span class="node">Gemini</span>
+          <span class="node">Grok</span>
+        </div>
+        <div class="easy-label">Tự phân việc & tổng hợp 🎯</div>
+      </div>
+    </div>
+
+    <div class="key-message">Cho chúng nó nói chuyện với nhau và tự phân việc!</div>
+  </div>
+
+  <div class="section-connector">⬇</div>
+
+  <!-- ============ SECTION 1 ============ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">CHỌN ĐỘI TRƯỞNG<span>AI nào sẽ điều phối cả đội?</span></div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>🎖️ Đội trưởng = AI thông minh nhất</h3>
+      <p>Đội trưởng nhận yêu cầu → phân tích → giao việc cho AI phù hợp → kiểm tra → trả lời bạn.</p>
+    </div>
+
+    <div class="choice-grid">
+      <!-- Claude Opus -->
+      <div class="choice-card recommended">
+        <div class="rec-badge">⭐ Khuyên dùng</div>
+        <div class="ai-icon" style="background:#D97706;">C</div>
+        <h4>Claude Opus</h4>
+        <div class="model-name">claude-opus-4</div>
+        <div class="price-tag">$100</div>
+        <div class="price-period">/tháng · Max plan</div>
+        <ul class="features">
+          <li>Suy luận tốt nhất hiện tại</li>
+          <li>Viết & phân tích xuất sắc</li>
+          <li>Xử lý task phức tạp</li>
+          <li>API qua CLIProxy ✨</li>
+        </ul>
+      </div>
+      <!-- GPT-4o -->
+      <div class="choice-card">
+        <div class="ai-icon" style="background:#10A37F;">G</div>
+        <h4>GPT-4o / GPT-5</h4>
+        <div class="model-name">gpt-4o / gpt-5</div>
+        <div class="price-tag">$20</div>
+        <div class="price-period">/tháng · Plus plan</div>
+        <ul class="features">
+          <li>Code rất tốt</li>
+          <li>Nhanh, đa năng</li>
+          <li>Ecosystem lớn</li>
+          <li>API qua CLIProxy</li>
+        </ul>
+      </div>
+      <!-- Gemini -->
+      <div class="choice-card">
+        <div class="ai-icon" style="background:#4285F4;">G</div>
+        <h4>Gemini Pro</h4>
+        <div class="model-name">gemini-2.5-pro</div>
+        <div class="price-tag">Free</div>
+        <div class="price-period">hoặc Advanced $20/tháng</div>
+        <ul class="features">
+          <li>Google search tích hợp</li>
+          <li>Context window lớn</li>
+          <li>Miễn phí cơ bản</li>
+          <li>API key miễn phí</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="icon">💡</div>
+      <div>
+        <strong>Mẹo</strong>
+        Dùng con nào bạn đang trả tiền. Không cần mua thêm gì. Nếu bạn đang trả $20/tháng ChatGPT Plus → dùng GPT làm đội trưởng. Đang trả Claude Max → dùng Claude.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-connector">⬇</div>
+
+  <!-- ============ SECTION 2 ============ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">HIỂU VỀ API và CLIProxyAPI<span>⭐ Phần quan trọng nhất — đọc kỹ!</span></div>
+    </div>
+
+    <!-- Misconception -->
+    <div class="misconception">
+      <div class="wrong">
+        <div class="x-mark">✕</div>
+        <div>
+          <p>Hiểu lầm phổ biến: "Dùng API = tốn tiền theo token, đắt lắm!"</p>
+          <p style="font-weight:400; font-size:14px; color:#666; margin-top:6px;">→ Đúng nếu bạn mua API key riêng. Nhưng chúng ta KHÔNG làm vậy.</p>
+        </div>
+      </div>
+      <div class="right">
+        <div class="check-mark">✓</div>
+        <div>
+          <p>Cách của chúng ta: Dùng CLIProxyAPI — KHÔNG tốn thêm đồng nào!</p>
+          <p style="font-weight:400; font-size:14px; color:#666; margin-top:6px;">→ Tận dụng subscription bạn đang trả ($20–200/tháng) để tạo API miễn phí.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="reality-card">
+      <h3>📖 Hiểu đơn giản:</h3>
+      <ol class="step-list">
+        <li>
+          <div class="step-num">1</div>
+          <div>Bạn đang trả <strong>$20–200/tháng</strong> cho Claude Max hoặc ChatGPT Plus</div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div>Gói này cho bạn dùng <strong>không giới hạn</strong> trên web/app, nhưng <strong>KHÔNG</strong> có API key cho phần mềm khác</div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div><strong>CLIProxyAPI</strong> = phần mềm miễn phí, chạy trên máy bạn, biến subscription thành API</div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div>Kết quả: Tất cả phần mềm AI đều dùng được subscription của bạn → <strong>$0 thêm</strong></div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Analogy -->
+    <div class="analogy-box">
+      <div class="emoji-row">🗣️ → 🔄 → 🤖</div>
+      <h4>Ví dụ dễ hiểu: Thuê phiên dịch</h4>
+      <p>App của bạn nói "tiếng OpenAI" — CLIProxy dịch sang "tiếng Claude" — dùng tài khoản subscription CỦA BẠN. Giống như thuê 1 phiên dịch viên miễn phí vậy!</p>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="flow-diagram">
+      <div class="flow-node app" style="min-width: 180px;">
+        <div class="flow-icon">🧑</div>
+        <div class="flow-label">BẠN</div>
+        <div class="flow-sub" style="font-family: Inter, sans-serif;">Nhắn qua Discord / Telegram</div>
+      </div>
+      <div class="flow-arrow">
+        <span>→→→</span>
+        <span class="arrow-label">Yêu cầu</span>
+      </div>
+      <div class="flow-node proxy" style="min-width: 200px; background: #1a1a1a; border-color: #1a1a1a; color: white;">
+        <div class="flow-icon">⚙️</div>
+        <div class="flow-label" style="color: #FACC15;">Hermes Agent</div>
+        <div style="font-size:11px; color: rgba(255,255,255,0.7); margin-top:4px;">Bộ não điều phối đội AI<br>Cấu hình & quản lý tất cả Agent</div>
+      </div>
+      <div class="flow-arrow">
+        <span>→→→</span>
+        <span class="arrow-label">Gọi AI qua</span>
+      </div>
+      <div class="flow-node" style="min-width: 160px; background: #FEF3C7; border: 2px solid #FCD34D;">
+        <div class="flow-icon">🔄</div>
+        <div class="flow-label">CLIProxyAPI</div>
+        <div style="font-size:11px; color:#92400E; margin-top:4px; font-weight:600;">Chạy trên máy bạn<br>Biến subscription → API</div>
+      </div>
+      <div class="flow-arrow">
+        <span>→→→</span>
+        <span class="arrow-label">Dùng subscription</span>
+      </div>
+      <div class="flow-node cloud">
+        <div class="flow-icon">☁️</div>
+        <div class="flow-label">Claude / GPT / Gemini</div>
+        <div style="font-size:11px; color:#166534; margin-top:4px; font-weight:600;">KHÔNG tốn thêm tiền</div>
+      </div>
+    </div>
+
+    <!-- Big callout -->
+    <div class="big-callout">
+      <div class="formula">
+        Bạn đang trả <strong>$20–200/tháng</strong><br>
+        → CLIProxy cho phép <strong>TẤT CẢ phần mềm AI</strong> dùng subscription đó<br>
+        → Các bot AI nói chuyện với nhau qua <strong>1 tài khoản duy nhất</strong>
+      </div>
+      <div class="result">💰 Chi phí thêm: $0</div>
+    </div>
+
+    <!-- Flexibility explanation -->
+    <div class="card" style="border-color: #93C5FD; background: #F0F7FF;">
+      <h3>🎯 Linh hoạt theo túi tiền</h3>
+      <p style="font-size: 15px; color: #444; margin-bottom: 14px;">CLIProxy không giới hạn cách bạn dùng. Tuỳ ngân sách, chọn 1 trong các cách sau:</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: white; border: 2px solid #E5E5E5; border-radius: 12px; padding: 16px;">
+          <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">💰 Tiết kiệm nhất</div>
+          <p style="font-size: 13px; color: #555;">Chỉ 1 subscription (VD: Claude Max $100/tháng) → dùng <strong>nhiều model</strong> của cùng 1 AI cho các bot khác nhau (Opus điều phối, Sonnet viết bài, Haiku làm việc nhẹ)</p>
+        </div>
+        <div style="background: white; border: 2px solid #E5E5E5; border-radius: 12px; padding: 16px;">
+          <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">⚡ Đa dạng nhất</div>
+          <p style="font-size: 13px; color: #555;">2-4 subscription khác nhau (VD: Claude + ChatGPT + Gemini free) → mỗi AI làm việc nó giỏi nhất. CLIProxy gộp tất cả vào 1 chỗ.</p>
+        </div>
+      </div>
+      <div style="background: #FFFBEB; border: 1.5px solid #FCD34D; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 13px; color: #92400E;">
+        💡 <strong>Nguyên tắc:</strong> Kinh tế đến đâu thì dùng kiểu đấy. Có $20/tháng? Dùng 1 sub. Có $200/tháng? Dùng 3-4 sub cho đa dạng hơn. Model miễn phí (DeepSeek, Gemini) cũng xài được!
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="bad">❌ Mua API Key riêng</th>
+            <th class="good">✅ CLIProxy + Subscription</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Thanh toán</td>
+            <td class="bad-text">Tính theo token (mỗi từ đều tốn tiền)</td>
+            <td class="good-text">Trọn gói hàng tháng, đã trả rồi</td>
+          </tr>
+          <tr>
+            <td>Chi phí</td>
+            <td class="bad-text">$50–500+/tháng tùy dùng</td>
+            <td class="good-text">$0 thêm (dùng subscription có sẵn)</td>
+          </tr>
+          <tr>
+            <td>Rủi ro</td>
+            <td class="bad-text">Quên tắt → bill shock 💸</td>
+            <td class="good-text">Không rủi ro, cố định hàng tháng</td>
+          </tr>
+          <tr>
+            <td>Giới hạn</td>
+            <td>Không giới hạn (trả bao nhiêu dùng bấy nhiêu)</td>
+            <td>Theo rate limit của subscription</td>
+          </tr>
+          <tr>
+            <td>Cài đặt</td>
+            <td>Tạo key trên trang provider</td>
+            <td class="good-text">Cài CLIProxy 1 lần, xong</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warning">
+      <div class="icon">⚠️</div>
+      <div>
+        <strong>Lưu ý</strong>
+        CLIProxyAPI là phần mềm không chính thức (third-party). Nó hoạt động bằng cách dùng session token từ trình duyệt của bạn. An toàn khi chạy trên máy cá nhân, nhưng đừng share token với ai.
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="bottom-nav">
+    <a href="part2.html" class="btn-next">Tiếp theo: Phần 2 →</a>
+  </div>
+  <div class="footer">
+    Phần 1/3 · linhnlm · © 2026
+  </div>
+
+</div>
+</body>
+</html>

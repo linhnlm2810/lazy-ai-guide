@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>BIẾN MÁY TÍNH THÀNH ĐỘI AI — Phần 2/3: Cài đặt và Kết nối</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    margin: 0 auto;
+    background: #FEFCF8;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Banner ── */
+  .banner {
+    background: linear-gradient(135deg, #6C63FF 0%, #4F46E5 50%, #7C3AED 100%);
+    padding: 44px 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .banner-series {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .banner h1 {
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+    position: relative;
+  }
+  .banner-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.88);
+    margin-top: 10px;
+    font-weight: 500;
+    position: relative;
+  }
+  .banner-part {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 16px;
+    position: relative;
+  }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 28px 60px;
+    background: #F8F6F1;
+    border-bottom: 1px solid #E5E5E5;
+  }
+  .progress-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #aaa;
+  }
+  .progress-step.done { color: #22C55E; }
+  .progress-step.active { color: #4F46E5; }
+  .progress-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    background: #E5E5E5; color: #999;
+  }
+  .progress-step.done .progress-num { background: #22C55E; color: #fff; }
+  .progress-step.active .progress-num { background: #4F46E5; color: #fff; }
+  .progress-line {
+    width: 60px; height: 2px;
+    background: #E5E5E5;
+    margin: 0 10px;
+  }
+  .progress-step.done + .progress-line,
+  .progress-line.done { background: #22C55E; }
+
+  /* ── Content area ── */
+  .content { padding: 36px 48px 48px; }
+
+  /* ── Section card ── */
+  .section-card {
+    background: #fff;
+    border: 2px solid #E5E5E5;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 32px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .section-num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .section-num.s3 { background: linear-gradient(135deg, #F59E0B, #D97706); }
+  .section-num.s4 { background: linear-gradient(135deg, #6C63FF, #4F46E5); }
+  .section-num.s5 { background: linear-gradient(135deg, #5865F2, #4752C4); }
+  .section-num.s6 { background: linear-gradient(135deg, #22C55E, #16A34A); }
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+  .section-body { padding: 28px 32px; }
+
+  /* ── Prereq badge ── */
+  .prereq {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #FFF7ED;
+    border: 1px solid #FDBA74;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    color: #9A3412;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .prereq-icon {
+    flex-shrink: 0;
+    font-size: 16px;
+    margin-top: 1px;
+  }
+
+  /* ── Step ── */
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .step:last-child { margin-bottom: 0; }
+  .step-num-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    background: #F3F4F6; color: #4B5563;
+    border: 2px solid #E5E7EB;
+  }
+  .step-connector {
+    width: 2px;
+    flex: 1;
+    background: #E5E7EB;
+    margin-top: 4px;
+    min-height: 10px;
+  }
+  .step:last-child .step-connector { display: none; }
+  .step-content { flex: 1; padding-top: 5px; }
+  .step-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* ── Code block ── */
+  .code-block {
+    background: #1E293B;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 10px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #E2E8F0;
+    line-height: 1.7;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-block .comment { color: #64748B; }
+  .code-block .cmd { color: #7DD3FC; }
+  .code-block .flag { color: #A78BFA; }
+  .code-block .url { color: #FDE68A; }
+  .code-block .string { color: #86EFAC; }
+  .code-block .output { color: #94A3B8; font-style: italic; }
+  .code-label {
+    display: inline-block;
+    background: #334155;
+    color: #94A3B8;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 0px; }
+  .callout.info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    color: #1E40AF;
+  }
+  .callout.tip {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #166534;
+  }
+  .callout.warning {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    color: #92400E;
+  }
+
+  /* ── OS tabs ── */
+  .os-tabs {
+    display: flex;
+    gap: 0;
+    margin: 10px 0 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #E5E7EB;
+  }
+  .os-tab {
+    flex: 1;
+    padding: 14px 16px;
+    background: #F9FAFB;
+    border-right: 1px solid #E5E7EB;
+  }
+  .os-tab:last-child { border-right: none; }
+  .os-tab-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6B7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .os-tab-label .emoji { margin-right: 4px; }
+  .os-tab .code-block {
+    margin: 0;
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  /* ── Model table ── */
+  .model-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13.5px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #E5E7EB;
+  }
+  .model-table th {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 700;
+    color: #374151;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .model-table td {
+    padding: 10px 16px;
+    border-top: 1px solid #F0F0F0;
+    color: #4B5563;
+  }
+  .model-table tr:hover td { background: #F9FAFB; }
+  .model-table code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: #F3F4F6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #4F46E5;
+    font-weight: 500;
+  }
+
+  /* ── Connector between sections ── */
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    margin-bottom: 32px;
+  }
+  .connector-line {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, #D1D5DB, #9CA3AF);
+    border-radius: 1px;
+  }
+
+  /* ── Checklist ── */
+  .checklist {
+    margin: 12px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+    border-bottom: 1px solid #F5F5F5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: #F0FDF4;
+    border: 1.5px solid #86EFAC;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #22C55E;
+    margin-top: 1px;
+  }
+
+  /* ── Test result box ── */
+  .test-result {
+    background: linear-gradient(135deg, #F0FDF4, #ECFDF5);
+    border: 2px solid #86EFAC;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .test-result-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── Sub-step ── */
+  .sub-steps {
+    margin: 8px 0 4px;
+    padding-left: 0;
+  }
+  .sub-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .sub-bullet {
+    color: #9CA3AF;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Nav Bar ── */
+  .top-nav {
+    background: #fff;
+    border-bottom: 2px solid #E5E5E5;
+    padding: 14px 48px;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .top-nav a {
+    text-decoration: none;
+    color: #666;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .top-nav a:hover { background: #F3F4F6; color: #1a1a1a; }
+  .top-nav a.active {
+    background: #4F46E5;
+    color: #fff;
+    font-weight: 700;
+  }
+  .top-nav .sep { color: #ddd; font-weight: 300; }
+
+  /* ── Bottom Nav ── */
+  .bottom-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 48px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .bottom-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s;
+  }
+  .bottom-nav a:hover { transform: translateY(-2px); }
+  .bottom-nav .btn-next {
+    background: #4F46E5;
+    color: #fff;
+  }
+  .bottom-nav .btn-prev {
+    background: #F3F4F6;
+    color: #1a1a1a;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 28px 48px;
+    border-top: 1px solid #E5E5E5;
+    background: #F8F6F1;
+  }
+  .footer-text {
+    font-size: 14px;
+    color: #888;
+    font-weight: 500;
+  }
+  .footer-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 28px;
+    background: #4F46E5;
+    color: #fff;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  b { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">← Trang chủ</a>
+  <span class="sep">|</span>
+  <a href="part1.html">Phần 1</a>
+  <span class="sep">|</span>
+  <a href="part2.html" class="active">Phần 2</a>
+  <span class="sep">|</span>
+  <a href="part3.html">Phần 3</a>
+</div>
+
+<!-- ════════════ BANNER ════════════ -->
+<div class="banner">
+  <div class="banner-series">BIẾN MÁY TÍNH THÀNH ĐỘI AI</div>
+  <h1>⚙️ Cài đặt và Kết nối</h1>
+  <div class="banner-sub">Từ zero đến chạy được — từng bước có ảnh minh họa</div>
+  <div class="banner-part">📖 Phần 2/3</div>
+</div>
+
+<!-- Progress -->
+<div class="progress-bar">
+  <div class="progress-step done">
+    <div class="progress-num">✓</div>
+    <span>Tổng quan</span>
+  </div>
+  <div class="progress-line done"></div>
+  <div class="progress-step active">
+    <div class="progress-num">2</div>
+    <span>Cài đặt & Kết nối</span>
+  </div>
+  <div class="progress-line"></div>
+  <div class="progress-step">
+    <div class="progress-num">3</div>
+    <span>Team & Vận hành</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3: CÀI CLIProxyAPI                -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num s3">3</div>
+    <div class="section-title">CÀI CLIProxyAPI</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prereq">
+      <span class="prereq-icon">⚠️</span>
+      <span><b>Cần trước:</b> Tài khoản <b>Claude Max/Pro</b> hoặc <b>ChatGPT Plus/Pro</b> đang hoạt động (đã đóng tiền và dùng được bình thường)</span>
+    </div>
+
+    <!-- Step 3.1 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">3.1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Mở Terminal</div>
+        <div class="os-tabs">
+          <div class="os-tab">
+            <div class="os-tab-label"><span class="emoji">🍎</span> macOS</div>
+            <div class="code-block"><span class="comment"># Nhấn ⌘ + Space, gõ "Terminal", Enter</span></div>
+          </div>
+          <div class="os-tab">
+            <div class="os-tab-label"><span class="emoji">🪟</span> Windows</div>
+            <div class="code-block"><span class="comment"># Click phải Start → "PowerShell"</span></div>
+          </div>
+          <div class="os-tab">
+            <div class="os-tab-label"><span class="emoji">🐧</span> Linux</div>
+            <div class="code-block"><span class="comment"># Nhấn Ctrl + Alt + T</span></div>
+          </div>
+        </div>
+        <div class="callout info">
+          <span class="callout-icon">💡</span>
+          <span>Terminal là cửa sổ dòng lệnh — nơi bạn gõ lệnh để máy tính thực hiện. Đừng lo, chỉ cần copy-paste!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3.2 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">3.2</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Cài CLIProxyAPI</div>
+        <div class="os-tabs" style="flex-direction: column; border: none; gap: 10px;">
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🍎</span> macOS (Homebrew)</div>
+            <div class="code-block"><span class="cmd">brew tap</span> <span class="url">router-for-me/tap</span>
+<span class="cmd">brew install</span> <span class="string">cliproxyapi</span></div>
+          </div>
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🐧</span> Linux / WSL (Windows Subsystem for Linux)</div>
+            <div class="code-block"><span class="cmd">curl</span> <span class="flag">-fsSL</span> <span class="url">https://cli-proxy.dev/install.sh</span> | <span class="cmd">sh</span></div>
+          </div>
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🪟</span> Windows (không dùng WSL)</div>
+            <div class="code-block"><span class="comment"># Tải file .exe từ trang GitHub Releases:</span>
+<span class="url">github.com/router-for-me/CLIProxyAPI/releases</span>
+<span class="comment"># Giải nén → chạy cli-proxy-api.exe</span></div>
+          </div>
+        </div>
+        <div class="callout info">
+          <span class="callout-icon">ℹ️</span>
+          <span>Trang chủ: <b>github.com/router-for-me/CLIProxyAPI</b> — hướng dẫn đầy đủ cho mọi hệ điều hành</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3.3 — TÁCH RIÊNG TỪNG PROVIDER -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">3.3</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Đăng nhập tài khoản AI — chọn cái bạn đang có</div>
+        <div class="step-desc" style="margin-bottom: 10px;">Chỉ cần đăng nhập nhà cung cấp mà bạn <b>đang trả tiền</b>. Không cần đăng nhập tất cả.</div>
+
+        <div style="background: #FFF5F5; border: 1.5px solid #FCA5A5; border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; font-size: 13px;">
+          <b style="color: #991B1B;">🔐 Lưu ý bảo mật QUAN TRỌNG:</b>
+          <ul style="list-style: none; margin-top: 6px; padding: 0;">
+            <li style="padding: 3px 0; color: #7F1D1D;">• Token đăng nhập được lưu tự động trong <code style="font-family:'JetBrains Mono';font-size:11px;background:#FEE2E2;padding:1px 4px;border-radius:3px;">~/.cli-proxy-api/</code> trên máy bạn</li>
+            <li style="padding: 3px 0; color: #7F1D1D;">• <b>KHÔNG BAO GIỜ</b> chia sẻ thư mục này hoặc gửi file trong đó cho ai</li>
+            <li style="padding: 3px 0; color: #7F1D1D;">• <b>KHÔNG</b> upload token lên GitHub, Discord, hay bất kỳ đâu</li>
+            <li style="padding: 3px 0; color: #7F1D1D;">• Ai có token = có quyền dùng tài khoản AI của bạn</li>
+          </ul>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <!-- Claude -->
+          <div style="background: #FFF; border: 1.5px solid #D97706; border-radius: 10px; padding: 14px;">
+            <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px;">🟠 Đang dùng Claude (Max/Pro)?</div>
+            <div class="code-block" style="margin: 6px 0; padding: 10px 14px;">
+<span class="cmd">cliproxyapi</span> <span class="flag">--claude-login</span>
+<span class="comment"># Trình duyệt mở ra → đăng nhập</span>
+<span class="comment"># → Xác nhận quyền → Xong!</span></div>
+            <div style="font-size: 12px; color: #888;">Gói Max $100/th hoặc Pro $20/th</div>
+          </div>
+
+          <!-- OpenAI -->
+          <div style="background: #FFF; border: 1.5px solid #10A37F; border-radius: 10px; padding: 14px;">
+            <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px;">🟢 Đang dùng ChatGPT (Plus/Pro)?</div>
+            <div class="code-block" style="margin: 6px 0; padding: 10px 14px;">
+<span class="cmd">cliproxyapi</span> <span class="flag">--openai-login</span>
+<span class="comment"># Đăng nhập tài khoản OpenAI</span></div>
+            <div style="font-size: 12px; color: #888;">Gói Plus $20/th hoặc Pro $200/th</div>
+          </div>
+
+          <!-- Gemini -->
+          <div style="background: #FFF; border: 1.5px solid #4285F4; border-radius: 10px; padding: 14px;">
+            <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px;">🔵 Đang dùng Gemini?</div>
+            <div class="code-block" style="margin: 6px 0; padding: 10px 14px;">
+<span class="cmd">cliproxyapi</span> <span class="flag">--gemini-login</span>
+<span class="comment"># Đăng nhập Google Account</span></div>
+            <div style="font-size: 12px; color: #888;">Free hoặc Advanced $20/th</div>
+          </div>
+
+          <!-- Grok -->
+          <div style="background: #FFF; border: 1.5px solid #1DA1F2; border-radius: 10px; padding: 14px;">
+            <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px;">⚡ Đang dùng Grok?</div>
+            <div class="code-block" style="margin: 6px 0; padding: 10px 14px;">
+<span class="cmd">cliproxyapi</span> <span class="flag">--grok-login</span>
+<span class="comment"># Đăng nhập tài khoản xAI</span></div>
+            <div style="font-size: 12px; color: #888;">X Premium+</div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <span><b>Có nhiều AI?</b> Đăng nhập hết! CLIProxy sẽ gộp tất cả lại — khi Claude bận thì tự chuyển sang GPT. Nhưng chỉ cần 1 cái cũng đủ dùng.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3.4 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">3.4</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Khởi động CLIProxy</div>
+        <div class="os-tabs" style="flex-direction: column; border: none; gap: 10px;">
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🍎</span> macOS</div>
+            <div class="code-block"><span class="cmd">brew services start</span> <span class="string">cliproxyapi</span></div>
+          </div>
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🐧</span> Linux</div>
+            <div class="code-block"><span class="cmd">systemctl</span> <span class="flag">--user</span> <span class="string">enable --now cliproxyapi.service</span></div>
+          </div>
+          <div class="os-tab" style="border: 1px solid #E5E7EB; border-radius: 10px;">
+            <div class="os-tab-label"><span class="emoji">🪟</span> Windows</div>
+            <div class="code-block"><span class="comment"># Chạy trực tiếp:</span>
+<span class="cmd">cli-proxy-api.exe</span> <span class="flag">--config</span> <span class="string">config.yaml</span></div>
+          </div>
+        </div>
+
+        <div class="code-block">
+<span class="comment"># Kiểm tra xem CLIProxy đã chạy chưa:</span>
+<span class="cmd">curl</span> <span class="url">http://localhost:8317/v1/models</span>
+<span class="output">→ {"data": [{"id": "claude-sonnet-4-..."},  ...]}  ✅</span></div>
+
+        <div class="callout info">
+          <span class="callout-icon">ℹ️</span>
+          <span><code style="font-family:'JetBrains Mono';font-size:12px;background:#DBEAFE;padding:2px 6px;border-radius:3px;">localhost:8317</code> là địa chỉ mặc định của CLIProxyAPI — <b>ai cài cũng giống nhau</b>, không phải thông tin riêng. Nó chỉ chạy trên máy bạn, không truy cập được từ bên ngoài.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 4: CÀI HERMES AGENT              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num s4">4</div>
+    <div class="section-title">CÀI HERMES AGENT</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prereq">
+      <span class="prereq-icon">📋</span>
+      <span><b>Cần trước:</b> Terminal đang mở, CLIProxy đang chạy (bước 3.4 OK)</span>
+    </div>
+
+    <!-- Step 4.1 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">4.1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Cài đặt Hermes Agent</div>
+        <div class="step-desc">Copy lệnh này vào Terminal và nhấn Enter:</div>
+        <div class="code-block">
+<span class="cmd">curl</span> <span class="flag">-fsSL</span> <span class="url">https://hermes-agent.nousresearch.com/install.sh</span> | <span class="cmd">bash</span></div>
+      </div>
+    </div>
+
+    <!-- Step 4.2 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">4.2</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Chạy Setup Wizard</div>
+        <div class="code-block"><span class="cmd">hermes</span> <span class="string">setup</span></div>
+        <div class="step-desc" style="margin-top:10px;">Khi wizard hỏi, chọn:</div>
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">▸</span> Provider: chọn <b>"custom / OpenAI-compatible"</b></div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> Base URL: gõ <code style="font-family:'JetBrains Mono';font-size:12px;background:#F3F4F6;padding:2px 6px;border-radius:3px;">http://localhost:8317/v1</code> <span style="font-size:11px;color:#888;">(mặc định của CLIProxy, ai cài cũng vậy)</span></div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> API Key: gõ <code style="font-family:'JetBrains Mono';font-size:12px;background:#F3F4F6;padding:2px 6px;border-radius:3px;">not-needed</code></div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> Model: chọn theo bảng bên dưới</div>
+        </div>
+
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>Nhà cung cấp</th>
+              <th>Tên model gõ vào</th>
+              <th>Ghi chú</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Claude</td>
+              <td><code>claude-sonnet-4-20250514</code></td>
+              <td>⭐ Khuyên dùng</td>
+            </tr>
+            <tr>
+              <td>Claude</td>
+              <td><code>claude-opus-4-20250514</code></td>
+              <td>Mạnh nhất, chậm hơn</td>
+            </tr>
+            <tr>
+              <td>ChatGPT</td>
+              <td><code>gpt-4o</code></td>
+              <td>Nhanh, đa năng</td>
+            </tr>
+            <tr>
+              <td>Gemini</td>
+              <td><code>gemini-2.5-pro</code></td>
+              <td>Google AI</td>
+            </tr>
+            <tr>
+              <td>Grok</td>
+              <td><code>grok-3</code></td>
+              <td>xAI</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 4.3 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">4.3</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Test thử!</div>
+        <div class="code-block"><span class="cmd">hermes</span> <span class="string">chat</span> <span class="flag">-q</span> <span class="string">'Xin chào!'</span>
+<span class="output">→ Xin chào! Tôi là Hermes Agent. Rất vui được hỗ trợ bạn! 🎉</span></div>
+        <div class="callout tip">
+          <span class="callout-icon">🎉</span>
+          <span><b>Nếu thấy AI trả lời = Hermes đã hoạt động!</b> Bạn đã đi được nửa đường rồi.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5: TẠO DISCORD SERVER & BOT       -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num s5">5</div>
+    <div class="section-title">TẠO DISCORD SERVER &amp; BOT</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prereq">
+      <span class="prereq-icon">📋</span>
+      <span><b>Cần trước:</b> Tài khoản Discord (đăng ký miễn phí tại <b>discord.com</b>)</span>
+    </div>
+
+    <!-- Step 5.1 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">5.1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Tạo Discord Server mới</div>
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">▸</span> Mở Discord → bấm dấu <b>+</b> bên trái</div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> Chọn <b>"Create My Own"</b> → <b>"For me and my friends"</b></div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> Đặt tên server (ví dụ: "AI Team Hub")</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5.2 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">5.2</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Tạo Bot trên Discord Developer Portal</div>
+        <div class="step-desc">Truy cập:</div>
+        <div class="code-block"><span class="url">https://discord.com/developers/applications</span></div>
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">❶</span> Bấm <b>"New Application"</b> → đặt tên bot (VD: "Hermes AI")</div>
+          <div class="sub-step"><span class="sub-bullet">❷</span> Vào tab <b>"Bot"</b> → bấm <b>"Reset Token"</b> → <b>Copy ngay!</b></div>
+          <div class="sub-step"><span class="sub-bullet">❸</span> Cuộn xuống bật <b>3 Privileged Gateway Intents:</b></div>
+        </div>
+        <ul class="checklist" style="margin-left: 28px;">
+          <li><span class="check-icon">✓</span> <b>Presence Intent</b></li>
+          <li><span class="check-icon">✓</span> <b>Server Members Intent</b></li>
+          <li><span class="check-icon">✓</span> <b>Message Content Intent</b></li>
+        </ul>
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">❹</span> Vào tab <b>"OAuth2"</b> → chọn <b>bot</b> scope → tick các quyền sau:</div>
+        </div>
+
+        <div style="background: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 16px; margin: 8px 0 8px 28px;">
+          <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #374151;">📋 Quyền Bot cần thiết (Permissions):</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; font-size: 13px;">
+            <div style="padding: 3px 0;">✅ <b>Send Messages</b> — gửi tin nhắn</div>
+            <div style="padding: 3px 0;">✅ <b>Read Message History</b> — đọc lịch sử</div>
+            <div style="padding: 3px 0;">✅ <b>Embed Links</b> — nhúng link</div>
+            <div style="padding: 3px 0;">✅ <b>Attach Files</b> — đính kèm file</div>
+            <div style="padding: 3px 0;">✅ <b>Use Slash Commands</b> — lệnh /</div>
+            <div style="padding: 3px 0;">✅ <b>Add Reactions</b> — thả reaction</div>
+            <div style="padding: 3px 0;">✅ <b>Manage Messages</b> — quản lý tin nhắn</div>
+            <div style="padding: 3px 0;">✅ <b>Create Public Threads</b> — tạo thread</div>
+            <div style="padding: 3px 0;">✅ <b>Send Messages in Threads</b></div>
+            <div style="padding: 3px 0;">✅ <b>Manage Threads</b></div>
+          </div>
+          <div style="margin-top: 8px; font-size: 12px; color: #888; font-style: italic;">💡 Hoặc chọn <b>Administrator</b> nếu muốn đơn giản — nhưng nên giới hạn quyền cho an toàn.</div>
+        </div>
+
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">❺</span> Copy link mời → mở link → thêm bot vào server bạn vừa tạo</div>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-icon">🔐</span>
+          <span><b>QUAN TRỌNG:</b> Bot Token chỉ hiện <b>một lần duy nhất</b>! Copy và lưu ngay vào nơi an toàn. <b>Tuyệt đối không chia sẻ</b> token này — ai có token có thể điều khiển bot của bạn.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5.3 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">5.3</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Lấy Discord User ID của bạn</div>
+        <div class="sub-steps">
+          <div class="sub-step"><span class="sub-bullet">▸</span> Vào Discord Settings → <b>Advanced</b> → bật <b>Developer Mode</b></div>
+          <div class="sub-step"><span class="sub-bullet">▸</span> Click phải vào tên bạn → <b>"Copy User ID"</b></div>
+        </div>
+        <div class="callout info">
+          <span class="callout-icon">👤</span>
+          <span>User ID là dãy số (VD: <code style="font-family:'JetBrains Mono';font-size:12px;">123456789012345678</code>). Hermes dùng ID này để biết ai là "chủ" — chỉ bạn mới ra lệnh được.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 6: KẾT NỐI HERMES VỚI DISCORD    -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num s6">6</div>
+    <div class="section-title">KẾT NỐI HERMES VỚI DISCORD</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prereq">
+      <span class="prereq-icon">📋</span>
+      <span><b>Cần trước:</b> Hermes đã cài (bước 4), Bot Token (bước 5.2), User ID (bước 5.3)</span>
+    </div>
+
+    <!-- Step 6.1 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">6.1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Cấu hình kết nối</div>
+        <div class="step-desc"><b>Cách 1 — Wizard (khuyên dùng):</b></div>
+        <div class="code-block"><span class="cmd">hermes</span> <span class="string">gateway</span> <span class="string">setup</span>
+<span class="output">→ Wizard sẽ hỏi Bot Token và User ID — paste vào là xong!</span></div>
+
+        <div class="step-desc" style="margin-top: 14px;"><b>Cách 2 — Thủ công</b> (tạo file <code style="font-family:'JetBrains Mono';font-size:12px;background:#F3F4F6;padding:2px 6px;border-radius:3px;">.env</code>):</div>
+        <div class="code-block">
+<span class="code-label">~/.hermes/.env</span>
+<span class="flag">DISCORD_TOKEN</span>=<span class="string">paste-bot-token-ở-đây</span>
+<span class="flag">DISCORD_OWNER_ID</span>=<span class="string">paste-user-id-ở-đây</span></div>
+      </div>
+    </div>
+
+    <!-- Step 6.2 -->
+    <div class="step">
+      <div class="step-num-col">
+        <div class="step-num">6.2</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Khởi động Gateway</div>
+        <div class="code-block"><span class="cmd">hermes</span> <span class="string">gateway</span> <span class="string">start</span>
+<span class="output">→ 🟢 Gateway connected — Bot is online!</span></div>
+      </div>
+    </div>
+
+    <!-- Test -->
+    <div class="test-result">
+      <div class="test-result-title">🧪 KIỂM TRA KẾT NỐI</div>
+      <div class="step-desc">Vào Discord server, gõ tin nhắn mention bot:</div>
+      <div class="code-block" style="background:#14532D;"><span class="string">@Hermes AI</span> Xin chào, bạn có nghe tôi không?</div>
+      <div class="step-desc" style="margin-top:10px;">Nếu bot trả lời = <b>Thành công! 🎉</b></div>
+
+      <div style="margin-top: 16px; font-size: 14px; font-weight: 700; color: #166534;">🔧 Không hoạt động? Kiểm tra:</div>
+      <ul class="checklist">
+        <li><span class="check-icon">☐</span> CLIProxy còn chạy? → <code style="font-family:'JetBrains Mono';font-size:12px;">curl localhost:8317/v1/models</code></li>
+        <li><span class="check-icon">☐</span> Bot Token đúng? → Kiểm tra lại Developer Portal</li>
+        <li><span class="check-icon">☐</span> 3 Intents đã bật? → Bot tab → Privileged Intents</li>
+        <li><span class="check-icon">☐</span> Bot đã được mời vào server? → Kiểm tra OAuth2 link</li>
+        <li><span class="check-icon">☐</span> User ID chính xác? → Developer Mode → Copy User ID</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+  <a href="part1.html" class="btn-prev">← Phần 1</a>
+  <a href="part3.html" class="btn-next">Phần 3 →</a>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-text">Phần 2/3 · linhnlm · © 2026</div>
+</div>
+
+</body>
+</html>
