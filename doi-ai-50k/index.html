@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dựng đội AI trên Discord với 50.000đ — Lazy AI Guide</title>
+<meta name="description" content="Hướng dẫn từng bước dựng một đội AI Agent trên Discord: Hermes + CLIProxy + model rẻ của Kira. Chạy thật, có ảnh, có chi phí đo thật.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#FEFCF8;font-family:'Inter',sans-serif;color:#1a1a1a;line-height:1.65}
+.nav{background:#1a1a1a;padding:14px 24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500}
+.nav a:hover{color:#fff}.nav .brand{color:#fff;font-weight:800}
+.hero{background:linear-gradient(135deg,#1a1a1a,#2d2d2d);color:#fff;padding:56px 24px 48px;text-align:center}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;max-width:820px;margin:0 auto 14px}
+.hero p{color:rgba(255,255,255,.75);max-width:680px;margin:0 auto}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:14px}
+main{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:26px;font-weight:800;margin:44px 0 12px}
+h3{font-size:19px;font-weight:700;margin:26px 0 8px}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+.box{background:#fff;border:1px solid #eee;border-radius:14px;padding:18px 20px;margin:16px 0}
+.note{background:#FFF7E6;border-color:#F5D08A}.ok{background:#EEF9F0;border-color:#A7DDB2}.warn{background:#FDEDEC;border-color:#F2B8B5}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;background:#1a1a1a;color:#e8e8e8;border-radius:12px;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#f1efe9;border-radius:5px;padding:1px 5px;font-size:14px}
+pre{background:#1a1a1a;color:#e8e8e8;border-radius:12px;padding:16px;overflow-x:auto;font-size:13.5px;line-height:1.5;margin:10px 0}
+pre code{background:none;padding:0;color:inherit}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:15px;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border-bottom:1px solid #eee;padding:10px 12px;text-align:left;vertical-align:top}th{background:#f6f4ef;font-weight:700}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.nguoi{background:#FDE8D7;color:#9A4A12}.tudong{background:#DCEFFD;color:#13548A}
+figure{margin:16px 0}figure img{width:100%;border-radius:12px;border:1px solid #e5e2da}
+figcaption{font-size:14px;color:#666;margin-top:6px}
+.cta{display:inline-block;background:#4F46E5;color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:12px 20px;margin:6px 8px 6px 0}
+.cta.alt{background:#1a1a1a}
+.small{font-size:14px;color:#666}
+footer{text-align:center;color:#888;font-size:14px;padding:30px}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../discord-setup/">Setup Discord (bản cũ)</a></nav>
+
+<header class="hero">
+  <h1>Dựng một đội AI làm việc trên Discord với 50.000đ</h1>
+  <p>Bạn nhắn việc trên Discord. Bot Điều phối chia việc lên bảng Kanban, các bot khác làm, bot Chấm kiểm lại rồi mới báo bạn. Bản demo, chạy thật trên máy của người viết, có ảnh và chi phí đo thật.</p>
+  <div class="pills"><span class="pill">Hermes Agent</span><span class="pill">CLIProxy</span><span class="pill">Kira AI (model rẻ)</span><span class="pill">Discord + Kanban</span></div>
+</header>
+
+<main>
+
+<h2>Bạn sẽ có gì</h2>
+<div class="diagram">Bạn (nhắn trên Discord)
+   │
+   ▼
+Điều phối ──► bảng Kanban ──► Nghiên cứu / Viết / Làm việc nặng
+   ▲                                   │
+   └──────── Chấm (bot độc lập) ◄──────┘
+
+Mỗi bot = 1 Hermes Agent ──► CLIProxy (chạy trên máy bạn) ──► Kira AI (model rẻ)</div>
+<p>Kiến trúc giữ đúng như đội AI người viết đang dùng hằng ngày: một bot nhận việc và chia việc, các bot làm từng phần, một bot chấm không phải bot làm, mọi việc đi qua bảng Kanban, chưa có bằng chứng thì không báo xong. Khác ở chỗ bản demo dùng model rẻ và cài trắng từ đầu.</p>
+
+<figure><img src="anh/32-bot-tra-loi.jpg" alt="Bot Điều phối trả lời trên Discord"><figcaption>Chạy thật 30/10/2026: nhắn bot Điều phối trên Discord, bot mở chủ đề riêng và trả lời tiếng Việt sau 4,9 giây.</figcaption></figure>
+
+<h2>Đọc trước: bạn cần một AI để hỏi ngay từ đầu</h2>
+<div class="box note">
+<p>Hướng dẫn này có những bước gõ lệnh. Bạn không cần biết lập trình, nhưng <b>lúc nào cũng phải có một AI bên cạnh để hỏi</b>:</p>
+<ol>
+<li><b>Giai đoạn 1, chưa cài gì:</b> mở ChatGPT, Claude hoặc Gemini bản web miễn phí bạn đang có. Dán "Lời nhờ số 1" ở cuối trang. AI web sẽ dẫn bạn từng bước, bạn kẹt chỗ nào thì chụp màn hình gửi nó.</li>
+<li><b>Giai đoạn 2, Hermes đã chạy:</b> từ đây hỏi thẳng Hermes trên máy. Dán "Lời nhờ số 2", Hermes tự làm phần còn lại: cài CLIProxy, nối Kira, tạo cấu hình 5 bot, mời bot vào máy chủ, bật Kanban.</li>
+</ol>
+<p>Bạn chỉ phải tự tay làm những việc mà máy không được phép làm thay: đăng ký, nạp tiền, giải captcha, bật quyền bot, lấy token.</p>
+</div>
+
+<h2>Chi phí</h2>
+<table>
+<tr><th>Khoản</th><th>Tiền</th></tr>
+<tr><td>Hermes Agent, CLIProxy, Discord</td><td>0đ</td></tr>
+<tr><td>Nạp ví Kira để chạy model</td><td>50.000đ</td></tr>
+</table>
+<div class="box">
+<p><b>Đo thật:</b> bot Điều phối (model deepseek-v4.1-flash) 5 lượt hỏi, gồm 1 lượt tự ghi file và 1 lượt trả lời trên Discord, hết khoảng <b>316đ</b>. Mỗi lượt hỏi gửi kèm khoảng 12.000 token "khung" (luật, công cụ), nên một câu chào cũng tốn khoảng 50-60đ.</p>
+<p class="small">50.000đ chạy được bao nhiêu việc trọn vòng (giao, làm, chấm) đang đo, sẽ cập nhật. Giá model Kira ngày 30/10/2026, tính trên 1 triệu token (vào / ra): mimo-v2.6-flash 3.640đ / 7.280đ, qwen3.8-flash 4.160đ / 12.220đ, glm-5.3-flash 3.900đ / 13.000đ, deepseek-v4.1-flash 4.030đ / 16.120đ, minimax-m3.1-flash 4.290đ / 17.160đ. Giá có thể đổi: <a href="https://kiraai.vn/bang-gia/">kiraai.vn/bang-gia</a>.</p>
+</div>
+
+<h2>Cần chuẩn bị</h2>
+<ul>
+<li>Máy Mac chip Apple (M1 trở lên). Windows chưa thử.</li>
+<li>Tài khoản Discord.</li>
+<li>50.000đ.</li>
+<li>Khoảng 45-60 phút cho đủ 5 bot (ước tính từ lần chạy 1 bot, xem bảng dưới).</li>
+<li>Không cài trên máy công ty, không đưa tài liệu công ty vào khi quy định không cho phép.</li>
+</ul>
+
+<h2>Thứ tự A → O: ai làm, mất bao lâu</h2>
+<p><span class="tag nguoi">NGƯỜI</span> = bạn bắt buộc tự làm. <span class="tag tudong">TỰ ĐỘNG</span> = Hermes làm khi bạn dán "Lời nhờ số 2". Thời gian đo thật khi dựng bot đầu tiên.</p>
+<table>
+<tr><th>#</th><th>Việc</th><th>Ai</th><th>Thời gian</th></tr>
+<tr><td>A</td><td>Mở AI web, dán Lời nhờ số 1</td><td><span class="tag nguoi">NGƯỜI</span></td><td>1 phút</td></tr>
+<tr><td>B</td><td>Đăng ký Kira, nạp 50.000đ, tạo khóa API</td><td><span class="tag nguoi">NGƯỜI</span></td><td>chưa đo</td></tr>
+<tr><td>C</td><td>Cài Hermes: dán 1 lệnh vào Terminal</td><td><span class="tag nguoi">NGƯỜI</span></td><td>chưa đo trên máy sạch</td></tr>
+<tr><td>D</td><td>Cài CLIProxy, nối Kira, chạy nền</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>1 phút</td></tr>
+<tr><td>E</td><td>Nối Hermes vào CLIProxy, kiểm trả lời và ghi file</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>2 phút</td></tr>
+<tr><td>F</td><td>Đăng nhập Discord, tạo máy chủ</td><td><span class="tag nguoi">NGƯỜI</span></td><td>2-3 phút</td></tr>
+<tr><td>G</td><td>Tạo ứng dụng bot, giải captcha</td><td><span class="tag nguoi">NGƯỜI</span></td><td rowspan="3">7 phút cho bot đầu tiên</td></tr>
+<tr><td>H</td><td>Bật Message Content Intent và Server Members Intent</td><td><span class="tag nguoi">NGƯỜI</span></td></tr>
+<tr><td>I</td><td>Reset Token, dán vào file thông tin</td><td><span class="tag nguoi">NGƯỜI</span></td></tr>
+<tr><td>J</td><td>Kiểm token, mời bot vào máy chủ với đúng 8 quyền</td><td><span class="tag tudong">TỰ ĐỘNG</span> (bạn bấm "Phê duyệt")</td><td>1 phút</td></tr>
+<tr><td>K</td><td>Gắn token vào Hermes, dặn bot nói tiếng Việt, chạy bot</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>2 phút</td></tr>
+<tr><td>L</td><td>Nhắn thử bot trên Discord</td><td><span class="tag nguoi">NGƯỜI</span></td><td>bot trả lời 4,9 giây</td></tr>
+<tr><td>M</td><td>Lặp G → K cho 4 bot còn lại</td><td><span class="tag nguoi">NGƯỜI</span> + <span class="tag tudong">TỰ ĐỘNG</span></td><td>dự kiến 20-25 phút</td></tr>
+<tr><td>N</td><td>Bật luật đội và Kanban</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>chưa đo</td></tr>
+<tr><td>O</td><td>Giao thử 1 việc trọn vòng: làm → chấm → báo</td><td><span class="tag nguoi">NGƯỜI</span> giao việc</td><td>chưa đo</td></tr>
+</table>
+
+<h2>Làm từng bước</h2>
+
+<h3>B. Đăng ký Kira và lấy khóa API</h3>
+<ol>
+<li>Vào <a href="https://kiraai.vn/?ref=areaoneamusement">kiraai.vn</a> (link giới thiệu của người viết), đăng ký.</li>
+<li>Nạp 50.000đ vào <b>ví VND</b>. Gói tháng của Kira chỉ áp cho model tên <code>kira-...</code>, đội này trả theo ví.</li>
+<li>Tạo khóa API, đặt tên <code>doi-ai</code>. Khóa này là tiền của bạn: chỉ dán cho Hermes trên máy mình, không gửi ai, không chụp màn hình.</li>
+</ol>
+
+<h3>C. Cài Hermes</h3>
+<p>Mở Terminal, dán:</p>
+<pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash</code></pre>
+<p>Đóng Terminal, mở lại, gõ <code>hermes --version</code> ra số phiên bản là xong. Từ đây chuyển sang hỏi Hermes (Lời nhờ số 2).</p>
+
+<h3>F. Tạo máy chủ Discord</h3>
+<p>Trong Discord: bấm dấu <b>+</b> bên trái → <b>Tạo Mẫu Riêng</b> → <b>Dành cho tôi và bạn bè tôi</b> → xóa hết chữ có sẵn trong ô tên, gõ "Đội AI" → <b>Tạo</b>.</p>
+<div class="box note"><p>Ô tên có sẵn chữ "Máy chủ của &lt;tên bạn&gt;". Nhớ xóa trước khi gõ, nếu không tên sẽ bị ghép.</p></div>
+
+<h3>G. Tạo ứng dụng bot (làm 5 lần)</h3>
+<p>Vào <a href="https://discord.com/developers/applications">discord.com/developers/applications</a> → <b>Ứng dụng mới</b> → đặt tên (ví dụ "Doi AI - Dieu phoi") → tick đồng ý → <b>Tạo</b>.</p>
+<figure><img src="anh/11-ung-dung-moi.jpg" alt="Tạo ứng dụng mới"><figcaption>Ô tạo ứng dụng mới trên Developer Portal.</figcaption></figure>
+<p>Discord sẽ hỏi captcha "Bạn là con người phải không?". Bước này bắt buộc người làm, máy không được làm thay.</p>
+<figure><img src="anh/13-captcha-khi-tao-ung-dung.jpg" alt="Captcha khi tạo ứng dụng"><figcaption>Captcha xuất hiện mỗi lần tạo ứng dụng.</figcaption></figure>
+<p>Tên gợi ý cho 5 bot: Doi AI - Dieu phoi, Doi AI - Nghien cuu, Doi AI - Viet, Doi AI - Cham, Doi AI - Lam nang.</p>
+
+<h3>H. Bật quyền đọc tin nhắn</h3>
+<p>Trong ứng dụng vừa tạo → menu trái <b>Bot</b> → mục <b>Privileged Gateway Intents</b>:</p>
+<ul>
+<li><b>Message Content Intent</b>: BẬT. Thiếu cái này bot không đọc được bạn nói gì.</li>
+<li><b>Server Members Intent</b>: BẬT.</li>
+<li>Presence Intent: không cần.</li>
+</ul>
+<p>Bấm <b>Save Changes</b>. Discord không cho bật mục này bằng lệnh, nên phải bấm tay.</p>
+
+<h3>I. Lấy token</h3>
+<p>Cùng trang Bot → <b>Reset Token</b> → copy. Token chỉ hiện một lần và là mật khẩu của bot. Dán vào file thông tin mà Hermes tạo cho bạn (Lời nhờ số 2 bảo Hermes tạo file này), cùng <b>Application ID</b> lấy ở trang General Information.</p>
+
+<h3>J. Mời bot vào máy chủ</h3>
+<p>Hermes tạo link mời với đúng 8 quyền. Bạn mở link, bấm <b>Phê duyệt</b>.</p>
+<figure><img src="anh/21-man-cap-quyen-bot.jpg" alt="Màn cấp quyền bot"><figcaption>Đúng 8 quyền: Xem kênh, Gửi tin, Gửi tin trong chủ đề, Tạo chủ đề, Nhúng link, Đính kèm file, Xem lịch sử, Thêm biểu cảm. Không có quyền quản trị.</figcaption></figure>
+<figure><img src="anh/22-sau-phe-duyet.jpg" alt="Thêm bot thành công"><figcaption>Bot đã vào máy chủ.</figcaption></figure>
+<div class="box"><p>Nếu tự tạo link: trong <b>OAuth2 → URL Generator</b> chỉ tick <code>bot</code> và 8 quyền trên. <b>Không tick</b> Administrator, Manage Messages, Manage Threads. Mã quyền tương ứng: <code>309237763136</code>.</p></div>
+
+<h3>L. Nhắn thử</h3>
+<p>Trong kênh, gõ <code>@</code> rồi chọn đúng tên bot <b>có nhãn APP</b> trong danh sách gợi ý, rồi gõ câu hỏi.</p>
+<div class="box warn"><p>Discord tự tạo một "vai trò" trùng tên với bot. Chọn nhầm vai trò (không có nhãn APP) thì bot không nhận tin. Bot trả lời trong một chủ đề mới tự mở, không trả lời ngay dưới tin.</p></div>
+
+<h2>Những lỗi người viết đã gặp khi chạy thật</h2>
+<ol>
+<li><b>CLIProxy phải có thư mục đăng nhập riêng.</b> Thiếu dòng <code>oauth: auth-dir:</code> trỏ thư mục trống, CLIProxy sẽ đọc thư mục mặc định <code>~/.cli-proxy-api</code>. Máy nào đã cài CLIProxy trước sẽ bị dính tài khoản cũ.</li>
+<li><b>Nối Hermes vào CLIProxy phải đúng kiểu.</b> Khai báo provider tên <code>cliproxy</code> với <code>key_env: CLIPROXY_API_KEY</code>, khóa để trong file <code>.env</code> của bot. Kiểu <code>provider: custom</code> bị CLIProxy từ chối (lỗi 401).</li>
+<li><b>Model rẻ có lúc trả lời tiếng Trung.</b> Phải dặn trong file tính cách <code>SOUL.md</code> của bot: "Luôn trả lời bằng tiếng Việt".</li>
+<li><b>Bot không biết mình chạy model gì</b> (chỉ thấy tên tắt như <code>dieu-phoi</code>). Ghi model thật vào <code>SOUL.md</code> nếu muốn bot trả lời đúng.</li>
+</ol>
+
+<h2>Cấu hình đã chạy được</h2>
+<p>Hermes viết các file này giúp bạn. Để đây để bạn (hoặc AI của bạn) đối chiếu.</p>
+<p><b>CLIProxy</b> (<code>config.yaml</code>), thay chữ in hoa:</p>
+<pre><code>config-version: 8
+server:
+  host: "127.0.0.1"
+  port: 8317
+oauth:
+  auth-dir: "~/doi-ai/cliproxy-auth"   # thư mục riêng, trống
+access:
+  api-keys:
+    - "MAT-KHAU-TU-DAT"
+api-keys:
+  openai-compatibility:
+    - name: "kira"
+      base-url: "https://kiraai.vn/api/v1"
+      keys:
+        - api-key: "KHOA-KIRA"
+      models:
+        - name: "deepseek-v4.1-flash"
+          alias: "dieu-phoi"
+        - name: "qwen3.8-flash"
+          alias: "nghien-cuu"
+        - name: "mimo-v2.6-flash"
+          alias: "viet"
+        - name: "glm-5.3-flash"
+          alias: "cham"
+        - name: "minimax-m3.1-flash"
+          alias: "lam-nang"</code></pre>
+<p><b>Hermes, mỗi bot</b> (<code>~/.hermes/profiles/&lt;tên-bot&gt;/config.yaml</code>):</p>
+<pre><code>model:
+  default: dieu-phoi          # đổi theo tên bot
+  provider: cliproxy
+  base_url: http://127.0.0.1:8317/v1
+  key_env: CLIPROXY_API_KEY
+providers:
+  cliproxy:
+    name: CLIProxy (Kira)
+    base_url: http://127.0.0.1:8317/v1
+    key_env: CLIPROXY_API_KEY
+    api_mode: chat_completions
+terminal:
+  cwd: ~/doi-ai</code></pre>
+<p><b>File <code>.env</code> của bot:</b> <code>CLIPROXY_API_KEY=MAT-KHAU-TU-DAT</code>, <code>DISCORD_BOT_TOKEN=TOKEN-CUA-BOT</code>, <code>DISCORD_ALLOWED_USERS=USER-ID-CUA-BAN</code>.</p>
+
+<h2>Lời nhờ số 1: dán vào ChatGPT / Claude / Gemini bản web</h2>
+<pre><code>Bạn là người hướng dẫn cài đặt. Tôi là dân văn phòng, không biết lập trình, dùng Mac chip Apple.
+Tôi muốn cài Hermes Agent để dựng một đội AI trên Discord theo hướng dẫn:
+https://linhnlm2810.github.io/lazy-ai-guide/doi-ai-50k/
+
+Làm như sau:
+1. Mỗi lần chỉ đưa MỘT bước, chờ tôi báo kết quả rồi mới sang bước tiếp.
+2. Bước đầu: chỉ tôi mở Terminal trên Mac.
+3. Rồi chỉ tôi dán lệnh cài Hermes:
+   curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+4. Khi gõ "hermes --version" ra số phiên bản, bảo tôi chạy "hermes setup" và dẫn tôi chọn tạm một model để Hermes nói chuyện được.
+5. Khi Hermes đã trả lời được, bảo tôi chuyển sang dán "Lời nhờ số 2" của trang hướng dẫn vào Hermes.
+Tôi gửi ảnh chụp màn hình khi bị lỗi. Không bảo tôi dán khóa, mật khẩu, token vào đây.</code></pre>
+
+<h2>Lời nhờ số 2: dán vào Hermes khi đã chạy</h2>
+<pre><code>Đọc hướng dẫn https://linhnlm2810.github.io/lazy-ai-guide/doi-ai-50k/ (phần "Cấu hình đã chạy được" và "Những lỗi đã gặp").
+Dựng giúp tôi đội 5 bot: dieu-phoi, nghien-cuu, viet, cham, lam-nang. Làm lần lượt, mỗi bước báo kết quả thật:
+1. Tạo thư mục ~/doi-ai và ~/doi-ai/cliproxy-auth (để trống).
+2. Tải CLIProxy bản mới nhất cho Mac từ https://github.com/router-for-me/CLIProxyAPI/releases, viết config.yaml đúng mẫu
+   (có oauth.auth-dir trỏ ~/doi-ai/cliproxy-auth), tự sinh mật khẩu dài ngẫu nhiên, chạy nền.
+   Hỏi tôi khóa Kira; tôi sẽ dán vào đây, chỉ ghi vào file config.yaml, không in lại.
+3. Kiểm: không mật khẩu báo 401; có mật khẩu thấy đủ 5 tên bot.
+4. Tạo 5 profile Hermes, mỗi bot config.yaml theo mẫu, .env có CLIPROXY_API_KEY, SOUL.md dặn vai trò,
+   luôn trả lời tiếng Việt, ghi model thật đang dùng.
+5. Kiểm từng bot trả lời "OK" và tự tạo được một file thử trong ~/doi-ai.
+6. Tạo file ~/doi-ai/thong-tin-bot.txt (quyền chỉ mình tôi đọc) có chỗ trống để tôi dán App ID và Token của 5 bot.
+   Hướng dẫn tôi làm bước G, H, I trên Discord cho từng bot.
+7. Khi tôi báo đã dán xong: kiểm token, tạo link mời bot với permissions=309237763136, đưa tôi bấm Phê duyệt,
+   gắn token vào từng bot, chạy gateway, bật Kanban.
+8. Tạo ~/doi-ai/AGENTS.md: Điều phối chỉ chia việc; mọi thẻ Kanban dùng workspace dir trỏ ~/doi-ai;
+   thẻ Chấm chạy sau thẻ làm; chỉ báo xong khi Chấm PASS; không bịa số; không xóa file.
+Không bao giờ in khóa, mật khẩu, token ra màn hình.</code></pre>
+
+<h2>An toàn</h2>
+<ul>
+<li>Chỉ cài trên máy cá nhân. Bot đọc được mọi thứ tài khoản máy bạn đọc được.</li>
+<li>Giữ kín: khóa Kira, file cấu hình CLIProxy, token 5 bot, thư mục <code>~/.hermes</code>.</li>
+<li>Luật trong <code>AGENTS.md</code> là lời dặn AI, không phải khóa kỹ thuật. Bot vẫn có thể làm sai: luôn mở file kết quả tự kiểm.</li>
+</ul>
+
+<h2>Muốn đội làm tốt việc thật của bạn</h2>
+<div class="box ok">
+<p>Bản demo dùng model rẻ: đủ để thấy đội AI làm việc với nhau, chưa đủ cho việc dài và quan trọng. Muốn đội làm việc thật mỗi ngày thì cần 2 thứ:</p>
+<ol>
+<li>Model tốt hơn cho Điều phối và Chấm (đổi 1 dòng trong cấu hình CLIProxy).</li>
+<li>Quy trình riêng cho công việc của bạn: việc gì giao ai, thế nào là đạt, kỹ năng cho từng loại việc, lịch tự chạy.</li>
+</ol>
+<p>Phần 2 người viết tư vấn riêng, khóa 7 ngày theo đúng công việc của bạn.</p>
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Đăng ký tư vấn</a>
+</div>
+
+<p class="small">Cập nhật 30/10/2026. Đã chạy thật 1 bot trên Mac; đủ 5 bot và việc trọn vòng đang chạy thử trên máy sạch, sẽ cập nhật số liệu.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
