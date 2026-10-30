@@ -112,8 +112,8 @@ Mỗi bot = 1 Hermes Agent ──► CLIProxy (chạy trên máy bạn) ──�
 <tr><td>K</td><td>Gắn token vào Hermes, dặn bot nói tiếng Việt, chạy bot</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>2 phút</td></tr>
 <tr><td>L</td><td>Nhắn thử bot trên Discord</td><td><span class="tag nguoi">NGƯỜI</span></td><td>bot trả lời 4,9 giây</td></tr>
 <tr><td>M</td><td>Lặp G → K cho 4 bot còn lại</td><td><span class="tag nguoi">NGƯỜI</span> + <span class="tag tudong">TỰ ĐỘNG</span></td><td>dự kiến 20-25 phút</td></tr>
-<tr><td>N</td><td>Bật luật đội và Kanban</td><td><span class="tag tudong">TỰ ĐỘNG</span></td><td>chưa đo</td></tr>
-<tr><td>O</td><td>Giao thử 1 việc trọn vòng: làm → chấm → báo</td><td><span class="tag nguoi">NGƯỜI</span> giao việc</td><td>chưa đo</td></tr>
+<tr><td>N</td><td>Bật luật đội, mở bảng Kanban</td><td><span class="tag tudong">TỰ ĐỘNG</span> (Kanban có sẵn trong Hermes)</td><td>bot nhận thẻ trong 1 phút</td></tr>
+<tr><td>O</td><td>Giao thử 1 việc trọn vòng: làm → chấm → báo</td><td><span class="tag nguoi">NGƯỜI</span> giao việc</td><td>1 việc làm + chấm PASS: 6 phút (15:42 → 15:48, gồm lúc tạo thêm bot Chấm)</td></tr>
 </table>
 
 <h2>Làm từng bước</h2>
@@ -162,6 +162,31 @@ Mỗi bot = 1 Hermes Agent ──► CLIProxy (chạy trên máy bạn) ──�
 <h3>L. Nhắn thử</h3>
 <p>Trong kênh, gõ <code>@</code> rồi chọn đúng tên bot <b>có nhãn APP</b> trong danh sách gợi ý, rồi gõ câu hỏi.</p>
 <div class="box warn"><p>Discord tự tạo một "vai trò" trùng tên với bot. Chọn nhầm vai trò (không có nhãn APP) thì bot không nhận tin. Bot trả lời trong một chủ đề mới tự mở, không trả lời ngay dưới tin.</p></div>
+
+<h2>Bảng Kanban: có sẵn trong Hermes, không phải tự xây</h2>
+<p>Bảng Kanban là chỗ bạn nhìn thấy đội đang làm gì: việc nào chờ, việc nào đang chạy, việc nào bị kẹt cần bạn trả lời, việc nào xong. Bảng này <b>có sẵn trong Hermes</b>. Model rẻ không phải xây gì cả, chỉ cần nhận thẻ và làm.</p>
+<p>Mở bảng: gõ <code>hermes dashboard</code> trong Terminal, rồi mở <code>http://127.0.0.1:9119</code> trên trình duyệt, bấm mục <b>KANBAN</b> ở menu trái.</p>
+<figure><img src="anh/41-kanban-hermes.jpg" alt="Bảng Kanban của Hermes"><figcaption>Chạy thật 30/10/2026 với model rẻ của Kira. Bot Điều phối nhận việc "lập bảng yêu cầu khách hàng", tự tạo thêm thẻ Chấm phụ thuộc thẻ làm. Bot Chấm mở file thật, trả PASS (2 thẻ ở cột Done). Một thẻ khác ở cột Blocked: bot hỏi lại người vì việc chưa rõ.</figcaption></figure>
+<table>
+<tr><th>Cột</th><th>Nghĩa</th></tr>
+<tr><td>Todo</td><td>Việc đang chờ việc khác xong trước (ví dụ thẻ Chấm chờ thẻ làm)</td></tr>
+<tr><td>Ready</td><td>Đủ điều kiện, bot sẽ nhận trong vòng 1 phút</td></tr>
+<tr><td>In Progress</td><td>Bot đang làm</td></tr>
+<tr><td>Blocked</td><td>Bot cần bạn trả lời: bấm vào thẻ xem câu hỏi</td></tr>
+<tr><td>Done</td><td>Xong. Bấm vào thẻ xem kết quả và lời chấm</td></tr>
+</table>
+<div class="box"><p><b>Kết quả chấm thật:</b> "PASS — file tồn tại, bảng đúng 2 cột (Yêu cầu | Mức ưu tiên), đủ 3 yêu cầu khớp nguyên văn file gốc, không bịa thêm." Bot làm cũng tự ghi "mức ưu tiên: chưa xác định" thay vì bịa, đúng luật đội.</p>
+<p class="small">Lưu ý khi chạy thật: Điều phối có lúc giao thẻ cho bot chưa tạo (thẻ bị kẹt). Tạo đủ 5 bot trước khi giao việc thật.</p></div>
+
+<h2>Đã có sẵn Claude, ChatGPT hoặc Gemini trả phí?</h2>
+<div class="box ok">
+<p>Nếu bạn đang trả tiền gói Claude, ChatGPT hoặc Gemini, có thể cho model xịn đó làm <b>Điều phối chính</b>, còn các bot làm việc vẫn dùng model rẻ của Kira. Điều phối là vị trí quyết định chất lượng cả đội: hiểu việc, chia việc, đọc kết quả chấm.</p>
+<ul>
+<li><b>Có khóa API</b> (OpenAI, Anthropic, Google): khai báo thêm nhà cung cấp đó trong CLIProxy, đổi dòng <code>name</code> của <code>dieu-phoi</code> sang model xịn.</li>
+<li><b>Chỉ có gói tháng</b> (ChatGPT Plus, Claude Pro): CLIProxy đăng nhập được bằng gói, nhưng điều khoản các hãng không cho dùng gói theo kiểu tự động này, tài khoản có thể bị khóa. Đọc kỹ điều khoản và tự quyết.</li>
+</ul>
+<p>Sau đó cài thêm các bot khác như hướng dẫn này.</p>
+</div>
 
 <h2>Những lỗi người viết đã gặp khi chạy thật</h2>
 <ol>
@@ -267,7 +292,7 @@ Không bao giờ in khóa, mật khẩu, token ra màn hình.</code></pre>
 <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Đăng ký tư vấn</a>
 </div>
 
-<p class="small">Cập nhật 30/10/2026. Đã chạy thật 1 bot trên Mac; đủ 5 bot và việc trọn vòng đang chạy thử trên máy sạch, sẽ cập nhật số liệu.</p>
+<p class="small">Cập nhật 30/10/2026. Đã chạy thật trên Mac: bot Điều phối trên Discord, bảng Kanban, 1 việc làm và chấm PASS. Đủ 5 bot trên máy sạch đang chạy thử, sẽ cập nhật số liệu.</p>
 </main>
 <footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
 </body>
