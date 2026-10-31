@@ -281,42 +281,39 @@ Không bao giờ in khóa, mật khẩu, token ra màn hình.</code></pre>
 <li>Luật trong <code>AGENTS.md</code> là lời dặn AI, không phải khóa kỹ thuật. Bot vẫn có thể làm sai: luôn mở file kết quả tự kiểm.</li>
 </ul>
 
-<h2>Gói tư vấn 2-5 triệu: từ đội demo thành đội làm việc thật</h2>
-<p>Bản 50k cho bạn thấy đội AI chạy được. Gói tư vấn là khóa 7 ngày làm riêng cho bạn, ra một đội như đội người viết đang dùng hằng ngày.</p>
+<h2>Bạn có đang gặp những chuyện này?</h2>
+<ul>
+<li>Biết là phải làm việc nhanh hơn, nhưng không biết bắt đầu tăng năng suất từ đâu.</li>
+<li>Việc lặp đi lặp lại mỗi ngày, mỗi tuần, mà không biết làm sao cho nó tự chạy.</li>
+<li>Việc phức tạp, tài liệu nhiều, nằm rải rác khắp máy, email, nhóm chat, khó hệ thống lại.</li>
+<li>Tìm một file cũ mất cả buổi, mở ra vẫn không chắc đó là bản mới nhất.</li>
+<li>Email, tin nhắn dồn lên, việc đã hứa với người khác bị sót, hạn bị quên.</li>
+<li>Báo cáo tuần, báo cáo tháng làm lại từ đầu mỗi lần, số liệu phải gom tay.</li>
+<li>Đã dùng ChatGPT hay Claude, nhưng chỉ hỏi đáp từng câu, chưa thành trợ lý làm việc thật.</li>
+<li>Nghe nói nhiều về AI Agent, tự động hóa, nhưng không biết cái nào hợp với công việc của mình.</li>
+</ul>
 
-<figure><img src="anh/50-dashboard-doi-hermes.jpg" alt="Dashboard đội Hermes của người viết"><figcaption>Đội Hermes của người viết, ngày vận hành thứ 49: 8 bot, 714 phiên làm việc và hơn 5.000 lượt giao việc trong 30 ngày, 13 lịch tự chạy. Một số mục công việc riêng đã được làm mờ.</figcaption></figure>
+<h2>Hướng giải quyết: một hệ AI Agent làm việc cho riêng bạn</h2>
+<p>Không phải thêm một công cụ chat. Là một đội AI Agent được dựng theo đúng công việc của bạn: bot nhận việc và chia việc, bot làm từng phần, bot chấm độc lập, lịch tự chạy hằng ngày, và một kho tra cứu chứa toàn bộ tài liệu của bạn. Đội demo 50k ở trên là phiên bản nhỏ nhất của hệ này.</p>
 
-<h3>Sau 7 ngày bạn có</h3>
+<figure><img src="anh/50-dashboard-doi-hermes.jpg" alt="Dashboard đội AI của người viết"><figcaption>Đội AI của người viết, ngày vận hành thứ 49: 8 bot, 714 phiên làm việc và hơn 5.000 lượt giao việc trong 30 ngày, 13 lịch tự chạy. Một số mục công việc riêng đã được làm mờ.</figcaption></figure>
+
+<p>Một hệ như vậy có thể giúp bạn:</p>
 <ol>
-<li><b>Một đội bot làm nhiều việc thật.</b> Điều phối, Nghiên cứu, Viết, Lập trình, Kiểm thử, Thiết kế, Chấm độc lập. Mỗi vị trí chọn đúng model cho việc đó: model xịn cho Điều phối và Chấm, model rẻ cho việc lặp lại. Bot chấm không cùng hãng với bot làm.</li>
-<li><b>Bộ não thứ hai.</b> Toàn bộ tài liệu, email, ghi chú của bạn được lập mục lục trong một kho tra cứu được. Hỏi bằng lời thường, trả lời kèm đường dẫn file gốc. Bạn không phải nhớ file nằm ở đâu nữa.</li>
-<li><b>Quản trị dữ liệu của bạn.</b> Khám kho dữ liệu đang có (bao nhiêu file, bao nhiêu bản trùng, bao nhiêu bản final/v2), sắp lại theo dự án, sản phẩm, khách hàng. Sao lưu, phân quyền, luật "không xóa, không bịa" cho bot.</li>
-<li><b>Điều phối công việc và nâng cấp skill cho bot.</b> Quy trình giao việc có tiêu chí đạt, chấm 2 lần, chưa có bằng chứng thì không báo xong. Mỗi loại việc bạn làm thường xuyên được viết thành một "skill" để bot làm lần sau giống y lần trước, và skill được nâng cấp dần sau mỗi lần làm.</li>
-<li><b>Bảng điều hành riêng, đẹp, nhìn là hiểu.</b> Mỗi bot một hình đại diện, một màu. Thấy ngay bot nào đang làm, đang nghỉ, giao bao nhiêu việc, lịch nào chạy, lịch nào lỗi, tiền model tiêu bao nhiêu. Thiết kế theo ý bạn, như bản người viết đang dùng ở trên.</li>
-<li><b>Lịch tự chạy hằng ngày.</b> Tổng hợp email, cập nhật mục lục, báo việc tới hạn, gửi báo cáo về điện thoại.</li>
+<li><b>Một đội bot làm nhiều việc thật:</b> nghiên cứu, viết, lập trình, kiểm thử, thiết kế, mỗi vị trí chọn đúng loại AI cho việc đó, có bot chấm độc lập.</li>
+<li><b>Bộ não thứ hai:</b> tài liệu, email, ghi chú được lập mục lục. Hỏi bằng lời thường, trả lời kèm đường dẫn file gốc.</li>
+<li><b>Quản trị dữ liệu của bạn:</b> biết kho đang bừa tới đâu, sắp lại theo dự án, sản phẩm, khách hàng; sao lưu và luật an toàn cho bot.</li>
+<li><b>Điều phối công việc và nâng cấp kỹ năng cho bot:</b> việc nào cũng có tiêu chí đạt, chưa có bằng chứng thì không báo xong; việc làm thường xuyên được viết thành kỹ năng để bot làm lần sau tốt hơn lần trước.</li>
+<li><b>Bảng điều hành riêng, nhìn là hiểu:</b> bot nào đang làm, việc nào kẹt, lịch nào lỗi, tiền AI tiêu bao nhiêu.</li>
+<li><b>Lịch tự chạy:</b> tổng hợp, cập nhật, nhắc việc tới hạn, gửi báo cáo về điện thoại.</li>
 </ol>
-<figure><img src="anh/51-avatar-12-con-giap.jpg" alt="Bộ hình đại diện cho bot"><figcaption>Ví dụ bộ hình đại diện 12 con giáp người viết làm cho đội của mình. Gói tư vấn làm bộ riêng theo ý bạn.</figcaption></figure>
-
-<h3>Cách làm</h3>
-<ol>
-<li>Bạn điền form: nghề gì, máy gì, đang khổ vì việc gì, muốn AI làm việc gì.</li>
-<li>Người viết đọc form, đề xuất nội dung 7 ngày và báo giá từ 2 đến 5 triệu tùy độ phức tạp. Bạn đồng ý mới bắt đầu.</li>
-<li>7 ngày làm cùng nhau trên chính máy và dữ liệu của bạn. Cuối mỗi ngày có một thứ chạy được trong tay.</li>
-</ol>
-
-<table>
-<tr><th></th><th>Bản demo 50k</th><th>Gói tư vấn 2-5 triệu</th></tr>
-<tr><td>Số bot</td><td>5, model rẻ</td><td>Theo việc của bạn, model chọn theo từng vị trí</td></tr>
-<tr><td>Bảng Kanban</td><td>Bảng có sẵn của Hermes</td><td>Bảng có sẵn + bảng điều hành riêng thiết kế theo ý bạn</td></tr>
-<tr><td>Dữ liệu của bạn</td><td>Chưa đụng tới</td><td>Khám, sắp xếp, lập mục lục, hỏi bằng lời</td></tr>
-<tr><td>Quy trình</td><td>Luật chung 8 dòng</td><td>Quy trình và skill riêng cho từng loại việc của bạn</td></tr>
-<tr><td>Lịch tự chạy</td><td>Không</td><td>Có, báo về điện thoại</td></tr>
-<tr><td>Người làm</td><td>Bạn tự làm theo hướng dẫn</td><td>Làm cùng người viết 7 ngày</td></tr>
-</table>
+<figure><img src="anh/51-avatar-12-con-giap.jpg" alt="Bộ hình đại diện cho bot"><figcaption>Ví dụ bộ hình đại diện người viết làm cho đội của mình.</figcaption></figure>
 
 <div class="box ok">
-<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Điền form đăng ký tư vấn</a>
-<p class="small">Đội demo 50k bạn vẫn tự làm được miễn phí theo hướng dẫn ở trên.</p>
+<h3 style="margin-top:0">Inbox để được tư vấn chuyên sâu</h3>
+<p>Mỗi người một công việc, một kiểu dữ liệu, một chỗ đang tắc. Bạn kể vấn đề của mình, người viết tư vấn riêng và đưa ra lộ trình giải quyết: việc nào nên tự động trước, dựng đội AI thế nào cho vừa, dữ liệu sắp lại ra sao.</p>
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<p class="small">Đội demo 50k bạn vẫn tự làm được theo hướng dẫn ở trên.</p>
 </div>
 
 <p class="small">Cập nhật 30/10/2026. Đã chạy thật trên Mac: bot Điều phối trên Discord, bảng Kanban, 1 việc làm và chấm PASS. Đủ 5 bot trên máy sạch đang chạy thử, sẽ cập nhật số liệu.</p>
