@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho xem và ký PDF: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin pdf-viewer của Anthropic: mở PDF, tô sáng, điền biểu mẫu, đặt chữ ký hình. Cách cài trên Cowork, Claude Code và cách gọi 1 kỹ năng, 4 lệnh.">
+<meta property="og:title" content="Kỹ năng Claude cho xem và ký PDF: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho xem và ký PDF: cách cài và cách gọi</h1>
+  <p>Plugin pdf-viewer của Anthropic: mở PDF, tô sáng, điền biểu mẫu, đặt chữ ký hình. Cách cài trên Cowork, Claude Code và cách gọi 1 kỹ năng, 4 lệnh.</p>
+  <div class="pills"><span class="pill">xem và ký PDF</span><span class="pill">1 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhiều công việc văn phòng xoay quanh một file PDF: đọc hợp đồng, đánh dấu chỗ cần sửa, điền biểu mẫu, đóng dấu duyệt, ký. Nhóm kỹ năng <code>pdf-viewer</code> của Anthropic mở PDF trong một khung xem trực tiếp, để Claude và các bạn cùng nhìn một trang, cùng chỉnh, rồi tải bản đã đánh dấu về.</p>
+<p>Plugin <code>pdf-viewer</code> có <strong>1 kỹ năng</strong> (<code>view-pdf</code>) và <strong>4 lệnh</strong> (<code>open</code>, <code>annotate</code>, <code>fill-form</code>, <code>sign</code>). Chúng mình đếm từ thư mục <code>skills</code> và <code>commands</code> của kho gốc.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>pdf-viewer</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm xem PDF.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install pdf-viewer@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. Theo README gốc, kỹ năng tự chạy khi đúng việc và lệnh gõ tắt dùng được ngay trong phiên làm việc. Máy chủ PDF cũng tự khởi động khi plugin được nạp, chạy trên máy của các bạn qua <code>npx</code>.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>pdf-viewer</code>.</li>
+<li><strong>NGƯỜI:</strong> chuẩn bị máy. Plugin cần Node.js phiên bản 18 trở lên. Muốn mở PDF từ mạng (arXiv và các nguồn khác) thì máy cần có Internet.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable pdf-viewer@knowledge-work-plugins
+claude plugin uninstall pdf-viewer@knowledge-work-plugins</pre>
+<p>Nối công cụ: nhóm này không cần nối dịch vụ ngoài. CONNECTORS.md ghi plugin dùng một máy chủ cục bộ <code>@modelcontextprotocol/server-pdf</code>, không cần khóa API hay đăng nhập.</p>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ol>
+<li><strong>Nói việc bằng lời thường.</strong> Kỹ năng tự chạy khi đúng việc. Ví dụ: "Mở hợp đồng này cho mình xem và tô các điều khoản về chấm dứt".</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> dạng <code>/pdf-viewer:&lt;tên&gt;</code>. Các lệnh của plugin này nhận một đối số là đường dẫn file hoặc link PDF (theo gợi ý đối số trong file lệnh). Ví dụ:
+<pre>/pdf-viewer:open hop-dong-thue.pdf
+/pdf-viewer:annotate hop-dong-thue.pdf
+/pdf-viewer:sign don-xin-viec.pdf chu-ky.png</pre></li>
+</ol>
+<p>Lưu ý từ README: plugin dành cho việc cần nhìn và chỉnh trực quan. Nếu các bạn chỉ cần tóm tắt hoặc trích chữ từ PDF, đừng mở khung xem. Claude đọc thẳng file PDF được và làm việc đó nhanh hơn.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/pdf-viewer:view-pdf</code>: khung xem PDF tương tác. Dùng khi các bạn muốn mở, xem PDF và cùng Claude làm việc trực quan: tô sáng, đóng dấu, điền biểu mẫu, đặt chữ ký hoặc chữ viết tắt, xem lại các đánh dấu. Không dùng để tóm tắt hay trích chữ. <em>Câu gọi mẫu:</em> "Mở file hợp đồng này, tô các điều khoản quan trọng để mình xem lại."</li>
+</ul>
+<h3>Lệnh</h3>
+<ul>
+<li><code>/pdf-viewer:open</code>: mở một PDF trong khung xem, từ file trên máy hoặc link PDF trực tiếp. Chưa đưa đường dẫn thì Claude liệt kê các PDF có sẵn. <em>Câu gọi mẫu:</em> "Mở giúp mình file bao-cao-quy-3.pdf."</li>
+<li><code>/pdf-viewer:annotate</code>: cùng đọc tài liệu, Claude đề xuất đánh dấu từng đoạn, các bạn duyệt từng đợt trong khung xem rồi mới đi tiếp. Có tô sáng, gạch chân, gạch ngang, ghi chú, hộp chữ, hình khối và con dấu như APPROVED, DRAFT, CONFIDENTIAL. <em>Câu gọi mẫu:</em> "Đọc hợp đồng này và đề xuất chỗ cần tô sáng, ghi chú. Mình duyệt từng đợt."</li>
+<li><code>/pdf-viewer:fill-form</code>: điền biểu mẫu PDF có ô nhập, thấy kết quả ngay trên trang. Với biểu mẫu có tên ô khó hiểu, Claude chụp trang để biết nhãn in cạnh mỗi ô rồi mới điền. <em>Câu gọi mẫu:</em> "Giúp mình điền tờ khai này, ô nào chưa rõ thì hỏi mình."</li>
+<li><code>/pdf-viewer:sign</code>: đặt ảnh chữ ký hoặc chữ viết tắt lên trang PDF. Các bạn cần có sẵn ảnh chữ ký dạng PNG hoặc JPG. <em>Câu gọi mẫu:</em> "Đặt chữ ký trong file chu-ky.png vào góc dưới bên phải trang 3."</li>
+</ul>
+<p>Điền xong và đánh dấu xong, các bạn tải bản PDF đã chỉnh từ thanh công cụ của khung xem.</p>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Theo README, <code>/pdf-viewer:sign</code> chỉ đặt ảnh chữ ký lên trang. Đó không phải chữ ký số có chứng thực hay mã hóa. Văn bản cần giá trị pháp lý bằng chữ ký điện tử thì dùng dịch vụ ký chuyên dụng.</li>
+<li>Nhận xét của chúng mình: biểu mẫu hành chính trong nước hay là bản scan, không có ô nhập. Khi đó <code>/pdf-viewer:fill-form</code> không có ô để điền. Việc đặt chữ và ảnh lên trang dùng <code>/pdf-viewer:annotate</code> và <code>/pdf-viewer:sign</code>.</li>
+<li>Chỉ mở file có đường dẫn nằm trong thư mục làm việc của các bạn, hoặc link PDF trực tiếp. Link tới trang giới thiệu (không phải file PDF) thì README nói là không mở được.</li>
+<li>Tài liệu nội bộ hoặc có thông tin cá nhân: nội dung trang được đưa cho Claude đọc khi đánh dấu. Các bạn cân nhắc theo quy định của tổ chức mình trước khi mở.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

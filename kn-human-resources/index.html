@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho nhân sự: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin human-resources của Anthropic: offer, onboarding, đánh giá, lương thưởng, báo cáo nhân sự. Cách cài và cách gọi 9 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho nhân sự: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho nhân sự: cách cài và cách gọi</h1>
+  <p>Plugin human-resources của Anthropic: offer, onboarding, đánh giá, lương thưởng, báo cáo nhân sự. Cách cài và cách gọi 9 kỹ năng.</p>
+  <div class="pills"><span class="pill">nhân sự</span><span class="pill">9 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Người làm nhân sự phải lo tuyển người, đón người mới, đánh giá, trả lời câu hỏi chính sách và đọc số liệu nhân sự. Nhóm kỹ năng <code>human-resources</code> của Anthropic gom các việc đó lại, để Claude soạn phần chữ và phần bảng, còn người làm nhân sự quyết định.</p>
+<p>Plugin <code>human-resources</code> có <strong>9 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. README của plugin cho biết plugin dùng được ngay khi các bạn tự cung cấp thông tin, và chạy tốt hơn khi nối với hệ thống nhân sự, hệ thống tuyển dụng và các công cụ khác.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>human-resources</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này. README của plugin cho biết plugin được thiết kế chủ yếu cho Cowork.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm nhân sự.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install human-resources@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>human-resources</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/human-resources:&lt;tên-kỹ-năng&gt;</code>.</li>
+<li><strong>NGƯỜI (không bắt buộc):</strong> tạo file <code>settings.local.json</code> để Claude biết thông tin công ty: tên công ty, trụ sở, số nhân viên, phúc lợi (bảo hiểm, nghỉ phép, nghỉ thai sản), loại tiền lương và cách vest cổ phần. Trên Cowork, lưu file vào một thư mục đã chia sẻ với Cowork, plugin tự tìm thấy. Trên Claude Code, lưu tại <code>human-resources/.claude/settings.local.json</code>. README ghi nếu chưa có file này, plugin sẽ hỏi các bạn từng thông tin khi cần.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable human-resources@knowledge-work-plugins
+claude plugin uninstall human-resources@knowledge-work-plugins</pre>
+<p><strong>Nối công cụ (không bắt buộc):</strong> README ghi mọi kỹ năng đều chạy được khi không nối gì, các bạn chỉ cần dán thông tin hoặc tải dữ liệu lên. Nối công cụ thì Claude tự lấy dữ liệu thay các bạn. CONNECTORS.md của nhóm liệt kê các loại sau.</p>
+<ul>
+<li>Hệ thống tuyển dụng (ATS): Greenhouse, Lever, Ashby, Workable.</li>
+<li>Lịch: Google Calendar, hoặc Microsoft 365.</li>
+<li>Chat: Slack, hoặc Microsoft Teams.</li>
+<li>Email: Gmail, hoặc Microsoft 365.</li>
+<li>Hệ thống nhân sự (HRIS): Workday, BambooHR, Rippling, Gusto.</li>
+<li>Kho kiến thức: Notion, Atlassian (Confluence), hoặc Guru, Coda.</li>
+<li>Dữ liệu lương thị trường: Pave, Radford, Levels.fyi.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ul>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn cứ kể việc cần làm, kỹ năng tự chạy khi đúng việc. Ví dụ README đưa ra: hỏi "chính sách nghỉ thai sản của công ty là gì", kỹ năng tra chính sách tự chạy và tìm trong kho kiến thức đã nối.</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/human-resources:&lt;tên-kỹ-năng&gt;</code>. Theo Docs, kỹ năng của plugin luôn có tên dạng <code>/tên-plugin:tên-kỹ-năng</code>.</li>
+</ul>
+<p>Ví dụ cụ thể cho nghề nhân sự:</p>
+<ul>
+<li><code>/human-resources:draft-offer</code>: soạn thư mời nhận việc. Nói kèm vị trí, cấp bậc, nơi làm việc và các khoản trong gói đãi ngộ.</li>
+<li><code>/human-resources:onboarding</code>: lập danh sách việc đón người mới. Nói kèm tên, vị trí, nhóm và ngày bắt đầu.</li>
+<li><code>/human-resources:performance-review</code>: dựng khung đánh giá hiệu suất cho kỳ đánh giá sắp tới.</li>
+</ul>
+<p>Một số kỹ năng trong SKILL.md có gợi ý nội dung đi kèm sau lệnh (trường <code>argument-hint</code>): <code>draft-offer</code> gợi ý vị trí và cấp bậc, <code>onboarding</code> gợi ý tên và vị trí người mới, <code>performance-review</code> gợi ý tên nhân viên hoặc kỳ đánh giá, <code>policy-lookup</code> gợi ý chủ đề chính sách, <code>comp-analysis</code> gợi ý vị trí, cấp bậc hoặc bộ dữ liệu, <code>people-report</code> gợi ý loại báo cáo. Nếu không ghi gì sau lệnh, các bạn cứ mô tả việc bằng lời ở câu tiếp theo.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/human-resources:comp-analysis</code>: phân tích lương thưởng, gồm so với thị trường, xếp vào khung lương và mô hình hóa cổ phần. Dùng khi hỏi nên trả bao nhiêu cho một vị trí, hoặc tải dữ liệu lương lên để tìm trường hợp lệch và nguy cơ mất người. <em>Câu gọi mẫu:</em> "Vị trí kỹ sư phần mềm cấp trung nên trả trong khoảng nào, đây là bảng lương hiện tại của nhóm."</li>
+<li><code>/human-resources:draft-offer</code>: soạn thư mời nhận việc kèm gói đãi ngộ (lương, cổ phần, thưởng ký hợp đồng) và gợi ý đàm phán cho quản lý tuyển dụng. <em>Câu gọi mẫu:</em> "Soạn thư mời cho ứng viên vị trí chuyên viên marketing, làm tại Hà Nội, bắt đầu ngày 1 tháng sau."</li>
+<li><code>/human-resources:interview-prep</code>: lập kế hoạch phỏng vấn có cấu trúc, với câu hỏi theo năng lực và bảng chấm điểm. <em>Câu gọi mẫu:</em> "Lập kế hoạch phỏng vấn cho vị trí trưởng nhóm bán hàng, kèm bảng chấm điểm."</li>
+<li><code>/human-resources:onboarding</code>: tạo danh sách việc đón người mới và kế hoạch tuần đầu, gồm việc trước ngày đi làm (tài khoản, thiết bị, người kèm cặp), lịch ngày đầu, tuần đầu và mục tiêu 30/60/90 ngày. <em>Câu gọi mẫu:</em> "Lập kế hoạch đón nhân viên kế toán mới, bắt đầu thứ Hai tuần sau."</li>
+<li><code>/human-resources:org-planning</code>: lập kế hoạch nhân sự, thiết kế tổ chức và tối ưu cơ cấu nhóm. Dùng khi cân nhắc quy mô nhóm, tuyến báo cáo hoặc nên tuyển ai tiếp theo. <em>Câu gọi mẫu:</em> "Bộ phận vận hành đang có 12 người, nên tuyển thêm vị trí nào trước?"</li>
+<li><code>/human-resources:people-report</code>: tạo báo cáo nhân sự về quy mô, tỷ lệ nghỉ việc, đa dạng và sức khỏe tổ chức. <em>Câu gọi mẫu:</em> "Làm báo cáo tỷ lệ nghỉ việc theo phòng ban từ file này."</li>
+<li><code>/human-resources:performance-review</code>: dựng khung đánh giá hiệu suất, gồm mẫu tự đánh giá, mẫu của quản lý và chuẩn bị họp hiệu chỉnh, đồng thời biến nhận xét chung chung thành ví dụ hành vi cụ thể. <em>Câu gọi mẫu:</em> "Soạn mẫu tự đánh giá và mẫu nhận xét của quản lý cho kỳ đánh giá cuối năm."</li>
+<li><code>/human-resources:policy-lookup</code>: tìm và giải thích chính sách công ty bằng lời dễ hiểu (nghỉ phép, phúc lợi, đi công tác, chi phí). Tìm trong kho kiến thức đã nối, hoặc dùng nội dung sổ tay các bạn dán vào. <em>Câu gọi mẫu:</em> "Công ty mình quy định thế nào về làm việc từ xa ở tỉnh khác?"</li>
+<li><code>/human-resources:recruiting-pipeline</code>: theo dõi và quản lý các giai đoạn tuyển dụng, từ tìm nguồn đến khi ứng viên nhận việc. <em>Câu gọi mẫu:</em> "Cập nhật giúp mình tình hình tuyển dụng: đang có bao nhiêu ứng viên ở từng vòng?"</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Nhận xét của chúng mình: các hệ thống trong CONNECTORS.md (Workday, Greenhouse, Pave...) chủ yếu là sản phẩm nước ngoài. Nhiều đội nhân sự ở Việt Nam đang quản lý bằng file bảng tính hoặc phần mềm trong nước. Với trường hợp này, các bạn dùng cách chạy độc lập mà README mô tả: tải file lên hoặc dán nội dung vào.</li>
+<li>Nhận xét của chúng mình: các mẫu thư mời, danh sách đón người mới và khung đánh giá do Claude soạn dựa trên thông lệ chung. Các bạn cần đối chiếu với hợp đồng lao động, nội quy lao động và quy định pháp luật lao động hiện hành ở Việt Nam trước khi dùng.</li>
+<li>Nhận xét của chúng mình: <code>comp-analysis</code> cần dữ liệu lương thị trường. Nếu các bạn không có nguồn như Pave hay Radford, hãy tải lên khảo sát lương của nhà tuyển dụng hoặc bảng lương nội bộ đã ẩn danh, rồi nói rõ nguồn và năm của số liệu.</li>
+<li>Nhận xét của chúng mình: dữ liệu nhân sự và lương là thông tin nhạy cảm. Trước khi tải file lên hoặc nối hệ thống, các bạn nên hỏi bộ phận công nghệ thông tin và pháp chế của công ty xem việc đó có được phép không.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

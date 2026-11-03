@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho kế toán tài chính: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin finance của Anthropic: bút toán, đối chiếu, báo cáo, giải trình biến động, SOX. Cách cài trên Cowork, Claude Code và cách gọi 8 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho kế toán tài chính: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho kế toán tài chính: cách cài và cách gọi</h1>
+  <p>Plugin finance của Anthropic: bút toán, đối chiếu, báo cáo, giải trình biến động, SOX. Cách cài trên Cowork, Claude Code và cách gọi 8 kỹ năng.</p>
+  <div class="pills"><span class="pill">kế toán tài chính</span><span class="pill">8 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Kế toán và tài chính doanh nghiệp là người chốt sổ cuối tháng, định khoản, đối chiếu số dư, lập báo cáo và giải trình biến động với lãnh đạo. Nhóm kỹ năng <code>finance</code> của Anthropic gom các việc đó lại, để Claude soạn bút toán, bảng đối chiếu và bản giải trình, còn người có chuyên môn xem lại và quyết định.</p>
+<p>Plugin <code>finance</code> có <strong>8 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. README của plugin nhấn mạnh: plugin hỗ trợ quy trình tài chính kế toán nhưng không đưa ra tư vấn về tài chính, thuế hay kiểm toán, và người có chuyên môn phải xem lại kết quả trước khi dùng cho báo cáo tài chính, hồ sơ nộp cơ quan nhà nước hoặc hồ sơ kiểm toán.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>finance</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm tài chính kế toán.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install finance@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>finance</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/finance:&lt;tên-kỹ-năng&gt;</code>.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable finance@knowledge-work-plugins
+claude plugin uninstall finance@knowledge-work-plugins</pre>
+<p><strong>Nối công cụ (không bắt buộc):</strong> README ghi plugin chạy tốt nhất khi nối với nguồn dữ liệu tài chính của các bạn. Nếu chưa nối, các bạn vẫn dán số liệu hoặc tải file lên để Claude phân tích. CONNECTORS.md của nhóm liệt kê các loại sau.</p>
+<ul>
+<li>Kho dữ liệu: Snowflake, Databricks, BigQuery, hoặc Redshift, PostgreSQL.</li>
+<li>Email: Microsoft 365.</li>
+<li>Bộ văn phòng: Microsoft 365.</li>
+<li>Chat: Slack, hoặc Microsoft Teams.</li>
+<li>ERP / kế toán: NetSuite, SAP, QuickBooks, Xero. CONNECTORS.md ghi hiện chưa có máy chủ MCP được hỗ trợ sẵn cho loại này.</li>
+<li>Phân tích / BI: Tableau, Looker, Power BI. Loại này cũng chưa có máy chủ MCP được hỗ trợ sẵn.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ul>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn cứ kể việc cần làm, kỹ năng tự chạy khi đúng việc.</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/finance:&lt;tên-kỹ-năng&gt;</code>. Theo Docs, kỹ năng của plugin luôn có tên dạng <code>/tên-plugin:tên-kỹ-năng</code>. Nội dung viết sau lệnh được truyền cho kỹ năng làm đầu vào.</li>
+</ul>
+<p>Ba ví dụ cho nhóm tài chính kế toán, lấy theo quy trình mẫu trong README gốc:</p>
+<ul>
+<li><code>/finance:journal-entry ap-accrual 2024-12</code>: lập bút toán trích trước công nợ phải trả cho kỳ 12/2024.</li>
+<li><code>/finance:reconciliation cash 2024-12</code>: đối chiếu số dư tiền với sao kê ngân hàng của kỳ đó.</li>
+<li><code>/finance:variance-analysis opex 2024-12 vs budget</code>: phân tích chênh lệch chi phí hoạt động so với ngân sách.</li>
+</ul>
+<p>README gốc viết các lệnh này không có tiền tố <code>finance:</code>, ví dụ <code>/journal-entry</code>. Chúng mình theo Docs và dùng dạng đầy đủ có tiền tố plugin, vì đó là tên kỹ năng thuộc plugin.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>Danh sách dưới đây gồm đủ 8 kỹ năng, đếm từ thư mục <code>skills</code> của plugin. Ba kỹ năng <code>audit-support</code>, <code>close-management</code> và <code>journal-entry-prep</code> được khai báo <code>user-invocable: false</code> trong file SKILL.md, nghĩa là chúng là kiến thức nền để Claude tự dùng khi đúng việc, chứ không phải lệnh các bạn thường gõ. Cách chắc ăn nhất là nói việc bằng lời thường.</p>
+<ul>
+<li><code>/finance:audit-support</code>: Hỗ trợ tuân thủ SOX 404 với phương pháp kiểm thử kiểm soát, chọn mẫu và chuẩn tài liệu. Dùng khi lập hồ sơ kiểm thử, chọn mẫu kiểm toán, phân loại khiếm khuyết kiểm soát hoặc chuẩn bị cho kiểm toán nội bộ, kiểm toán độc lập. <em>Câu gọi mẫu:</em> "Chuẩn bị hồ sơ kiểm thử cho kiểm soát phê duyệt chi và cho mình biết cách phân loại nếu có khiếm khuyết."</li>
+<li><code>/finance:close-management</code>: Quản lý quy trình khóa sổ cuối tháng: sắp thứ tự công việc, phụ thuộc giữa các việc, theo dõi tiến độ. Dùng khi lập lịch khóa sổ, tìm chỗ nghẽn hoặc xếp việc theo từng ngày. <em>Câu gọi mẫu:</em> "Lập lịch khóa sổ tháng này theo từng ngày làm việc và chỉ ra việc nào đang chặn việc nào."</li>
+<li><code>/finance:financial-statements</code>: Lập báo cáo tài chính (kết quả kinh doanh, bảng cân đối, lưu chuyển tiền tệ) kèm so sánh giữa các kỳ và phân tích biến động. Dùng khi lập báo cáo tháng hoặc quý, cần gắn cờ biến động trọng yếu, so thực tế với ngân sách hoặc tra yêu cầu trình bày theo GAAP. <em>Câu gọi mẫu:</em> "Lập báo cáo kết quả kinh doanh tháng 12 so với tháng 11 và gắn cờ các khoản biến động lớn."</li>
+<li><code>/finance:journal-entry</code>: Lập bút toán với bên nợ, bên có và chứng từ kèm theo đầy đủ. Dùng khi ghi nhận khoản trích trước cuối tháng (công nợ phải trả, lương, chi phí trả trước), khấu hao, phân bổ, doanh thu hoặc doanh thu chờ phân bổ, hay khi cần ghi lại một bút toán để kiểm toán xem xét. <em>Câu gọi mẫu:</em> "Lập bút toán trích trước chi phí dịch vụ tháng 12, kèm diễn giải và chứng từ cần đính."</li>
+<li><code>/finance:journal-entry-prep</code>: Chuẩn bị bút toán cho kỳ khóa sổ với đầy đủ nợ, có và tài liệu hỗ trợ. Dùng khi ghi trích trước, phân bổ chi phí trả trước, khấu hao tài sản cố định, bút toán lương, ghi nhận doanh thu hoặc bất kỳ bút toán thủ công nào. <em>Câu gọi mẫu:</em> "Chuẩn bị các bút toán thủ công cho kỳ khóa sổ tháng này và liệt kê chứng từ cần có cho từng bút toán."</li>
+<li><code>/finance:reconciliation</code>: Đối chiếu tài khoản, so số dư sổ cái với sổ chi tiết, sao kê ngân hàng hoặc dữ liệu của bên thứ ba. Dùng khi đối chiếu ngân hàng, đối chiếu sổ cái với sổ chi tiết, đối chiếu nội bộ giữa các công ty trong nhóm, hoặc tìm và phân loại các khoản chênh lệch. <em>Câu gọi mẫu:</em> "Đối chiếu tài khoản tiền gửi ngân hàng tháng 12 với sao kê và phân loại các khoản chưa khớp."</li>
+<li><code>/finance:sox-testing</code>: Tạo mẫu kiểm thử SOX, hồ sơ kiểm thử và đánh giá kiểm soát. Dùng khi lên kế hoạch kiểm thử SOX 404 theo quý hoặc năm, rút mẫu cho một kiểm soát (doanh thu, mua hàng đến thanh toán, kiểm soát chung hệ thống CNTT, khóa sổ), dựng mẫu hồ sơ kiểm thử, hoặc đánh giá và phân loại khiếm khuyết kiểm soát. <em>Câu gọi mẫu:</em> "Rút mẫu kiểm thử cho kiểm soát chu trình mua hàng đến thanh toán quý 4 và dựng mẫu hồ sơ kiểm thử."</li>
+<li><code>/finance:variance-analysis</code>: Tách chênh lệch tài chính theo từng nguyên nhân, kèm lời giải thích và biểu đồ thác nước. Dùng khi phân tích thực tế so ngân sách, so giữa các kỳ, chênh lệch doanh thu hoặc chi phí, hoặc soạn phần giải trình cho lãnh đạo. <em>Câu gọi mẫu:</em> "Giải thích vì sao chi phí bán hàng quý 4 vượt ngân sách, tách theo nguyên nhân và vẽ biểu đồ thác nước."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Nhận xét của chúng mình: các kỹ năng này viết theo thông lệ Mỹ (GAAP, SOX 404). Doanh nghiệp Việt Nam áp dụng chuẩn mực và chế độ kế toán Việt Nam, nên các bạn cần nói rõ khung đang dùng, dán hệ thống tài khoản và quy định nội bộ vào lời nhờ, rồi tự đối chiếu kết quả với khung đó.</li>
+<li>Nhận xét của chúng mình: SOX 404 là luật của Mỹ. Nếu doanh nghiệp các bạn không niêm yết ở Mỹ, hai kỹ năng <code>sox-testing</code> và <code>audit-support</code> vẫn dùng được như phương pháp kiểm thử kiểm soát nội bộ, nhưng không phải yêu cầu pháp lý của bên các bạn.</li>
+<li>Nhận xét của chúng mình: danh sách ERP trong CONNECTORS.md (NetSuite, SAP, QuickBooks, Xero) có thể khác phần mềm kế toán các bạn đang dùng, và loại ERP này chưa có máy chủ MCP sẵn. Cách làm thực tế là xuất sổ cái, sao kê, bảng cân đối phát sinh ra Excel hoặc CSV rồi tải lên cho Claude.</li>
+<li>Số liệu kế toán thường là dữ liệu nhạy cảm của doanh nghiệp. Các bạn nên hỏi bộ phận công nghệ và pháp chế về quy định nội bộ trước khi tải sổ sách thật lên bất kỳ công cụ AI nào. Plugin cũng nhắc rõ là kết quả phải có người có chuyên môn xem lại.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

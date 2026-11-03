@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho quản lý plugin: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin cowork-plugin-management của Anthropic: tạo plugin mới, chỉnh plugin cho đúng công cụ của đội. Cách cài trên Cowork, Claude Code, cách gọi 2 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho quản lý plugin: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho quản lý plugin: cách cài và cách gọi</h1>
+  <p>Plugin cowork-plugin-management của Anthropic: tạo plugin mới, chỉnh plugin cho đúng công cụ của đội. Cách cài trên Cowork, Claude Code, cách gọi 2 kỹ năng.</p>
+  <div class="pills"><span class="pill">quản lý plugin</span><span class="pill">2 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Người quản lý plugin là người dựng và chỉnh bộ công cụ AI cho cả nhóm: tạo plugin mới cho một quy trình chưa có ai làm sẵn, hoặc sửa plugin có sẵn cho khớp với công cụ và cách làm của tổ chức mình. Nhóm kỹ năng <code>cowork-plugin-management</code> của Anthropic để Claude dẫn các bạn đi qua hai việc đó bằng hội thoại.</p>
+<p>Plugin <code>cowork-plugin-management</code> có <strong>2 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. Mô tả trong README gốc: tạo plugin mới hoặc chỉnh plugin có sẵn theo công cụ và quy trình riêng của tổ chức. Cả hai kỹ năng đều ghi rõ yêu cầu chạy trong ứng dụng Cowork trên máy tính (desktop app).</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>cowork-plugin-management</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm quản lý plugin.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install cowork-plugin-management@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>cowork-plugin-management</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/cowork-plugin-management:&lt;tên-kỹ-năng&gt;</code>.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable cowork-plugin-management@knowledge-work-plugins
+claude plugin uninstall cowork-plugin-management@knowledge-work-plugins</pre>
+<p><strong>Nối công cụ:</strong> thư mục của plugin này không có file CONNECTORS.md và không có cấu hình nối công cụ riêng, nên các bạn không cần nối gì để bắt đầu. Khi chỉnh một plugin khác, kỹ năng <code>cowork-plugin-customizer</code> có thể tìm trong các nguồn đã nối của các bạn (chat, tài liệu, email) để lấy tên công cụ và quy ước của tổ chức. Nếu chưa nối nguồn nào, kỹ năng sẽ hỏi trực tiếp các bạn.</p>
+<p><strong>Lưu ý về môi trường:</strong> cả hai kỹ năng ghi yêu cầu ứng dụng Cowork trên máy tính. Kỹ năng chỉnh plugin còn tự báo lỗi và dừng nếu phiên làm việc chạy trên container từ xa, vì không thấy thư mục plugin.</p>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ul>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn cứ kể việc cần làm, kỹ năng tự chạy khi đúng việc.</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/cowork-plugin-management:&lt;tên-kỹ-năng&gt;</code>. Theo Docs, kỹ năng của plugin luôn có tên dạng <code>/tên-plugin:tên-kỹ-năng</code>. Ví dụ:
+<ul>
+<li><code>/cowork-plugin-management:create-cowork-plugin</code> để bắt đầu dựng một plugin mới.</li>
+<li><code>/cowork-plugin-management:cowork-plugin-customizer</code> để chỉnh một plugin đã có.</li>
+</ul></li>
+</ul>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/cowork-plugin-management:cowork-plugin-customizer</code>: chỉnh một plugin cho khớp với công cụ và quy trình của tổ chức, hoặc thiết lập lần đầu một plugin mẫu. Kỹ năng tìm thông tin trong chat, tài liệu, email đã nối, lập danh sách việc cần đổi, hỏi những chỗ chưa rõ, gợi ý nối thêm công cụ rồi đóng gói thành file <code>.plugin</code> để cài. <em>Câu gọi mẫu:</em> "Chỉnh plugin bán hàng này cho đội mình dùng HubSpot và kênh #sales-team."</li>
+<li><code>/cowork-plugin-management:create-cowork-plugin</code>: dẫn các bạn tạo một plugin mới từ đầu qua năm bước: tìm hiểu nhu cầu, lên danh sách thành phần, thiết kế chi tiết, làm ra các file, rồi rà lại và đóng gói thành file <code>.plugin</code>. <em>Câu gọi mẫu:</em> "Giúp mình tạo một plugin để soạn báo cáo tuần cho nhóm vận hành."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Hai kỹ năng này chạy bằng hội thoại và không phụ thuộc luật hay mẫu chứng từ của nước nào, nên dùng được nguyên trạng ở Việt Nam. Điều kiện duy nhất là có ứng dụng Cowork trên máy tính.</li>
+<li>Nhận xét của chúng mình: chỗ đáng làm nhất là đổi công cụ. Các plugin mẫu của Anthropic thường nhắc Slack, Jira, Salesforce. Nếu đội các bạn dùng Zalo, Lark, Base hay Google Sheets, hãy nói rõ với <code>cowork-plugin-customizer</code> để nó sửa đúng chỗ.</li>
+<li>Nhận xét của chúng mình: khi tạo plugin cho nghề của mình, các bạn nên viết sẵn vài quy ước bằng tiếng Việt (cách xưng hô, mẫu văn bản, tên trường dữ liệu) và đưa cho <code>create-cowork-plugin</code> ngay từ đầu, để plugin ra đời đã đúng giọng của đội.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

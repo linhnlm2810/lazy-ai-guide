@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho vận hành: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin operations của Anthropic: nhà cung cấp, quy trình, thay đổi, năng lực, tuân thủ. Cách cài trên Cowork, Claude Code và cách gọi 9 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho vận hành: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho vận hành: cách cài và cách gọi</h1>
+  <p>Plugin operations của Anthropic: nhà cung cấp, quy trình, thay đổi, năng lực, tuân thủ. Cách cài trên Cowork, Claude Code và cách gọi 9 kỹ năng.</p>
+  <div class="pills"><span class="pill">vận hành</span><span class="pill">9 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Người làm vận hành (operations) giữ cho doanh nghiệp chạy đều: chọn và theo dõi nhà cung cấp, viết quy trình, xin duyệt thay đổi, tính nguồn lực, theo dõi tuân thủ và báo cáo cho lãnh đạo. Nhóm kỹ năng <code>operations</code> của Anthropic gom các việc đó lại, để Claude làm phần soạn và phân tích, còn các bạn giữ quyền quyết định.</p>
+<p>Plugin <code>operations</code> có <strong>9 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. README của plugin ghi plugin này thiết kế chủ yếu cho Cowork và cũng chạy được trong Claude Code. Mọi kỹ năng dùng được ngay khi chưa nối công cụ nào, các bạn chỉ cần đưa thông tin vào.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>operations</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm vận hành.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install operations@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>operations</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/operations:&lt;tên-kỹ-năng&gt;</code>.</li>
+<li><strong>NGƯỜI (không bắt buộc):</strong> tạo file cài đặt cá nhân <code>operations/.claude/settings.local.json</code> để ghi tên công ty, tên nhóm, nhịp báo cáo (<code>reportingCadence</code>), chuỗi người duyệt (<code>approvalChain</code>), khung tuân thủ đang theo (<code>complianceFrameworks</code>) và tháng bắt đầu năm tài chính. README gốc có file mẫu. Không tạo file thì plugin hỏi lại các thông tin này khi dùng.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable operations@knowledge-work-plugins
+claude plugin uninstall operations@knowledge-work-plugins</pre>
+<p><strong>Nối công cụ (không bắt buộc):</strong> README ghi mọi kỹ năng chạy được khi chưa nối gì, và hiệu quả hơn khi nối công cụ sẵn có. CONNECTORS.md của nhóm liệt kê các loại sau.</p>
+<ul>
+<li>Lịch: Google Calendar, hoặc Microsoft 365.</li>
+<li>Chat: Slack, hoặc Microsoft Teams.</li>
+<li>Email: Gmail, hoặc Microsoft 365.</li>
+<li>Quản lý dịch vụ CNTT (ITSM): ServiceNow, hoặc Zendesk, Freshservice, Jira Service Management.</li>
+<li>Kho kiến thức: Notion, Atlassian (Confluence), hoặc Guru, Coda.</li>
+<li>Quản lý dự án: Asana, Atlassian (Jira), hoặc Linear, monday.com, ClickUp.</li>
+<li>Mua sắm (procurement): Coupa, SAP Ariba, Zip. Loại này chưa có máy chủ đi kèm sẵn.</li>
+<li>Bộ văn phòng: Microsoft 365, hoặc Google Workspace.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ul>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn cứ kể việc cần làm, kỹ năng tự chạy khi đúng việc.</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/operations:&lt;tên-kỹ-năng&gt;</code>. Theo Docs, kỹ năng của plugin luôn có tên dạng <code>/tên-plugin:tên-kỹ-năng</code>. README của plugin có ví dụ gõ thêm nội dung ngay sau tên kỹ năng. Ví dụ:
+<pre>/operations:process-doc quy trình nghỉ việc của nhân viên
+/operations:runbook quy trình khóa sổ cuối tháng
+/operations:vendor-review</pre>
+Với lệnh không kèm nội dung, Claude hỏi tiếp các thông tin còn thiếu, như tên nhà cung cấp hay hợp đồng đính kèm.</li>
+</ul>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>Dưới đây là đủ 9 kỹ năng, theo thư mục <code>skills</code> của kho gốc.</p>
+<ul>
+<li><code>/operations:vendor-review</code>: đánh giá một nhà cung cấp, gồm phân tích chi phí, đánh giá rủi ro và khuyến nghị. Dùng khi xem đề xuất của nhà cung cấp mới, quyết định gia hạn hay thay hợp đồng, so hai bên, hoặc dựng bảng tổng chi phí sở hữu và các điểm đàm phán. <em>Câu gọi mẫu:</em> "So sánh hai nhà cung cấp phần mềm này và cho mình các điểm cần đàm phán trước khi gia hạn."</li>
+<li><code>/operations:process-doc</code>: lập tài liệu cho một quy trình, gồm sơ đồ luồng, bảng RACI và SOP. Dùng khi quy trình chỉ nằm trong đầu một người, khi cần làm rõ ai chịu trách nhiệm việc gì, hoặc khi cần ghi lại các ngoại lệ trong thực tế. <em>Câu gọi mẫu:</em> "Viết SOP và bảng RACI cho quy trình bàn giao đơn hàng giữa bộ phận bán hàng và kho."</li>
+<li><code>/operations:change-request</code>: soạn phiếu đề nghị thay đổi, kèm phân tích tác động và kế hoạch quay lui. Dùng khi đề xuất đổi hệ thống hoặc quy trình cần duyệt, chuẩn bị hồ sơ cho hội đồng duyệt thay đổi (CAB), hoặc lên kế hoạch thông báo cho các bên liên quan. <em>Câu gọi mẫu:</em> "Soạn phiếu đề nghị thay đổi cho việc chuyển hệ thống chấm công sang nền tảng mới, có kế hoạch quay lui."</li>
+<li><code>/operations:capacity-plan</code>: lập kế hoạch năng lực nguồn lực, gồm phân tích khối lượng việc và dự báo mức sử dụng. Dùng khi vào kỳ lập kế hoạch quý, khi nhóm quá tải và cần số liệu, khi cân nhắc tuyển thêm hay giảm ưu tiên, hoặc kiểm tra các dự án sắp tới có vừa với số người hiện có không. <em>Câu gọi mẫu:</em> "Nhóm vận hành đang quá tải. Với bảng phân công này, quý sau nhận thêm hai dự án được không?"</li>
+<li><code>/operations:status-report</code>: tạo báo cáo tình hình, gồm chỉ số chính (KPI), rủi ro và việc cần làm. Dùng khi viết báo cáo tuần hoặc tháng cho lãnh đạo, tóm tắt sức khỏe dự án theo xanh, vàng, đỏ, nêu các rủi ro và quyết định cần người có thẩm quyền xem, hoặc biến đống hoạt động trên công cụ quản lý dự án thành bản tường thuật dễ đọc. <em>Câu gọi mẫu:</em> "Viết báo cáo tháng cho lãnh đạo từ những cập nhật dưới đây, đánh dấu dự án nào đang vàng hoặc đỏ."</li>
+<li><code>/operations:runbook</code>: tạo hoặc cập nhật sổ tay thao tác (runbook) cho một việc lặp lại. Dùng khi biến kinh nghiệm truyền miệng thành các bước chạy chính xác, thêm phần xử lý sự cố và quay lui vào quy trình có sẵn, hoặc viết đường báo cáo lên cấp trên khi có sự cố. <em>Câu gọi mẫu:</em> "Viết runbook cho việc đối soát công nợ cuối tháng, có phần xử lý khi số liệu lệch và đường báo cáo lên cấp trên."</li>
+<li><code>/operations:process-optimization</code>: phân tích và cải tiến quy trình. Kỹ năng tự chạy khi các bạn nói những câu như quy trình này chậm, làm sao cải thiện, quá nhiều bước, nghẽn ở đâu. <em>Câu gọi mẫu:</em> "Quy trình duyệt chi của mình qua quá nhiều bước, giúp mình tìm chỗ nghẽn và đề xuất cách rút gọn."</li>
+<li><code>/operations:risk-assessment</code>: nhận diện, đánh giá và giảm thiểu rủi ro vận hành. Kỹ năng tự chạy khi các bạn hỏi có rủi ro gì, cần lập sổ đăng ký rủi ro, hoặc cái gì có thể hỏng khi đánh giá một dự án, nhà cung cấp, quy trình hay quyết định. <em>Câu gọi mẫu:</em> "Lập sổ đăng ký rủi ro cho kế hoạch chuyển kho hàng sang địa điểm mới."</li>
+<li><code>/operations:compliance-tracking</code>: theo dõi các yêu cầu tuân thủ và mức sẵn sàng cho kiểm toán. Kỹ năng tự chạy khi các bạn nhắc tới tuân thủ, chuẩn bị kiểm toán, SOC 2, ISO 27001, GDPR hoặc yêu cầu của cơ quan quản lý, hoặc cần theo dõi và ghi lại các hoạt động tuân thủ. <em>Câu gọi mẫu:</em> "Lập danh sách việc cần làm để sẵn sàng cho đợt đánh giá ISO 27001 vào quý sau."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>CONNECTORS.md liệt kê công cụ phổ biến ở nước ngoài, như ServiceNow hay Coupa. Nhiều đội ở Việt Nam quản lý bằng Google Sheets, Excel hoặc Zalo. Đây là nhận xét của chúng mình: các bạn vẫn dùng được kỹ năng bằng cách dán nội dung hoặc đính kèm file, không nhất thiết nối công cụ.</li>
+<li>Kỹ năng <code>compliance-tracking</code> nêu ví dụ khung SOC 2, ISO 27001, GDPR. Các quy định và mẫu biểu trong nước, như quy định riêng của ngành hay của cơ quan quản lý, không nằm trong kho gốc. Các bạn nên nêu rõ văn bản đang áp dụng trong câu lệnh và tự đối chiếu kết quả với bản gốc.</li>
+<li>Kho gốc viết bằng tiếng Anh. Chúng mình nghĩ các bạn nên nói rõ "viết bằng tiếng Việt" và dán mẫu biểu của công ty vào câu lệnh, để kết quả khớp mẫu đang dùng.</li>
+<li>Hợp đồng và số liệu nội bộ của công ty có thể nhạy cảm. Các bạn nên kiểm tra chính sách bảo mật của tổ chức trước khi đưa cho bất kỳ công cụ AI nào (nhận xét của chúng mình).</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

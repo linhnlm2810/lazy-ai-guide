@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho nghiên cứu sinh học: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin bio-research của Anthropic: QC đơn bào, nf-core, scvi-tools, chọn đề tài. Cách cài trên Cowork, Claude Code và cách gọi 6 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho nghiên cứu sinh học: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho nghiên cứu sinh học: cách cài và cách gọi</h1>
+  <p>Plugin bio-research của Anthropic: QC đơn bào, nf-core, scvi-tools, chọn đề tài. Cách cài trên Cowork, Claude Code và cách gọi 6 kỹ năng.</p>
+  <div class="pills"><span class="pill">nghiên cứu sinh học</span><span class="pill">6 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhà nghiên cứu khoa học sự sống ở giai đoạn tiền lâm sàng thường mất nhiều thời gian cho việc tra tài liệu, chạy quy trình phân tích dữ liệu giải trình tự, chuẩn hóa dữ liệu máy đo và chọn hướng nghiên cứu. Nhóm kỹ năng <code>bio-research</code> của Anthropic gom các việc đó lại, để Claude hỗ trợ phần tra cứu, chạy quy trình và gợi ý, còn nhà khoa học vẫn là người đọc kết quả và quyết định.</p>
+<p>Plugin <code>bio-research</code> có <strong>6 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. README của plugin ghi là 5 kỹ năng phân tích, vì kỹ năng <code>start</code> là kỹ năng làm quen, dùng để xem công cụ nào đã được nối. Ngoài kỹ năng, plugin còn đi kèm sẵn các kết nối tới nguồn dữ liệu và công cụ nghiên cứu (xem mục Nối công cụ).</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>bio-research</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm nghiên cứu sinh học.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install bio-research@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>bio-research</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/bio-research:&lt;tên-kỹ-năng&gt;</code>.</li>
+<li><strong>NGƯỜI:</strong> nối công cụ nếu cần, xem mục dưới đây.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable bio-research@knowledge-work-plugins
+claude plugin uninstall bio-research@knowledge-work-plugins</pre>
+<h3>Nối công cụ</h3>
+<p>Theo CONNECTORS.md của plugin, kỹ năng viết theo nhóm công cụ chứ không gắn với một sản phẩm cụ thể. Cột "đi kèm" là máy chủ MCP cấu hình sẵn, cột "lựa chọn khác" là công cụ cùng nhóm mà các bạn có thể nối thay:</p>
+<ul>
+<li>Tài liệu khoa học: đi kèm PubMed, bioRxiv, Consensus; lựa chọn khác là Google Scholar, Semantic Scholar.</li>
+<li>Minh họa khoa học: BioRender.</li>
+<li>Thử nghiệm lâm sàng: ClinicalTrials.gov; lựa chọn khác là EU Clinical Trials Register.</li>
+<li>Cơ sở dữ liệu hóa chất: ChEMBL; lựa chọn khác là PubChem, DrugBank.</li>
+<li>Đích tác động thuốc: Open Targets; lựa chọn khác là UniProt, STRING.</li>
+<li>Kho dữ liệu: Synapse; lựa chọn khác là Zenodo, Dryad, Figshare.</li>
+<li>Truy cập tạp chí: Wiley Scholar Gateway; lựa chọn khác là Elsevier, Springer Nature.</li>
+<li>AI nghiên cứu: Owkin.</li>
+<li>Nền tảng phòng thí nghiệm: Benchling. CONNECTORS.md ghi mục này mới là chỗ giữ chỗ, đường dẫn MCP chưa được cấu hình.</li>
+</ul>
+<p>README còn nêu hai máy chủ tùy chọn cần tải riêng một file chạy: 10X Genomics <code>txg-mcp</code> và ToolUniverse của Harvard MIMS.</p>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs:</p>
+<ol>
+<li>Nói việc bằng lời thường. Kỹ năng tự chạy khi đúng việc. Ví dụ: "Chạy QC cho file scRNA-seq này và lọc các tế bào chất lượng thấp."</li>
+<li>Gọi thẳng bằng lệnh gõ tắt <code>/bio-research:&lt;tên-kỹ-năng&gt;</code>. Ví dụ:
+<pre>/bio-research:start
+/bio-research:single-cell-rna-qc
+/bio-research:nextflow-development</pre></li>
+</ol>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/bio-research:start</code>: làm quen với plugin, xem các máy chủ MCP về tài liệu, tìm thuốc và minh họa đã nối chưa, và điểm qua các kỹ năng phân tích trước khi bắt đầu dự án mới. <em>Câu gọi mẫu:</em> "Cho mình xem plugin bio-research đang nối những công cụ nào."</li>
+<li><code>/bio-research:single-cell-rna-qc</code>: kiểm soát chất lượng dữ liệu RNA-seq đơn bào (file .h5ad hoặc .h5) theo thực hành tốt của scverse, lọc theo MAD và vẽ biểu đồ đi kèm. <em>Câu gọi mẫu:</em> "Chạy QC cho file .h5ad này và lọc các tế bào chất lượng thấp."</li>
+<li><code>/bio-research:scvi-tools</code>: phân tích đơn bào bằng học sâu với scvi-tools: tích hợp dữ liệu và hiệu chỉnh batch (scVI, scANVI), ATAC-seq (PeakVI), CITE-seq (totalVI), multiome (MultiVI), giải trộn dữ liệu không gian (DestVI), chuyển nhãn, vận tốc RNA (veloVI). <em>Câu gọi mẫu:</em> "Tích hợp hai bộ dữ liệu đơn bào này và hiệu chỉnh batch bằng scVI."</li>
+<li><code>/bio-research:nextflow-development</code>: chạy các quy trình nf-core (rnaseq, sarek, atacseq) trên FASTQ có sẵn hoặc dữ liệu công khai từ GEO/SRA, dùng cho biểu hiện gen, gọi biến thể và ATAC-seq. <em>Câu gọi mẫu:</em> "Phân tích lại bộ dữ liệu GEO này bằng nf-core rnaseq để tìm gen biểu hiện khác biệt."</li>
+<li><code>/bio-research:instrument-data-to-allotrope</code>: chuyển file xuất từ máy đo (PDF, CSV, Excel, TXT) sang định dạng Allotrope Simple Model (JSON hoặc CSV phẳng), có thể xuất mã Python cho kỹ sư dữ liệu. <em>Câu gọi mẫu:</em> "Chuyển file kết quả của máy đếm tế bào này sang định dạng Allotrope để nạp vào LIMS."</li>
+<li><code>/bio-research:scientific-problem-selection</code>: khung chọn vấn đề nghiên cứu dựa trên bài của Fischbach và Walsh (Cell, 2024), dùng khi cần đưa ý tưởng, gỡ dự án bị kẹt hoặc đánh giá rủi ro. <em>Câu gọi mẫu:</em> "Mình có một ý tưởng đề tài, giúp mình đánh giá rủi ro trước khi bắt đầu."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Kỹ năng phân tích (<code>single-cell-rna-qc</code>, <code>scvi-tools</code>, <code>nextflow-development</code>) cần môi trường chạy được mã và dữ liệu ngay trong máy hoặc máy chủ của các bạn. Đây là nhận xét của chúng mình: dữ liệu lớn hay tính toán nặng nên chạy trên cụm máy của viện hoặc trường, không nên trông vào máy cá nhân.</li>
+<li>Dữ liệu bệnh nhân hoặc mẫu lâm sàng của cơ sở y tế trong nước nên được cơ sở cho phép trước khi đưa vào bất kỳ công cụ AI nào. Đây là lời nhắc của chúng mình, không phải nội dung trong kho gốc.</li>
+<li>Một số nguồn trong danh sách kết nối (ví dụ Wiley, Elsevier, Springer Nature) cần quyền truy cập tạp chí của đơn vị. Các bạn nên kiểm tra thư viện của viện hoặc trường mình có gói nào trước khi nối.</li>
+<li>Kho gốc ghi các kỹ năng là ví dụ, chẳng hạn <code>instrument-data-to-allotrope</code> tự nhận là "Example Skill". Hãy kiểm lại kết quả với dữ liệu thật của các bạn trước khi dùng cho quy trình chính thức.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

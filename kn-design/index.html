@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho nhà thiết kế: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Nhóm design của Anthropic có 7 kỹ năng cho designer, UX writer, researcher: cách cài trên Cowork và Claude Code, cách gọi bằng /design và danh sách đầy đủ.">
+<meta property="og:title" content="Kỹ năng Claude cho nhà thiết kế: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho nhà thiết kế: cách cài và cách gọi</h1>
+  <p>Nhóm design của Anthropic có 7 kỹ năng cho designer, UX writer, researcher: cách cài trên Cowork và Claude Code, cách gọi bằng /design và danh sách đầy đủ.</p>
+  <div class="pills"><span class="pill">Thiết kế</span><span class="pill">7 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhóm thiết kế dành cho designer, UX writer, UX researcher và những ai phải giao thiết kế cho lập trình viên. Các kỹ năng trong nhóm giúp góp ý thiết kế, rà soát khả năng tiếp cận, viết nội dung giao diện, quản lý design system, tổng hợp nghiên cứu người dùng và soạn tài liệu bàn giao. Plugin <code>design</code> có 7 kỹ năng (chúng mình đếm thật trong kho gốc của Anthropic).</p>
+<p>Theo README của plugin, mọi kỹ năng chạy được mà không cần nối công cụ nào. Các bạn mô tả thiết kế, dán ảnh chụp màn hình hoặc dán bản ghi phỏng vấn là đủ.</p>
+
+<h2>Cài đặt</h2>
+<p>Có hai cách, tùy các bạn dùng ứng dụng nào.</p>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a>, tìm plugin <code>design</code> và cài.</li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt. Kỹ năng chạy khi các bạn nói đúng việc.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở cửa sổ dòng lệnh (terminal), chạy hai lệnh sau. Lệnh đầu thêm kho của Anthropic, lệnh sau cài plugin.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install design@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt trong các phiên làm việc sau đó.</li>
+<li><strong>NGƯỜI:</strong> kiểm tra đã cài chưa bằng cách gõ <code>/plugin</code> trong Claude Code, rồi xem thẻ Installed.</li>
+<li><strong>NGƯỜI (khi cần):</strong> tắt hoặc gỡ bằng <code>claude plugin disable design@knowledge-work-plugins</code> hoặc <code>claude plugin uninstall design@knowledge-work-plugins</code>.</li>
+</ol>
+<h3>Nối công cụ (không bắt buộc)</h3>
+<p>Nối thêm công cụ thì kỹ năng lấy được dữ liệu trực tiếp. Theo file CONNECTORS.md của plugin, các nhóm công cụ gồm:</p>
+<ul>
+<li>Chat: Slack (hoặc Microsoft Teams).</li>
+<li>Công cụ thiết kế: Figma (hoặc Sketch, Adobe XD, Framer).</li>
+<li>Kho kiến thức: Notion (hoặc Confluence, Guru, Coda).</li>
+<li>Quản lý công việc: Linear, Asana, Atlassian (Jira/Confluence), hoặc Shortcut, ClickUp.</li>
+<li>Phản hồi người dùng: Intercom (hoặc Productboard, Canny, UserVoice, Dovetail).</li>
+<li>Phân tích sản phẩm: Amplitude, Mixpanel, Heap, FullStory.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách.</p>
+<ol>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn nhắn việc cần làm, kỹ năng tự chạy khi đúng việc. Ví dụ: "Xem giúp mình màn hình đăng ký này có ổn không".</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/design:&lt;tên-kỹ-năng&gt;</code>. Ví dụ:
+<pre>/design:design-critique
+/design:accessibility-review
+/design:ux-copy</pre></li>
+</ol>
+<p>Các kỹ năng có gợi ý nội dung đi kèm. Ví dụ <code>design-critique</code> nhận link Figma, ảnh chụp màn hình hoặc mô tả; <code>design-system</code> nhận một trong ba chế độ <code>audit</code>, <code>document</code>, <code>extend</code> kèm tên thành phần. README của plugin cũng có ví dụ gõ thêm nội dung ngay sau lệnh, chẳng hạn <code>/design-system audit</code> hoặc <code>/ux-copy error messages for payment flow</code>.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/design:design-critique</code>: cho góp ý có cấu trúc về khả năng dùng, thứ bậc thị giác và độ nhất quán, ở bất kỳ giai đoạn nào từ phác thảo đến hoàn thiện. <em>Câu gọi mẫu:</em> "Nhận xét giúp mình mockup trang thanh toán này, mình gửi ảnh chụp màn hình."</li>
+<li><code>/design:accessibility-review</code>: rà soát thiết kế hoặc trang web theo chuẩn WCAG 2.1 AA: tương phản màu, điều hướng bàn phím, kích thước vùng chạm, trình đọc màn hình. <em>Câu gọi mẫu:</em> "Kiểm tra giúp mình màn hình này có đạt chuẩn tiếp cận không trước khi bàn giao."</li>
+<li><code>/design:design-handoff</code>: tạo tài liệu bàn giao cho lập trình viên: bố cục, design token, thuộc tính thành phần, trạng thái tương tác, điểm ngắt responsive, trường hợp biên và chi tiết hiệu ứng chuyển động. <em>Câu gọi mẫu:</em> "Soạn giúp mình tài liệu bàn giao cho thiết kế này, link Figma ở dưới."</li>
+<li><code>/design:design-system</code>: kiểm tra, viết tài liệu hoặc mở rộng design system: tìm chỗ đặt tên không nhất quán, giá trị gõ cứng, viết tài liệu biến thể và trạng thái của thành phần, thiết kế mẫu mới khớp hệ thống hiện có. <em>Câu gọi mẫu:</em> "Rà giúp mình thư viện component này xem chỗ nào đặt tên chưa thống nhất."</li>
+<li><code>/design:ux-copy</code>: viết hoặc rà nội dung giao diện: microcopy, thông báo lỗi, màn hình trống, nút kêu gọi hành động, hộp thoại xác nhận, nội dung onboarding. <em>Câu gọi mẫu:</em> "Nút xác nhận chuyển khoản này nên ghi gì? Cho mình vài phương án."</li>
+<li><code>/design:user-research</code>: lập kế hoạch, thực hiện và tổng hợp nghiên cứu người dùng: kế hoạch nghiên cứu, hướng dẫn phỏng vấn, kiểm thử khả năng dùng, thiết kế khảo sát, câu hỏi nghiên cứu. <em>Câu gọi mẫu:</em> "Soạn giúp mình bộ câu hỏi phỏng vấn người dùng về tính năng lưu danh sách yêu thích."</li>
+<li><code>/design:research-synthesis</code>: tổng hợp dữ liệu nghiên cứu (bản ghi phỏng vấn, kết quả khảo sát, ghi chú kiểm thử, phiếu hỗ trợ, phản hồi NPS) thành chủ đề, nhóm người dùng, insight và việc nên làm tiếp theo theo thứ tự ưu tiên. <em>Câu gọi mẫu:</em> "Đây là mười bản ghi phỏng vấn, tổng hợp giúp mình các chủ đề chính và việc nên làm trước."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Phần lớn kỹ năng chạy tốt khi các bạn nhắn bằng tiếng Việt, nhưng tên kỹ năng và lệnh vẫn gõ bằng tiếng Anh. Đây là nhận xét của chúng mình, chưa kiểm cho từng kỹ năng.</li>
+<li>Với <code>ux-copy</code>, các bạn nên nêu rõ giọng thương hiệu, cách xưng hô (bạn, quý khách, anh/chị) và độ dài tối đa của nút. Đây là gợi ý của chúng mình, vì chuẩn xưng hô tiếng Việt khác nhiều so với tiếng Anh.</li>
+<li>Chuẩn kiểm tra của <code>accessibility-review</code> là WCAG 2.1 AA. Nếu sản phẩm của các bạn có yêu cầu tiếp cận riêng theo quy định hoặc theo khách hàng, hãy đối chiếu thêm.</li>
+<li>Công cụ nối sẵn trong CONNECTORS.md (Figma, Notion, Slack, Linear, Jira…) khá sát với công cụ nhiều đội đang dùng. Chưa có tài khoản thì cứ chạy chế độ không nối công cụ.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho người làm dữ liệu: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Nhóm data của Anthropic có 10 kỹ năng cho người phân tích dữ liệu: cách cài trên Cowork và Claude Code, cách gọi bằng /data và danh sách đầy đủ.">
+<meta property="og:title" content="Kỹ năng Claude cho người làm dữ liệu: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho người làm dữ liệu: cách cài và cách gọi</h1>
+  <p>Nhóm data của Anthropic có 10 kỹ năng cho người phân tích dữ liệu: cách cài trên Cowork và Claude Code, cách gọi bằng /data và danh sách đầy đủ.</p>
+  <div class="pills"><span class="pill">Dữ liệu</span><span class="pill">10 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhóm dữ liệu dành cho người làm phân tích dữ liệu: viết câu truy vấn SQL, khám phá một bảng số liệu mới, vẽ biểu đồ, dựng bảng điều khiển (dashboard) và kiểm tra lại bài phân tích trước khi gửi cho sếp. Plugin <code>data</code> có 10 kỹ năng (chúng mình đếm thật trong kho gốc của Anthropic).</p>
+<p>Theo README gốc, plugin chạy với kho dữ liệu nào cũng được, kiểu SQL nào cũng được. Chưa nối kho dữ liệu thì các bạn dán kết quả truy vấn hoặc tải file CSV, Excel lên, kỹ năng vẫn phân tích và vẽ biểu đồ từ đó.</p>
+
+<h2>Cài đặt</h2>
+<p>Có hai cách, tùy các bạn dùng ứng dụng nào.</p>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a>, tìm plugin <code>data</code> và cài.</li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt. Kỹ năng chạy khi các bạn nói đúng việc.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở cửa sổ dòng lệnh (terminal), chạy hai lệnh sau. Lệnh đầu thêm kho của Anthropic, lệnh sau cài plugin.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install data@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt trong các phiên làm việc sau đó.</li>
+<li><strong>NGƯỜI:</strong> kiểm tra đã cài chưa. Mở Claude Code, gõ <code>/plugin</code> rồi xem thẻ Installed (đã cài).</li>
+<li><strong>NGƯỜI:</strong> khi cần tắt hoặc gỡ, chạy <code>claude plugin disable data@knowledge-work-plugins</code> hoặc <code>claude plugin uninstall data@knowledge-work-plugins</code>.</li>
+</ol>
+<h3>Nối công cụ (không bắt buộc)</h3>
+<p>Theo README, nối kho dữ liệu cho trải nghiệm tốt nhất: Claude truy vấn thẳng vào kho, đọc cấu trúc bảng, chạy trọn một bài phân tích mà các bạn không phải sao chép qua lại. Không nối thì vẫn dùng được bằng cách dán kết quả hoặc tải file. Theo CONNECTORS.md, các loại công cụ nối được gồm:</p>
+<ul>
+<li>Kho dữ liệu (data warehouse): Snowflake, Databricks, BigQuery, Definite. Tùy chọn khác: Redshift, PostgreSQL, MySQL. Trong tài liệu gốc, Snowflake và Databricks được đánh dấu là chỗ giữ chỗ, địa chỉ MCP chưa cấu hình sẵn.</li>
+<li>Sổ tay phân tích (notebook): Hex. Tùy chọn khác: Jupyter, Deepnote, Observable.</li>
+<li>Phân tích sản phẩm: Amplitude. Tùy chọn khác: Mixpanel, Heap.</li>
+<li>Quản lý công việc: Atlassian (Jira, Confluence). Tùy chọn khác: Linear, Asana.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách.</p>
+<ul>
+<li>Nói việc bằng lời thường. Kỹ năng tự chạy khi đúng việc. Ví dụ: "Doanh thu theo tháng của 12 tháng gần nhất, chia theo dòng sản phẩm, xu hướng thế nào?" sẽ gọi <code>analyze</code>.</li>
+<li>Gọi thẳng bằng lệnh gõ tắt <code>/data:&lt;ten-ky-nang&gt;</code>. Ví dụ: <code>/data:explore-data</code> khi nhận một bảng mới, <code>/data:write-query</code> khi cần câu SQL, <code>/data:validate-data</code> trước khi gửi báo cáo.</li>
+</ul>
+<p>Theo README, các lệnh nhận thêm nội dung ngay sau tên lệnh. Hai ví dụ trong README gốc: <code>/explore-data users table</code> để xem tổng quan một bảng, và <code>/write-query</code> kèm mô tả câu cần viết cùng loại cơ sở dữ liệu đang dùng (README ví dụ là Snowflake). Các bạn có thể viết phần này bằng tiếng Việt.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>10 kỹ năng. Ba kỹ năng <code>sql-queries</code>, <code>data-visualization</code> và <code>statistical-analysis</code> có khai báo <code>user-invocable: false</code> trong SKILL.md, nghĩa là đây là kỹ năng nền để Claude tự dùng khi cần, các bạn không cần gọi trực tiếp. Sáu kỹ năng <code>analyze</code>, <code>explore-data</code>, <code>write-query</code>, <code>create-viz</code>, <code>build-dashboard</code> và <code>validate-data</code> có khai báo gợi ý nội dung đi kèm sau tên lệnh (trường argument-hint).</p>
+<ul>
+<li><code>/data:analyze</code>: Trả lời câu hỏi về dữ liệu, từ tra nhanh một chỉ số đến làm một bài phân tích đầy đủ: tìm nguyên nhân xu hướng tăng giảm, so sánh các nhóm theo thời gian, chuẩn bị báo cáo cho các bên liên quan. <em>Câu gọi mẫu:</em> "Doanh thu tháng này giảm, giúp mình tìm xem giảm ở nhóm khách nào."</li>
+<li><code>/data:explore-data</code>: Xem tổng quan một bảng hoặc file mới: kích thước, chất lượng, tỉ lệ ô trống, phân bố từng cột, dòng trùng hoặc giá trị lạ, rồi gợi ý nên phân tích chiều nào. <em>Câu gọi mẫu:</em> "Xem giúp mình bảng khách hàng này có vấn đề gì về chất lượng dữ liệu không."</li>
+<li><code>/data:write-query</code>: Viết SQL tối ưu cho đúng loại cơ sở dữ liệu của các bạn, từ yêu cầu bằng lời đến câu truy vấn nhiều bước có nối bảng và tổng hợp. <em>Câu gọi mẫu:</em> "Viết giúp mình câu SQL cho BigQuery tính tỉ lệ khách còn hoạt động sau 1, 3, 6 tháng kể từ tháng đăng ký."</li>
+<li><code>/data:create-viz</code>: Tạo biểu đồ đủ chất lượng đăng báo cáo bằng Python, chọn loại biểu đồ hợp với dữ liệu, có thể làm bản tương tác (rê chuột, phóng to). <em>Câu gọi mẫu:</em> "Vẽ giúp mình biểu đồ đường doanh thu 12 tháng từ file này."</li>
+<li><code>/data:build-dashboard</code>: Dựng một trang dashboard HTML tương tác có biểu đồ, bộ lọc và bảng, dùng cho tổng quan điều hành, theo dõi nhóm hoặc báo cáo gửi người khác; mở được bằng trình duyệt. <em>Câu gọi mẫu:</em> "Dựng cho mình dashboard doanh thu theo tháng, sản phẩm bán chạy và theo khu vực, dữ liệu mình dán bên dưới."</li>
+<li><code>/data:validate-data</code>: Kiểm tra lại bài phân tích trước khi gửi: phương pháp, độ chính xác, thiên lệch, phép tính tổng hợp, xem kết luận có thật sự được dữ liệu hỗ trợ không. <em>Câu gọi mẫu:</em> "Rà giúp mình bài phân tích tỉ lệ rời bỏ này trước khi mình trình bày."</li>
+<li><code>/data:data-context-extractor</code>: Kỹ năng tạo kỹ năng: hỏi người làm phân tích về kho dữ liệu, thuật ngữ, định nghĩa chỉ số và cách truy vấn quen dùng của công ty, rồi sinh ra một kỹ năng phân tích riêng cho công ty (chế độ dựng mới), hoặc bổ sung thêm vào kỹ năng đã có (chế độ cập nhật). <em>Câu gọi mẫu:</em> "Giúp mình tạo kỹ năng phân tích riêng cho kho dữ liệu của công ty."</li>
+<li><code>/data:sql-queries</code>: Kỹ năng nền về SQL đúng và chạy nhanh trên các loại kho dữ liệu phổ biến (Snowflake, BigQuery, Databricks, PostgreSQL…): viết, tối ưu câu chậm, chuyển giữa các kiểu SQL, dùng CTE, hàm cửa sổ, hàm tổng hợp. <em>Câu gọi mẫu:</em> "Câu SQL này chạy chậm, tối ưu giúp mình và chuyển sang PostgreSQL."</li>
+<li><code>/data:data-visualization</code>: Kỹ năng nền về trực quan hóa bằng Python (matplotlib, seaborn, plotly): chọn loại biểu đồ, trình bày chuyên nghiệp, áp dụng nguyên tắc dễ đọc và phối màu. <em>Câu gọi mẫu:</em> "Nên dùng biểu đồ nào để so sánh doanh thu của 5 chi nhánh theo quý?"</li>
+<li><code>/data:statistical-analysis</code>: Kỹ năng nền về thống kê: thống kê mô tả, xu hướng, phát hiện giá trị bất thường, tương quan, kiểm định giả thuyết và diễn giải kết quả. <em>Câu gọi mẫu:</em> "Hai nhóm khách này có khác nhau về doanh số thật không, hay chỉ là dao động ngẫu nhiên?"</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Danh sách công cụ trong CONNECTORS.md nghiêng về phần mềm của Mỹ. Nhận xét của chúng mình: nhiều đội ở Việt Nam đang giữ số liệu trong Excel, Google Sheets hoặc cơ sở dữ liệu nội bộ. Các bạn xuất ra file CSV hoặc Excel rồi tải lên là dùng được, đúng như README mô tả cho trường hợp chưa nối kho dữ liệu.</li>
+<li>Câu hỏi mẫu trong tài liệu gốc viết bằng tiếng Anh. Nhận xét của chúng mình: các bạn nên thử hỏi bằng tiếng Việt, và đọc kỹ câu SQL cùng con số kết quả trước khi dùng.</li>
+<li>Số liệu về khách hàng thường là dữ liệu cá nhân. Nhận xét của chúng mình: các bạn nên xem quy định của công ty về dữ liệu trước khi tải file hoặc nối kho dữ liệu thật cho một dịch vụ bên ngoài, nếu cần thì ẩn bớt cột nhạy cảm.</li>
+<li>Trước khi gửi kết quả cho sếp, các bạn nên chạy <code>/data:validate-data</code> như một bước kiểm tra thêm. Đây là gợi ý của chúng mình, kỹ năng này không thay việc tự đối chiếu số liệu với nguồn.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
