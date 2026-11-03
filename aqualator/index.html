@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqualator: game nuôi cá trên web và cách nhờ AI làm trò tương tự — Lazy AI Guide</title>
+<meta name="description" content="Aqualator là game nuôi cá chạy ngay trên trình duyệt. Chúng mình giới thiệu cách chơi và lời nhờ mẫu để các bạn nhờ AI làm một trò nhỏ tương tự.">
+<meta property="og:title" content="Aqualator: game nuôi cá trên web và cách nhờ AI làm trò tương tự">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Aqualator: game nuôi cá trên web và cách nhờ AI làm trò tương tự</h1>
+  <p>Aqualator là game nuôi cá chạy ngay trên trình duyệt. Chúng mình giới thiệu cách chơi và lời nhờ mẫu để các bạn nhờ AI làm một trò nhỏ tương tự.</p>
+  <div class="pills"><span class="pill">Game nhỏ</span><span class="pill">Dashboard</span><span class="pill">Ý tưởng</span></div>
+</header>
+<main>
+<p>Chúng mình vừa lưu lại một trò chơi nhỏ chạy ngay trên trình duyệt tên là <strong>Aqualator</strong>. Đây là game nuôi cá, không liên quan trực tiếp đến AI. Chúng mình vẫn đưa nó vào Lazy AI Guide vì nó là ví dụ rất rõ cho một ý: một trò chơi nhỏ trên web có thể nhỏ gọn, dễ thương và có cốt truyện, và các bạn có thể nhờ AI làm một trò tương tự cho riêng mình.</p>
+
+<h2>Aqualator là gì</h2>
+<p>Aqualator là game mô phỏng tiệm cá cảnh theo phong cách &quot;cozy&quot;, tức là nhẹ nhàng, không có áp lực thắng thua. Trên trang, game tự giới thiệu bằng một câu: &quot;Raise fish, grow plants, build your own aquarium.&quot; Tạm dịch là nuôi cá, trồng cây, dựng bể cá của riêng mình.</p>
+<p>Các bạn mở game ở địa chỉ <a href="https://www.aqualator.cloud/">https://www.aqualator.cloud/</a>. Game không cần tài khoản. Nó chỉ lưu một mã ẩn danh ngay trong trình duyệt của các bạn. Giao diện bằng tiếng Anh. Nếu trang báo &quot;3D graphics are turned off&quot;, các bạn bật &quot;hardware acceleration&quot; trong phần cài đặt trình duyệt rồi mở lại, hoặc thử một trình duyệt khác.</p>
+
+<h2>Chơi thế nào</h2>
+<p>Người dẫn truyện là chú Năm, một ông chủ tiệm cá người Việt đã làm nghề hơn 20 năm. Các bạn đóng vai người học việc của chú. Chương đầu tiên tên &quot;Apprenticeship&quot; có 38 nhiệm vụ.</p>
+<ul>
+<li><strong>Việc mỗi ngày:</strong> cho cá ăn, tỉa cây, và không để con nào chết.</li>
+<li><strong>Bốn chỉ số của bể:</strong> no, yên, cây, sạch rêu. Các bạn giữ bốn chỉ số này ổn bằng cách thay nước, đo nước, vệ sinh bể và thêm chế phẩm.</li>
+<li><strong>Dựng bể:</strong> có bố cục bể (aquascape), thiết bị và cửa hàng.</li>
+<li><strong>Chuyện buôn bán:</strong> có đơn đặt của khách và sổ thu chi hằng ngày.</li>
+<li><strong>Thời gian:</strong> có đồng hồ ngày đêm, bật tắt đèn và tua nhanh.</li>
+</ul>
+<p>Hình vẽ theo kiểu phẳng, khung màu kem, viền đậm, bóng đổ cứng. Nhìn qua là biết đây là một sản phẩm có phong cách nhất quán.</p>
+
+<h2>Vì sao nó hay để học</h2>
+<p>Chúng mình thấy ba điểm đáng học.</p>
+<ul>
+<li><strong>Ý tưởng gọn.</strong> Cả game xoay quanh một việc quen thuộc là chăm một cái bể. Các bạn không cần ý tưởng lớn mới làm được một trò hay.</li>
+<li><strong>Có nhân vật và nhịp chơi.</strong> Chú Năm dạy từng bước, mỗi ngày có việc cụ thể. Người chơi luôn biết mình phải làm gì tiếp theo.</li>
+<li><strong>Chạy ngay trên web, không cần cài.</strong> Các bạn bấm vào là chơi, không phải tải gì về.</li>
+</ul>
+<p>Chúng mình chưa biết ai làm ra Aqualator. Trang không có điều khoản hay chính sách riêng tư, và chúng mình cũng không thấy mã nguồn công khai. Vì vậy chúng mình chỉ giới thiệu link, không nói gì về tác giả hay cách game được làm ra.</p>
+
+<h2>Nhờ AI làm một trò tương tự</h2>
+<p>Các bạn không cần cài gì. Mở bản web miễn phí của ChatGPT, Claude hoặc Gemini, dán lời nhờ dưới đây, rồi sửa phần trong ngoặc theo ý các bạn.</p>
+<pre>Hãy làm giúp mình một trò chơi nhỏ chạy trên trình duyệt, nằm gọn trong
+một file HTML duy nhất (có CSS và JavaScript bên trong).
+
+Chủ đề: chăm một bể cá mini.
+- Có 3 chỉ số: no, sạch, vui. Mỗi chỉ số tụt dần theo thời gian.
+- Có 3 nút: cho ăn, thay nước, chơi với cá.
+- Nếu một chỉ số về 0, cá buồn và đổi màu.
+- Phong cách: màu kem, viền đậm, hình vẽ phẳng.
+- Giao diện bằng tiếng Việt, chữ to, bấm được trên điện thoại.
+
+Làm từng bước. Trước tiên cho mình xem bản đơn giản nhất,
+rồi hỏi mình muốn thêm gì.</pre>
+<p>Khi AI trả về mã, các bạn lưu thành file có đuôi <strong>.html</strong> rồi mở bằng trình duyệt. Chưa ưng chỗ nào, các bạn cứ nói lại bằng lời thường, ví dụ &quot;cá bơi chậm hơn&quot; hay &quot;đổi nền sang màu xanh&quot;. Bản miễn phí đôi khi trả lời chưa ổn định, nên các bạn hãy thử vài lần và yêu cầu AI sửa tiếp.</p>
+
+<h2>Ý tưởng cho các bạn</h2>
+<p>Ba gợi ý dưới đây đều là <strong>Ý TƯỞNG</strong>. Chúng mình chưa làm cái nào trong số này, và chưa gắn Aqualator vào dashboard của đội.</p>
+<ul>
+<li><strong>Ý TƯỞNG 1, ô giải lao trên dashboard:</strong> một thẻ nhỏ có ảnh bể cá. Các bạn bấm vào thì Aqualator mở ở tab mới, kèm câu nhắc nghỉ mắt khi AI đang chạy việc dài. Chúng mình không nhúng thẳng game vào dashboard được, vì trang Aqualator chặn việc nhúng vào trang khác. Cách làm khả thi là mở tab mới.</li>
+<li><strong>Ý TƯỞNG 2, bể cá của đội AI:</strong> một bể cá động, mỗi trợ lý AI là một con cá. Cá bơi khi trợ lý đang làm việc, nổi lên khi xong, và đổi sang màu đỏ khi gặp lỗi. Bể cá này tự làm nên nhúng được vào dashboard. Đây là việc lớn, cần làm từng bước và kiểm tra kỹ.</li>
+<li><strong>Ý TƯỞNG 3, trò vui để xem đội AI làm việc:</strong> một bài gom các trò nhỏ giúp các bạn nhìn thấy AI đang làm gì, ví dụ văn phòng ảo hay bể cá. Aqualator chỉ đóng vai ví dụ cảm hứng.</li>
+</ul>
+
+<h2>Các bạn có ý tưởng game nhỏ muốn làm?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại ý tưởng của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại ý tưởng của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
