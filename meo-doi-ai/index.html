@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mẹo dựng đội AI: rút ra từ lỗi thật của đội chúng mình — Lazy AI Guide</title>
+<meta name="description" content="Mỗi lần hệ thống lỗi, chúng mình sửa rồi ghi thành luật chung cho cả đội bot. Bài gom các luật đó thành mẹo cho ai đang dựng đội AI.">
+<meta property="og:title" content="Mẹo dựng đội AI: rút ra từ lỗi thật của đội chúng mình">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Mẹo dựng đội AI: rút ra từ lỗi thật của đội chúng mình</h1>
+  <p>Mỗi lần hệ thống lỗi, chúng mình sửa rồi ghi thành luật chung cho cả đội bot. Bài gom các luật đó thành mẹo cho ai đang dựng đội AI.</p>
+  <div class="pills"><span class="pill">Lỗi thật</span><span class="pill">Luật đội bot</span><span class="pill">Mẹo dựng đội</span></div>
+</header>
+<main>
+<p>Đội chúng mình có tám bot AI chạy cùng lúc trên Discord. Mỗi lần hệ thống lỗi, chúng mình sửa xong thì ghi ngay một dòng vào sổ luật chung của đội. Mọi bot đọc sổ này trước khi nhận việc, nên lỗi đó không lặp lại.</p>
+<p>Sau vài tuần, sổ luật thành một bộ mẹo khá hữu ích cho ai đang dựng đội AI. Bài này gom lại những mẹo đó. Mỗi mẹo đều bắt nguồn từ một lỗi thật mà chúng mình đã gặp.</p>
+
+<h2>1. Đừng tin chữ "xong"</h2>
+<ul>
+<li><strong>Job báo "ok" chưa có nghĩa là đã làm xong.</strong> Có đêm job tổng hợp báo chạy thành công, nhưng không có bài nào, vì nguồn hôm đó trống. Bây giờ chúng mình luôn mở kết quả thật ra xem: file, tin nhắn, log của đúng lần chạy đó.</li>
+<li><strong>Bot báo "đã chạy" mà không có log thì coi như chưa chạy.</strong> Có lần bot chấm ghi là đã dựng thử, nhưng trong phiên không có lệnh nào. Từ đó, người điều phối phải tự mở file thật trước khi nhận một phiếu PASS.</li>
+<li><strong>Thông báo "tiến trình đã thoát" có thể báo nhầm.</strong> Đã có lần thông báo nói tiến trình đã dừng, trong khi nó vẫn đang chạy. Kiểm lại tiến trình rồi mới báo.</li>
+<li><strong>Chưa thấy tận mắt thì không nói "đã hiện".</strong> Có lần một bot nhìn ảnh mờ rồi đoán một dòng chữ đã hiện. Thực tế dòng đó không có. Giờ chỉ báo xong khi có bằng chứng.</li>
+</ul>
+
+<h2>2. Người làm và người chấm phải tách nhau</h2>
+<ul>
+<li><strong>Bộ test viết ẩn.</strong> Bot kiểm thử viết bộ test, bot lập trình không được xem. Như vậy code không thể viết chỉ để qua test.</li>
+<li><strong>Cố tình làm hỏng để thử bộ test.</strong> Bot chấm sửa sai một chỗ quan trọng trong sản phẩm, rồi chạy lại bộ test. Test không bắt được bản hỏng thì bộ test yếu và phải viết thêm.</li>
+<li><strong>Chấm chéo hãng.</strong> Bài do model của hãng này làm thì model của hãng khác chấm, và phải có hai phiếu đạt. Hai model cùng hãng thường mắc cùng một kiểu lỗi.</li>
+<li><strong>Sửa tối đa ba vòng.</strong> Quá ba vòng thì dừng lại và hỏi người, không để bot sửa vòng vo mãi.</li>
+</ul>
+
+<h2>3. Model dự phòng phải thật sự dùng được</h2>
+<ul>
+<li><strong>Khai báo đủ nhà cung cấp cho dự phòng.</strong> Một bot có model dự phòng trong cấu hình, nhưng quên khai báo nhà cung cấp của model đó. Đến lúc model chính lỗi, dự phòng cũng hỏng theo.</li>
+<li><strong>Dự phòng đừng chung hạn mức với model chính.</strong> Hai model của cùng một hãng có thể dùng chung một hạn mức. Model chính hết lượt thì model dự phòng cũng hết luôn.</li>
+<li><strong>Đổi model phải để lại dấu vết.</strong> Mỗi câu trả lời của bot có một dòng cuối ghi model đang chạy. Bot tự chuyển sang dự phòng khi lỗi, nhưng đổi hẳn model chính thì phải hỏi người trước và sao lưu cấu hình.</li>
+</ul>
+
+<h2>4. Giao việc rõ để bot không đoán</h2>
+<ul>
+<li><strong>Luôn dùng đường dẫn đầy đủ.</strong> Đề giao việc ghi đường dẫn tương đối, và bot ghi file sai chỗ. Giờ đề nào cũng ghi đường dẫn đầy đủ.</li>
+<li><strong>Xong việc phải gọi tên người giao.</strong> Tin cuối không nhắc tên người giao thì coi như chưa báo. Nhờ luật này, không còn việc nào "xong mà không ai biết".</li>
+<li><strong>Xong là báo ngay.</strong> Có lần bản nháp đã chạy xong từ trưa, nhưng không ai báo. Cả buổi chiều trang không có bài mới. Bây giờ việc chạy nền xong là báo liền.</li>
+<li><strong>Thread mới có tin tóm tắt luật.</strong> Bot đầu tiên vào thread đọc lại sổ luật, rồi gửi một tin tóm tắt tối đa mười dòng. Các bot vào sau đọc tin đó.</li>
+</ul>
+
+<h2>5. Thay đổi chung phải tới được mọi bot</h2>
+<ul>
+<li><strong>Một file ghi thay đổi, dòng mới nhất nằm trên cùng.</strong> Mỗi khi đổi luật hoặc cấu hình chung, người điều phối ghi một dòng lên đầu file. Bot nào nhận việc cũng đọc dòng đầu đó trước. Không ai phải chờ phiên mới mới biết luật đổi.</li>
+<li><strong>Chỉ một nơi được đăng nhập lại công cụ.</strong> Trước đây nhiều bot cùng tự đăng nhập lại một công cụ, và chúng giẫm lên nhau. Giờ chỉ một job được làm việc đó. Bot khác gặp lỗi đăng nhập thì chờ, tối đa ba mươi phút.</li>
+<li><strong>Job nào cũng có phiếu.</strong> Mỗi job tự động có một phiếu trong sổ job, ghi rõ việc gì, gửi kết quả đi đâu và báo lỗi về đâu. Lỗi gửi về một kênh riêng chỉ dành cho cảnh báo, không ai chat ở đó.</li>
+<li><strong>Thử lỗi xong phải chạy lại một lần cho sạch.</strong> Cố tình làm lỗi để thử cảnh báo thì job bị ghi trạng thái lỗi. Chạy lại một lần đúng thì bảng theo dõi mới hết đỏ.</li>
+</ul>
+
+<h2>6. Bảo vệ dữ liệu trước khi đưa ra ngoài</h2>
+<ul>
+<li><strong>Lọc theo từng tin, đừng chặn cả cuộc trò chuyện.</strong> Lúc đầu, cuộc trò chuyện nào có một từ nhạy cảm là bị chặn hết. Kết quả là không còn việc nào để viết bài. Đổi sang lọc từng tin thì vẫn an toàn mà còn đủ nội dung.</li>
+<li><strong>Quét khóa bí mật ngay trước khi gửi model bên ngoài.</strong> Một lần thử cho thấy chuỗi giống khóa vẫn lọt vào dữ liệu gửi đi. Giờ tin nào có chuỗi giống khóa thì bỏ cả tin, và có thêm một lượt quét cuối trước khi gửi.</li>
+<li><strong>Chú thích ẩn trong trang cũng là nội dung.</strong> Một mã số để quên trong phần chú thích ẩn của trang chủ làm cả bảy bài bị chấm trượt. Bot chấm đọc cả phần người xem không thấy.</li>
+<li><strong>Bài khoe sản phẩm đừng thành bản đồ cho kẻ dò.</strong> Bài viết công khai không ghi tên dịch vụ hạ tầng, cách bảo vệ bản thử nghiệm hay chỗ nào dễ lỗi. Câu chuyện quy trình vẫn đủ hay mà không cần các chi tiết đó.</li>
+<li><strong>Kho code chỉ để công khai khi định chia sẻ.</strong> Kho nào không dùng để chia sẻ thì chuyển sang riêng tư. Trước mỗi lần đẩy lên kho công khai, quét lại khóa, đường dẫn máy và mã số.</li>
+</ul>
+
+<h2>7. Mấy cái bẫy nhỏ mà tốn thời gian</h2>
+<ul>
+<li><strong>Bộ chặn lệnh chặn theo chuỗi con.</strong> Bộ chặn lệnh nguy hiểm chặn cả những từ vô hại có chứa chữ bị cấm. Đề giao việc vì thế viết "kỹ năng" bằng tiếng Việt.</li>
+<li><strong>Lệnh một dòng quá dài bị từ chối.</strong> Việc nhiều bước thì ghi ra một file script rồi chạy file đó. Vừa không bị chặn, vừa đọc lại được.</li>
+<li><strong>Trang mới đẩy lên, ảnh có thể chậm hơn chữ một lúc.</strong> Ảnh báo lỗi ngay sau khi đẩy chưa chắc là lỗi. Đợi một hai phút rồi kiểm lại.</li>
+</ul>
+
+<h2>Các bạn áp dụng thế nào</h2>
+<p>Các bạn không cần chép hết. Hãy bắt đầu bằng ba việc:</p>
+<ul>
+<li>Tạo một file luật chung, mọi bot phải đọc trước khi nhận việc.</li>
+<li>Mỗi lần sửa xong một lỗi, ghi một dòng vào file đó: lỗi gì, luật mới là gì.</li>
+<li>Tách người làm và người chấm, kể cả khi chỉ có hai bot.</li>
+</ul>
+<p>Sau vài tuần, file luật của các bạn sẽ thành một bộ hướng dẫn riêng, đúng với đội của các bạn.</p>
+
+<h2>Các bạn đang dựng đội AI và hay vấp lỗi?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

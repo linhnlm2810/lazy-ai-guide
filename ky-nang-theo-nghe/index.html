@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude theo nghề và cách cài: 17 nhóm của Anthropic — Lazy AI Guide</title>
+<meta name="description" content="Bộ Knowledge Work Plugins của Anthropic chia theo nghề, kèm các bước cài cho Cowork và Claude Code, đính chính infographic và 4 ý tưởng.">
+<meta property="og:title" content="Kỹ năng Claude theo nghề và cách cài: 17 nhóm của Anthropic">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude theo nghề và cách cài: 17 nhóm của Anthropic</h1>
+  <p>Bộ Knowledge Work Plugins của Anthropic chia theo nghề, kèm các bước cài cho Cowork và Claude Code, đính chính infographic và 4 ý tưởng.</p>
+  <div class="pills"><span class="pill">Claude</span><span class="pill">Kỹ năng theo nghề</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Anthropic, hãng làm ra Claude, đưa lên GitHub một kho tên <a href="https://github.com/anthropics/knowledge-work-plugins">Knowledge Work Plugins</a>. Kho có 252 kỹ năng chia thành 22 nhóm, và giấy phép Apache 2.0 cho phép các bạn tải về, sửa, dùng lại. Số liệu dưới đây chúng mình đếm lại từ kho thật.</p>
+<p>Các bạn hình dung Claude như một nhân viên mới giỏi nhưng chưa biết công ty mình làm việc ra sao. Mỗi plugin là một cuốn sổ tay giao việc cho một nghề, gom một nhóm kỹ năng của nghề đó. Mỗi kỹ năng là một tờ hướng dẫn làm một việc. Các bạn tìm nghề của mình bên dưới, rồi đọc phần cách cài.</p>
+
+<h2>Chủ cơ sở nhỏ (small-business)</h2>
+<p><strong>Ai dùng:</strong> chủ shop, chủ quán, chủ doanh nghiệp nhỏ tự lo cả tiền, bán hàng và tuyển người. Plugin có 44 kỹ năng.</p>
+<ul>
+<li><strong>smb-router:</strong> cửa vào, nghe việc cần làm rồi chọn kỹ năng phù hợp.</li>
+<li><strong>invoice-chase:</strong> soạn thư nhắc hóa đơn quá hạn từ sổ kế toán.</li>
+<li><strong>cash-flow-snapshot:</strong> cho thấy dòng tiền từ khoản phải thu, phải trả và chi phí cố định.</li>
+<li><strong>monday-brief:</strong> buổi họp sáng thứ Hai về tiền, doanh số và khách tiềm năng.</li>
+<li><strong>inbox-manager:</strong> rút hộp thư đầy thành danh sách ngắn việc cần chủ trả lời.</li>
+<li><strong>build-agent:</strong> biến một việc lặp lại thành kỹ năng có tên, chạy theo lịch.</li>
+</ul>
+<p>Và 38 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> chủ shop thời trang hỏi &quot;ai đang nợ tiền mình?&quot;. Invoice-chase soạn sẵn tin nhắc khách, và chủ đọc rồi mới bấm gửi.</p>
+
+<h2>Bán hàng (sales)</h2>
+<p><strong>Ai dùng:</strong> nhân viên kinh doanh và trưởng nhóm bán hàng. Plugin có 36 kỹ năng.</p>
+<ul>
+<li><strong>call-prep:</strong> bản tóm tắt trước cuộc gặp: người dự, lịch sử khách, câu hỏi gợi ý.</li>
+<li><strong>call-summary:</strong> biến ghi chú cuộc gọi thành thư theo dõi và đề xuất cập nhật CRM.</li>
+<li><strong>daily-briefing:</strong> bản tin sáng về cuộc họp hôm nay và các thương vụ sắp chốt.</li>
+<li><strong>pipeline-review:</strong> kiểm tra sức khỏe từng giai đoạn của danh sách thương vụ.</li>
+<li><strong>draft-outreach:</strong> soạn thư chào hàng cá nhân hóa, lưu làm bản nháp để duyệt.</li>
+<li><strong>forecast:</strong> viết bản dự báo doanh số theo mức chốt được và có thể chốt.</li>
+</ul>
+<p>Và 30 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhân viên bán phần mềm gặp khách lúc 14 giờ. Sáng đó call-prep gom lịch sử trao đổi vào một trang để đọc trước.</p>
+
+<h2>Tài chính, kế toán (finance)</h2>
+<p><strong>Ai dùng:</strong> kế toán tổng hợp và người lo chốt sổ cuối tháng. Plugin có 8 kỹ năng.</p>
+<ul>
+<li><strong>reconciliation:</strong> đối chiếu số dư sổ cái với sao kê ngân hàng hoặc sổ chi tiết.</li>
+<li><strong>journal-entry:</strong> lập bút toán ghi nợ, ghi có và chứng từ đi kèm.</li>
+<li><strong>financial-statements:</strong> lập báo cáo kết quả kinh doanh, cân đối, lưu chuyển tiền tệ, có so kỳ trước.</li>
+</ul>
+<p>Và 5 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> kế toán công ty thương mại đối chiếu sao kê ngân hàng với sổ cái cuối tháng, và reconciliation liệt kê các khoản lệch.</p>
+
+<h2>Nhân sự (human-resources)</h2>
+<p><strong>Ai dùng:</strong> người làm nhân sự và quản lý tuyển người. Plugin có 9 kỹ năng.</p>
+<ul>
+<li><strong>onboarding:</strong> danh sách việc và kế hoạch tuần đầu cho nhân viên mới.</li>
+<li><strong>interview-prep:</strong> kế hoạch phỏng vấn có câu hỏi theo năng lực và phiếu chấm.</li>
+<li><strong>draft-offer:</strong> soạn thư mời nhận việc kèm điều khoản.</li>
+</ul>
+<p>Và 6 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> phòng nhân sự công ty 50 người dùng onboarding để dựng kế hoạch tuần đầu cho bạn mới.</p>
+
+<h2>Pháp lý (legal)</h2>
+<p><strong>Ai dùng:</strong> pháp chế nội bộ và người hay phải đọc hợp đồng. Plugin có 9 kỹ năng.</p>
+<ul>
+<li><strong>review-contract:</strong> rà hợp đồng theo bộ quy tắc đàm phán, đánh dấu chỗ lệch và đề xuất sửa.</li>
+<li><strong>triage-nda:</strong> phân loại thỏa thuận bảo mật thành xanh, vàng hoặc đỏ.</li>
+<li><strong>compliance-check:</strong> kiểm tra một hành động hay tính năng mới với quy định liên quan.</li>
+</ul>
+<p>Và 6 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> công ty nhận thỏa thuận bảo mật từ đối tác nước ngoài, và triage-nda phân loại nhanh để pháp chế biết bản nào cần đọc kỹ trước.</p>
+
+<h2>Marketing (marketing)</h2>
+<p><strong>Ai dùng:</strong> người làm nội dung, chiến dịch và thương hiệu. Plugin có 8 kỹ năng.</p>
+<ul>
+<li><strong>content-creation:</strong> soạn bài blog, mạng xã hội, bản tin email, trang đích.</li>
+<li><strong>campaign-plan:</strong> lập kế hoạch chiến dịch với mục tiêu, kênh, lịch nội dung và chỉ số.</li>
+<li><strong>brand-review:</strong> so nội dung với giọng thương hiệu và chỉ ra chỗ lệch.</li>
+</ul>
+<p>Và 5 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> người phụ trách fanpage của chuỗi cửa hàng nhờ campaign-plan dựng lịch bài cho đợt khuyến mãi Tết.</p>
+
+<h2>Chăm sóc khách hàng (customer-support)</h2>
+<p><strong>Ai dùng:</strong> nhân viên hỗ trợ khách và trưởng nhóm. Plugin có 5 kỹ năng.</p>
+<ul>
+<li><strong>ticket-triage:</strong> phân loại yêu cầu và gán mức ưu tiên từ P1 đến P4.</li>
+<li><strong>draft-response:</strong> soạn thư trả lời khách theo tình huống.</li>
+<li><strong>customer-escalation:</strong> đóng gói ca khó gửi kỹ thuật hoặc lãnh đạo, đủ ngữ cảnh.</li>
+</ul>
+<p>Và 2 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> shop có khách hỏi đổi trả hàng qua nhiều kênh. Nhân viên xếp thứ tự bằng ticket-triage, rồi viết bài hướng dẫn chung bằng kb-article.</p>
+
+<h2>Quản lý sản phẩm (product-management)</h2>
+<p><strong>Ai dùng:</strong> người làm sản phẩm và quản lý dự án phần mềm. Plugin có 8 kỹ năng.</p>
+<ul>
+<li><strong>write-spec:</strong> viết đặc tả tính năng hay PRD từ một ý còn mơ hồ.</li>
+<li><strong>roadmap-update:</strong> cập nhật hay xếp lại thứ tự ưu tiên của lộ trình.</li>
+<li><strong>sprint-planning:</strong> lập kế hoạch sprint, ước lượng năng lực, đặt mục tiêu.</li>
+</ul>
+<p>Và 5 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhóm làm ứng dụng giao hàng có chồng ghi chú phỏng vấn tài xế. Synthesize-research gom chúng thành vài nhóm vấn đề, và write-spec viết đặc tả cho nhóm quan trọng nhất.</p>
+
+<h2>Thiết kế (design)</h2>
+<p><strong>Ai dùng:</strong> nhà thiết kế sản phẩm và người làm nghiên cứu người dùng. Plugin có 7 kỹ năng.</p>
+<ul>
+<li><strong>design-critique:</strong> nhận xét có cấu trúc về tính dễ dùng, thứ bậc và độ nhất quán.</li>
+<li><strong>accessibility-review:</strong> kiểm tra khả năng tiếp cận theo WCAG 2.1 AA.</li>
+<li><strong>design-handoff:</strong> viết bản bàn giao thiết kế cho kỹ sư.</li>
+</ul>
+<p>Và 4 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhà thiết kế ứng dụng đặt lịch dùng ux-copy để viết lại thông báo lỗi tiếng Việt cho dễ hiểu.</p>
+
+<h2>Kỹ thuật phần mềm (engineering)</h2>
+<p><strong>Ai dùng:</strong> lập trình viên và kỹ sư vận hành hệ thống. Plugin có 10 kỹ năng.</p>
+<ul>
+<li><strong>code-review:</strong> rà thay đổi mã về bảo mật, hiệu năng và độ đúng.</li>
+<li><strong>debug:</strong> phiên gỡ lỗi có bước: tái hiện, khoanh vùng, chẩn đoán, sửa.</li>
+<li><strong>deploy-checklist:</strong> danh sách kiểm tra trước khi đưa bản mới lên.</li>
+</ul>
+<p>Và 7 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> đội phát triển nhỏ của công ty bán lẻ dùng deploy-checklist trước mỗi lần đưa bản mới lên.</p>
+
+<h2>Dữ liệu (data)</h2>
+<p><strong>Ai dùng:</strong> người làm phân tích số liệu và báo cáo. Plugin có 10 kỹ năng.</p>
+<ul>
+<li><strong>sql-queries:</strong> viết SQL đúng và nhanh cho nhiều loại kho dữ liệu.</li>
+<li><strong>explore-data:</strong> xem hình dạng, chất lượng và quy luật của một bảng dữ liệu mới.</li>
+<li><strong>build-dashboard:</strong> dựng bảng điều khiển HTML có biểu đồ và bộ lọc.</li>
+</ul>
+<p>Và 7 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> bộ phận kinh doanh xuất doanh số theo cửa hàng ra file CSV. Build-dashboard dựng bảng theo dõi cho trưởng phòng.</p>
+
+<h2>Vận hành (operations)</h2>
+<p><strong>Ai dùng:</strong> người lo quy trình, nhà cung cấp và báo cáo định kỳ. Plugin có 9 kỹ năng.</p>
+<ul>
+<li><strong>process-doc:</strong> ghi quy trình thành sơ đồ, bảng phân vai RACI và SOP.</li>
+<li><strong>risk-assessment:</strong> nhận diện, đánh giá và giảm rủi ro vận hành.</li>
+<li><strong>status-report:</strong> báo cáo tình hình có chỉ số, rủi ro và việc cần làm.</li>
+</ul>
+<p>Và 6 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> trưởng bộ phận hành chính có quy trình mua sắm chỉ nằm trong đầu một người, và process-doc ghi nó thành tài liệu cho người mới.</p>
+
+<h2>Năng suất cá nhân (productivity)</h2>
+<p><strong>Ai dùng:</strong> ai muốn Claude nhớ việc và ngữ cảnh công việc của mình. Plugin có 4 kỹ năng.</p>
+<ul>
+<li><strong>task-management:</strong> quản lý việc bằng một file TASKS.md dùng chung.</li>
+<li><strong>memory-management:</strong> bộ nhớ hai tầng, giúp Claude hiểu cách viết tắt và tên gọi nội bộ.</li>
+<li><strong>update:</strong> đồng bộ việc từ công cụ quản lý dự án và làm mới bộ nhớ.</li>
+</ul>
+<p>Và 1 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhân viên văn phòng gọi dự án bằng biệt danh trong nhóm. Memory-management ghi các biệt danh đó lại, nên lần sau Claude hiểu ngay.</p>
+
+<h2>Tìm kiếm nội bộ (enterprise-search)</h2>
+<p><strong>Ai dùng:</strong> người hay mất thời gian lục thư, tin nhắn và tài liệu. Plugin có 5 kỹ năng.</p>
+<ul>
+<li><strong>search:</strong> tìm một lần trên mọi nguồn đã nối.</li>
+<li><strong>digest:</strong> tóm tắt hằng ngày hay hằng tuần hoạt động trên các nguồn.</li>
+<li><strong>knowledge-synthesis:</strong> gộp kết quả nhiều nguồn thành câu trả lời có ghi nguồn.</li>
+</ul>
+<p>Và 2 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> sau kỳ nghỉ Tết, nhân viên chạy digest để biết nhóm đã quyết định gì lúc vắng.</p>
+
+<h2>Nghiên cứu khoa học sự sống (bio-research)</h2>
+<p><strong>Ai dùng:</strong> nhà nghiên cứu giai đoạn đầu trong sinh học và dược. Plugin có 6 kỹ năng.</p>
+<ul>
+<li><strong>single-cell-rna-qc:</strong> kiểm soát chất lượng dữ liệu RNA đơn bào.</li>
+<li><strong>nextflow-development:</strong> chạy quy trình phân tích trình tự nf-core.</li>
+<li><strong>instrument-data-to-allotrope:</strong> đổi dữ liệu máy đo phòng thí nghiệm sang định dạng Allotrope.</li>
+</ul>
+<p>Và 3 kỹ năng khác.</p>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhóm nghiên cứu ở trường đại học có file từ máy đo nhiều định dạng, và instrument-data-to-allotrope đưa chúng về một định dạng.</p>
+
+<h2>Tự làm plugin (cowork-plugin-management)</h2>
+<p><strong>Ai dùng:</strong> người muốn sửa plugin có sẵn hoặc làm plugin mới cho công ty mình. Plugin có 2 kỹ năng.</p>
+<ul>
+<li><strong>cowork-plugin-customizer:</strong> chỉnh một plugin cho khớp công cụ và quy trình của tổ chức.</li>
+<li><strong>create-cowork-plugin:</strong> hướng dẫn làm plugin mới từ đầu.</li>
+</ul>
+<p><strong>Ví dụ ở Việt Nam:</strong> bộ phận kế toán muốn thay công cụ Mỹ trong plugin finance bằng công cụ của mình, và nhờ cowork-plugin-customizer dẫn từng bước.</p>
+
+<h2>Xem và ký PDF (pdf-viewer)</h2>
+<p><strong>Ai dùng:</strong> ai hay phải đọc, ghi chú và điền biểu mẫu PDF. Plugin còn có 4 lệnh: annotate, fill-form, open và sign. Plugin có 1 kỹ năng.</p>
+<ul>
+<li><strong>view-pdf:</strong> mở PDF và cùng Claude đánh dấu, ghi chú hay điền biểu mẫu.</li>
+</ul>
+<p><strong>Ví dụ ở Việt Nam:</strong> nhân viên mở biểu mẫu PDF dài bằng view-pdf, nhờ Claude điền các ô rồi tự kiểm lại.</p>
+
+<h2>Plugin do đối tác làm (partner-built)</h2>
+<p>Năm plugin còn lại do công ty đối tác làm: zoom-plugin có 57 kỹ năng, common-room 6, apollo 3, brand-voice 3 và slack 2. Các bạn đọc README riêng của từng plugin trước khi cài.</p>
+
+<h2>Cách cài đặt</h2>
+<p>README của kho nói hai đường là Claude Cowork và Claude Code. Chúng mình chưa cài hay chạy thử bộ này, nên các bước dưới đây chép theo README và tài liệu Anthropic.</p>
+<ol>
+<li><strong>NGƯỜI:</strong> chọn công cụ. Dùng Cowork thì mở <a href="https://claude.com/plugins">claude.com/plugins</a> và cài plugin của nghề mình từ đó. Dùng Claude Code thì làm tiếp các bước sau.</li>
+<li><strong>NGƯỜI:</strong> chọn nghề cần cài. Tên plugin nằm trong ngoặc ở tiêu đề mỗi mục.</li>
+<li><strong>TỰ ĐỘNG:</strong> thêm kho vào Claude Code. Lệnh này chỉ đăng ký danh mục, chưa cài plugin nào.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> cài riêng từng nghề. Các bạn thay tên plugin ở phía trước dấu @.
+<pre>claude plugin install sales@knowledge-work-plugins
+claude plugin install small-business@knowledge-work-plugins</pre></li>
+<li><strong>NGƯỜI:</strong> muốn cài nhiều nghề thì chạy lệnh install cho từng plugin. README không ghi lệnh cài cả bộ một lần.</li>
+<li><strong>NGƯỜI:</strong> nối các công cụ như Slack hay Notion nếu muốn kỹ năng đọc dữ liệu thật. Riêng small-business, chưa nối gì thì kỹ năng vẫn chạy từ file CSV, thư dán vào hoặc PDF tải lên, và các bạn gõ &quot;get me started&quot; để chạy phần cài đặt 15 phút theo README.</li>
+<li><strong>TỰ ĐỘNG:</strong> dùng thử. README nói plugin tự bật sau khi cài, kỹ năng chạy khi đúng việc, và lệnh gõ tắt có dạng như sau.
+<pre>/sales:call-prep
+/data:write-query</pre></li>
+</ol>
+<p>Muốn tắt hoặc gỡ một plugin, tài liệu Claude Code dùng các lệnh sau trong terminal.</p>
+<pre>claude plugin disable sales@knowledge-work-plugins
+claude plugin enable sales@knowledge-work-plugins
+claude plugin uninstall sales@knowledge-work-plugins</pre>
+<p>Trong phiên Claude Code, các bạn cũng gõ /plugin rồi vào thẻ Installed để bật, tắt, cập nhật hay gỡ.</p>
+
+<h2>Đính chính một infographic đang lan truyền</h2>
+<p>Một infographic về plugin small-business đang được chia sẻ nhiều. Chúng mình đối chiếu nó với kho thật và thấy mấy chỗ lệch.</p>
+<ul>
+<li>Ảnh ghi 31 kỹ năng nhỏ, trong khi kho có 44.</li>
+<li>Ảnh vẽ các mục <strong>skills-brock-pack</strong>, <strong>memory.md</strong>, <strong>morning-briefing</strong>, <strong>friday-brief</strong> và <strong>cocia-onboarding</strong>. Chúng mình tìm cả kho mà không thấy mục nào.</li>
+<li>Tệp CLAUDE.md có xuất hiện, nhưng chỉ nằm trong phần do đối tác Slack làm, không nằm ở cấp plugin small-business như ảnh vẽ.</li>
+</ul>
+<p>Vì vậy các bạn nên lấy số liệu và tên gọi từ kho gốc.</p>
+
+<h2>Cần chỉnh gì để dùng ở Việt Nam</h2>
+<p>Bộ này viết cho thị trường Mỹ, nên các bạn cần may lại trước khi dùng.</p>
+<ul>
+<li><strong>Công cụ kết nối:</strong> phần lớn là phần mềm Mỹ như QuickBooks, Gusto và Xero. Dân văn phòng Việt Nam hay dùng phần mềm kế toán trong nước, Zalo và email.</li>
+<li><strong>Thuế:</strong> kỹ năng thuế làm theo thuế liên bang Mỹ, nên các bạn phải viết lại theo quy định Việt Nam, kể cả hóa đơn điện tử.</li>
+<li><strong>Nhân sự và pháp lý:</strong> lương, bảo hiểm xã hội và hợp đồng lao động cần theo luật trong nước.</li>
+</ul>
+<p>Điểm tốt là kỹ năng viết bằng văn bản thường, nên các bạn đọc và sửa được mà không cần biết lập trình.</p>
+
+<h2>Bốn ý tưởng lấy cảm hứng từ kho này</h2>
+<p>Bốn mục dưới đây đều là <strong>Ý TƯỞNG</strong>, chưa phải sản phẩm có sẵn.</p>
+<ul>
+<li><strong>Bản tin sáng thứ Hai cho chủ shop:</strong> gom doanh thu, công nợ và lịch tuần thành một trang tiếng Việt, lấy cảm hứng từ monday-brief.</li>
+<li><strong>Nhắc công nợ qua Zalo và email:</strong> soạn sẵn tin nhắc khách quá hạn, chủ đọc rồi mới gửi, lấy cảm hứng từ invoice-chase.</li>
+<li><strong>Việc lặp lại hằng tuần thành kỹ năng có tên:</strong> ghi cách làm một lần rồi cho chạy theo lịch, lấy cảm hứng từ build-agent.</li>
+<li><strong>Bộ kỹ năng may đo cho từng nghề ở Việt Nam:</strong> viết lại theo luật và phần mềm trong nước, kèm luật chờ duyệt trước khi gửi hay thanh toán.</li>
+</ul>
+
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
