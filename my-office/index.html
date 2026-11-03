@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Office: văn phòng 3D để xem AI lập trình đang làm gì — Lazy AI Guide</title>
+<meta name="description" content="My Office biến mỗi phiên Claude Code thành nhân vật trong văn phòng 3D. Có bản xem thử online, không cần cài. Bài nêu cách cài và lưu ý.">
+<meta property="og:title" content="My Office: văn phòng 3D để xem AI lập trình đang làm gì">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>My Office: văn phòng 3D để xem AI lập trình đang làm gì</h1>
+  <p>My Office biến mỗi phiên Claude Code thành nhân vật trong văn phòng 3D. Có bản xem thử online, không cần cài. Bài nêu cách cài và lưu ý.</p>
+  <div class="pills"><span class="pill">Claude Code</span><span class="pill">Văn phòng 3D</span><span class="pill">Xem thử online</span></div>
+</header>
+<main>
+<p>Khi để AI viết code, các bạn thường chỉ thấy một khung chữ chạy liên tục. Khó biết AI đang đọc gì, sửa gì, hay đang chờ các bạn bấm cho phép. <strong>My Office</strong> giải quyết đúng chỗ đó. Chúng mình đọc kỹ dự án này, và bài này tóm lại những gì chúng mình hiểu.</p>
+
+<h2>My Office là gì?</h2>
+<p>My Office là một văn phòng 3D hoạt hình chạy ngay trong trình duyệt. Mỗi phiên Claude Code là một nhân vật nhỏ trong văn phòng, và nhân vật làm đúng việc mà phiên đó đang làm:</p>
+<ul>
+<li>Phiên đang đọc file thì nhân vật đi tới thư viện.</li>
+<li>Phiên đang sửa code thì nhân vật ngồi gõ ở bàn.</li>
+<li>Phiên đang chạy lệnh thì nhân vật ra phòng máy chủ.</li>
+<li>Phiên đang đưa sản phẩm lên mạng thì có một tên lửa phóng đi.</li>
+<li>Khi Claude gọi thêm trợ lý, nhân vật "sếp" ra bảng giao việc, từng trợ lý vào nhận việc rồi quay lại nộp báo cáo.</li>
+</ul>
+<p>Dự án mang đậm màu Việt Nam, với xe VinFast, Grab, quán cà phê và bàn thờ Thần Tài. Giao diện có tiếng Việt. Tác giả ghi rõ đây là dự án cộng đồng, không phải sản phẩm của Anthropic.</p>
+
+<h2>Xem thử ngay, không cần cài gì</h2>
+<p>Các bạn có thể mở bản demo online tại <a href="https://khanh020905.github.io/my-office/vi/">khanh020905.github.io/my-office/vi</a>. Đây là bản dựng tĩnh, dùng dự án giả, không cần Claude Code. Trình duyệt cần bật WebGL thì mới vẽ được văn phòng 3D. Nếu không bật được, trang sẽ báo lỗi và không hiện văn phòng.</p>
+
+<h2>Ngoài phần cho vui, nó còn làm được gì?</h2>
+<p>Theo mô tả của tác giả, My Office có vài tính năng dùng được thật:</p>
+<ul>
+<li><strong>Bảng "Máy Mac":</strong> xem RAM, bộ nhớ đệm, CPU và ổ đĩa. Các bạn tắt được máy chủ thử nghiệm bị quên, đóng phiên đang rảnh và dọn cache.</li>
+<li><strong>Việc bỏ quên:</strong> liệt kê các dự án còn file chưa lưu vào lịch sử, hoặc chưa đẩy lên mạng. Các bạn có thể giao Claude làm nốt.</li>
+<li><strong>Duyệt quyền ngay trên trang:</strong> bấm Cho phép hoặc Từ chối. Các bạn duyệt được cả từ điện thoại bằng mã PIN. Với lệnh nguy hiểm, điện thoại chỉ được bấm Từ chối.</li>
+<li><strong>Hạn mức gói Claude:</strong> hiện hạn năm giờ và hạn tuần, báo khi dùng tới 80% và 95%.</li>
+<li><strong>Tổng kết tuần:</strong> một tấm thẻ ảnh về tuần làm việc, để lưu hoặc đăng lên mạng xã hội.</li>
+</ul>
+
+<h2>Dự án này hợp với ai?</h2>
+<ul>
+<li>Các bạn đã dùng Claude Code và muốn nhìn thấy AI đang làm gì, thay vì đọc một dòng chữ dài.</li>
+<li>Các bạn hay chạy nhiều phiên cùng lúc và cần biết phiên nào đang chờ mình duyệt.</li>
+<li>Các bạn dùng máy Mac và hay bị đầy RAM vì quên tắt những thứ chạy nền.</li>
+</ul>
+<p>Dự án <strong>không dành</strong> cho các bạn chưa dùng Claude Code. Nó đọc dữ liệu phiên của Claude Code, nên công cụ AI khác sẽ không hiện lên văn phòng.</p>
+
+<h2>Muốn cài thì cần gì?</h2>
+<p>Theo hướng dẫn của tác giả, cần máy có Node từ phiên bản 20.9 trở lên, rồi chạy bốn lệnh: tải mã nguồn, cài thư viện, cài My Office kèm chế độ chạy nền, và chạy lệnh kiểm tra. Mức khái quát:</p>
+<ul>
+<li><strong>NGƯỜI:</strong> quyết định có cài hay không, và gõ hoặc dán bốn lệnh vào Terminal.</li>
+<li><strong>TỰ ĐỘNG:</strong> lệnh cài sao lưu file cấu hình của Claude Code trước khi sửa, rồi gắn 13 điểm móc nối vào đó. Tác giả ghi rằng nó chỉ thêm phần của My Office.</li>
+<li><strong>NGƯỜI:</strong> mở văn phòng trong trình duyệt, đổi sang tiếng Việt, rồi thử duyệt quyền một lần.</li>
+<li><strong>NGƯỜI:</strong> nếu không thích nữa thì chạy lệnh gỡ cài đặt của tác giả.</li>
+</ul>
+<p>Chúng mình <strong>chưa cài và chưa chạy thử</strong> My Office. Các bước trên lấy từ tài liệu của tác giả, chưa có số đo thời gian hay ảnh chụp của chúng mình. Khi nào cài thử thật, chúng mình sẽ cập nhật bài này.</p>
+
+<h2>Những điều nên cân nhắc trước khi cài</h2>
+<ul>
+<li>Lệnh cài sửa file cấu hình của Claude Code và chạy một dịch vụ nền trên máy.</li>
+<li>Bảng hạn mức đọc thông tin đăng nhập Claude Code trong Keychain của máy Mac.</li>
+<li>Nếu các bạn dùng Claude Code cho việc ở công ty, hãy hỏi bộ phận phụ trách trước khi cài, và nên thử trên máy phụ trước.</li>
+<li>Tác giả nói hook chỉ gửi dữ liệu trong chính máy của các bạn, chuỗi giống mật khẩu bị che trước khi lưu, và không lưu nội dung các bạn nhập. Đó là lời của tác giả. Chúng mình chưa tự kiểm lại.</li>
+<li>Dự án mới tạo từ ngày 28/10/2026 và còn đang sửa liên tục. Đến ngày 01/11/2026, repo có 82 sao và 41 lượt fork. Lệnh cài có thể thay đổi, nên các bạn hãy đối chiếu với <a href="https://github.com/khanh020905/my-office">trang chính thức</a> trước khi làm.</li>
+</ul>
+
+<h2>So với bảng theo dõi đội AI của chúng mình</h2>
+<p>Chúng mình cũng có một bảng theo dõi đội bot, cho biết bot nào đang chạy việc gì và việc nào đang chờ. Hai thứ này làm cùng một việc: giúp người xem biết AI đang làm gì. Khác biệt nằm ở cách trình bày và phạm vi.</p>
+<ul>
+<li>Bảng của chúng mình là bảng thông tin, ưu tiên nhìn nhanh và có con số.</li>
+<li>My Office là một cảnh sinh động, nhìn vui hơn và dễ cho người mới hiểu.</li>
+<li>My Office chỉ theo dõi các phiên Claude Code. Đội bot của chúng mình chạy trên một nền tảng khác, nên không hiện lên văn phòng này. Muốn nối hai bên phải viết thêm một bộ nối, và đó là việc lớn.</li>
+</ul>
+
+<h2>Vài gợi ý ứng dụng</h2>
+<ul>
+<li><strong>Ý TƯỞNG:</strong> Dùng làm màn hình treo trên bàn cho người hay chạy nhiều phiên cùng lúc, để thấy ngay phiên nào đang chờ duyệt.</li>
+<li><strong>Ý TƯỞNG:</strong> Dùng thẻ tổng kết tuần làm nội dung mỗi cuối tuần, kể lại một tuần làm việc với AI.</li>
+<li><strong>Ý TƯỞNG:</strong> Dùng bảng "Máy Mac" như một buổi dọn máy định kỳ, mỗi tuần một lần.</li>
+</ul>
+
+<h2>Ghi công</h2>
+<p>My Office là dự án mã nguồn mở của tác giả Lê Nguyên Quốc Khánh, giấy phép MIT. Các bạn xem mã nguồn và tài liệu gốc tại <a href="https://github.com/khanh020905/my-office">github.com/khanh020905/my-office</a>.</p>
+
+<h2>Các bạn muốn nhìn thấy đội AI của mình đang làm gì?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
