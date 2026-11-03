@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho tiếp thị: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin marketing của Anthropic: soạn nội dung, lập chiến dịch, kiểm SEO. Cách cài trên Cowork, Claude Code và cách gọi 8 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude cho tiếp thị: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho tiếp thị: cách cài và cách gọi</h1>
+  <p>Plugin marketing của Anthropic: soạn nội dung, lập chiến dịch, kiểm SEO. Cách cài trên Cowork, Claude Code và cách gọi 8 kỹ năng.</p>
+  <div class="pills"><span class="pill">tiếp thị</span><span class="pill">8 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Người làm tiếp thị lo nội dung, chiến dịch, giọng thương hiệu, theo dõi đối thủ và báo cáo kết quả. Nhóm kỹ năng <code>marketing</code> của Anthropic gom các việc đó lại để Claude làm phần soạn và phân tích nháp.</p>
+<p>Plugin <code>marketing</code> có <strong>8 kỹ năng</strong>, chúng mình đếm từ thư mục <code>skills</code> của kho gốc. README của plugin nói thêm rằng các bạn nên khai báo giọng thương hiệu, hướng dẫn phong cách và chân dung khách hàng trong một file cài đặt cục bộ, để Claude khỏi hỏi lại mỗi lần.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a> và cài plugin <code>marketing</code>. README gốc hướng dẫn cài plugin cho Cowork ở trang này.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal, chạy hai lệnh sau, chép đúng từ README của kho gốc. Lệnh đầu thêm kho plugin của Anthropic, lệnh thứ hai cài nhóm tiếp thị.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install marketing@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> sau khi cài, plugin tự kích hoạt. README gốc ghi: kỹ năng tự chạy khi đúng việc, và lệnh gõ tắt dùng được ngay trong phiên làm việc.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài chưa. Gõ <code>/plugin</code>, mở thẻ Installed và tìm <code>marketing</code>. Theo Docs, các bạn cũng có thể gõ <code>/</code> rồi tìm kỹ năng của plugin dưới dạng <code>/marketing:&lt;tên-kỹ-năng&gt;</code>.</li>
+<li><strong>NGƯỜI (nên làm):</strong> khai báo giọng thương hiệu, hướng dẫn phong cách và chân dung khách hàng trong file cài đặt cục bộ. README gốc khuyên làm vậy để <code>/marketing:draft-content</code> và <code>/marketing:brand-review</code> tự áp dụng chuẩn của bên các bạn. README không nêu tên file hay mẫu cụ thể, nên các bạn hỏi Claude hướng dẫn chi tiết. Nếu chưa khai báo, Claude sẽ hỏi hoặc rà theo tiêu chí chung về độ rõ, nhất quán, chuyên nghiệp.</li>
+</ol>
+<p>Muốn tắt hoặc gỡ plugin, chạy một trong hai lệnh sau:</p>
+<pre>claude plugin disable marketing@knowledge-work-plugins
+claude plugin uninstall marketing@knowledge-work-plugins</pre>
+<p><strong>Nối công cụ (không bắt buộc):</strong> README không đặt việc nối công cụ làm điều kiện để cài. CONNECTORS.md của nhóm liệt kê các loại sau.</p>
+<ul>
+<li>Chat: Slack, hoặc Microsoft Teams.</li>
+<li>Thiết kế: Canva, Figma, hoặc Adobe Creative Cloud.</li>
+<li>Tự động hóa tiếp thị: HubSpot, hoặc Marketo, Pardot, Mailchimp.</li>
+<li>Phân tích sản phẩm: Amplitude, hoặc Mixpanel, Google Analytics.</li>
+<li>Cơ sở tri thức: Notion, hoặc Confluence, Guru.</li>
+<li>SEO: Ahrefs, Similarweb, hoặc Semrush, Moz.</li>
+<li>Email marketing: Klaviyo, hoặc Mailchimp, Brevo, Customer.io.</li>
+<li>Phân tích tiếp thị: Supermetrics, hoặc Google Analytics, Mailchimp, Semrush.</li>
+</ul>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc và Docs của Claude Code.</p>
+<ul>
+<li><strong>Nói việc bằng lời thường.</strong> Các bạn cứ kể việc cần làm, kỹ năng tự chạy khi đúng việc.</li>
+<li><strong>Gọi thẳng bằng lệnh gõ tắt</strong> <code>/marketing:&lt;tên-kỹ-năng&gt;</code>. Theo Docs, kỹ năng của plugin luôn có tên dạng <code>/tên-plugin:tên-kỹ-năng</code>.</li>
+</ul>
+<p>Ba ví dụ cho nhóm tiếp thị:</p>
+<ul>
+<li><code>/marketing:draft-content</code>, rồi nói loại nội dung, chủ đề, đối tượng, thông điệp chính, giọng văn và độ dài. README gốc có ví dụ gọi lệnh theo cách này.</li>
+<li><code>/marketing:campaign-plan</code>, rồi nói mục tiêu, đối tượng và khung thời gian của chiến dịch.</li>
+<li><code>/marketing:seo-audit</code>, rồi đưa địa chỉ website hoặc chủ đề cần kiểm.</li>
+</ul>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>Danh sách dưới đây gồm đủ 8 kỹ năng, đếm từ thư mục <code>skills</code> của plugin.</p>
+<ul>
+<li><code>/marketing:brand-review</code>: Rà nội dung theo giọng thương hiệu, hướng dẫn phong cách và các trụ cột thông điệp; chỉ ra chỗ lệch theo mức độ, kèm cách sửa trước và sau. Cũng soát lời khẳng định thiếu căn cứ, thiếu miễn trừ và các cờ pháp lý. <em>Câu gọi mẫu:</em> "Rà bản nháp này theo giọng thương hiệu của bên mình rồi chỉ chỗ cần sửa."</li>
+<li><code>/marketing:campaign-plan</code>: Lập bản kế hoạch chiến dịch đầy đủ: mục tiêu, đối tượng, thông điệp, kênh, lịch nội dung theo tuần và chỉ số thành công. <em>Câu gọi mẫu:</em> "Lập kế hoạch chiến dịch ra mắt sản phẩm mới trong sáu tuần, nhắm vào chủ cửa hàng nhỏ."</li>
+<li><code>/marketing:competitive-brief</code>: Nghiên cứu đối thủ và lập bản so sánh định vị, thông điệp, kèm khoảng trống nội dung, cơ hội và mối đe dọa. Dùng khi làm tài liệu bán hàng hoặc khi đối thủ có động thái mới. <em>Câu gọi mẫu:</em> "Lập bản so sánh định vị của bên mình với hai đối thủ chính."</li>
+<li><code>/marketing:content-creation</code>: Kỹ năng nền để soạn nội dung tiếp thị theo kênh (bài blog, mạng xã hội, bản tin email, trang đích, thông cáo báo chí, ca nghiên cứu). Theo khai báo trong kho gốc, kỹ năng này không gõ trực tiếp được: Claude tự dùng khi các bạn nhờ viết nội dung. <em>Câu gọi mẫu:</em> "Viết giúp mình ba tiêu đề và một đoạn mở bài cho bài blog về cách chọn máy lọc nước."</li>
+<li><code>/marketing:draft-content</code>: Soạn bài blog, bài mạng xã hội, bản tin email, trang đích, thông cáo báo chí, ca nghiên cứu, theo định dạng từng kênh và gợi ý SEO. Có thể đưa nhiều lựa chọn tiêu đề hoặc dòng tiêu đề email. <em>Câu gọi mẫu:</em> "Viết bài giới thiệu sản phẩm cho trang Facebook, giọng thân thiện, dưới 150 chữ."</li>
+<li><code>/marketing:email-sequence</code>: Thiết kế và soạn chuỗi nhiều email đầy đủ nội dung, thời điểm gửi, rẽ nhánh, điều kiện dừng và mốc tham chiếu hiệu quả. Dùng cho chuỗi chào khách mới, nuôi khách tiềm năng, kéo khách cũ quay lại, ra mắt sản phẩm; có gợi ý thử A/B. <em>Câu gọi mẫu:</em> "Soạn chuỗi năm email chào khách mới đăng ký dùng thử."</li>
+<li><code>/marketing:performance-report</code>: Dựng báo cáo hiệu quả tiếp thị: chỉ số chính, xu hướng, điểm thắng và điểm hụt, kèm đề xuất tối ưu theo thứ tự ưu tiên. Dùng khi kết thúc chiến dịch hoặc làm báo cáo tuần, tháng, quý. <em>Câu gọi mẫu:</em> "Dựng báo cáo hiệu quả chiến dịch tháng này từ số liệu mình dán vào."</li>
+<li><code>/marketing:seo-audit</code>: Kiểm tra SEO toàn diện: nghiên cứu từ khóa, phân tích trên trang, khoảng trống nội dung, kiểm tra kỹ thuật, so sánh đối thủ. Kết quả chia thành việc làm nhanh có hiệu quả sớm và đầu tư dài hạn. <em>Câu gọi mẫu:</em> "Kiểm tra SEO cho website của mình và cho biết việc nào làm trước."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Các ví dụ trong README (blog B2B, khách doanh nghiệp lớn) viết cho thị trường Mỹ. Nhận xét của chúng mình: các bạn nên nói rõ kênh mình dùng, vì chợ trực tuyến và mạng xã hội ở Việt Nam khác kênh trong ví dụ.</li>
+<li>Các công cụ trong CONNECTORS.md (HubSpot, Klaviyo, Ahrefs…) là ví dụ của thị trường Mỹ. Nhận xét của chúng mình: nhiều đội ở Việt Nam làm việc trên Facebook, Zalo, TikTok và bảng tính, các bạn vẫn dán nội dung hoặc số liệu vào cuộc trò chuyện là dùng được, không cần nối gì.</li>
+<li>Nhận xét của chúng mình: kỹ năng soạn nội dung viết sẵn khung tiếng Anh. Các bạn nên yêu cầu viết bằng tiếng Việt và cho một đoạn mẫu giọng thương hiệu thật của bên mình để bản nháp bớt cứng.</li>
+<li>Khi bản nháp có lời khẳng định về sản phẩm, các bạn nên nhờ <code>/marketing:brand-review</code> soát lời khẳng định thiếu căn cứ trước khi đăng, rồi đối chiếu với quy định quảng cáo hiện hành. Phần đối chiếu quy định là ý của chúng mình.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

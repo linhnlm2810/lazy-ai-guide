@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho người hay tìm tin nội bộ: cách cài và gọi — Lazy AI Guide</title>
+<meta name="description" content="Nhóm enterprise-search của Anthropic: tìm một lần trên chat, email, tài liệu, wiki và tóm tắt theo ngày hoặc tuần. 5 kỹ năng, cách cài, cách gọi.">
+<meta property="og:title" content="Kỹ năng Claude cho người hay tìm tin nội bộ: cách cài và gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho người hay tìm tin nội bộ: cách cài và gọi</h1>
+  <p>Nhóm enterprise-search của Anthropic: tìm một lần trên chat, email, tài liệu, wiki và tóm tắt theo ngày hoặc tuần. 5 kỹ năng, cách cài, cách gọi.</p>
+  <div class="pills"><span class="pill">Tìm kiếm nội bộ</span><span class="pill">5 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhóm này dành cho người hay mất thời gian đi tìm thông tin nằm rải rác trong chat, email, tài liệu và wiki. Plugin <code>enterprise-search</code> cho phép các bạn hỏi một câu và Claude tìm trong mọi công cụ đã nối, rồi gộp thành một câu trả lời có ghi nguồn.</p>
+<p>Plugin có 5 kỹ năng (đếm theo thư mục trong kho gốc). README ghi plugin chủ yếu thiết kế cho Cowork, nhưng cũng chạy trong Claude Code.</p>
+<h2>Cài đặt</h2>
+<ol>
+<li><strong>NGƯỜI</strong> Cách 1, dùng Claude Cowork: vào <a href="https://claude.com/plugins">claude.com/plugins</a> và cài plugin <code>enterprise-search</code> từ đó (theo README gốc của kho).</li>
+<li><strong>NGƯỜI</strong> Cách 2, dùng Claude Code: mở terminal và chạy hai lệnh dưới đây. Lệnh đầu thêm kho của Anthropic, lệnh sau cài plugin.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install enterprise-search@knowledge-work-plugins</pre></li>
+<li><strong>NGƯỜI</strong> Kiểm đã cài: trong phiên Claude Code gõ <code>/plugin</code> và xem thẻ Installed. Muốn tắt hoặc gỡ thì chạy <code>claude plugin disable enterprise-search@knowledge-work-plugins</code> hoặc <code>claude plugin uninstall enterprise-search@knowledge-work-plugins</code>.</li>
+<li><strong>TỰ ĐỘNG</strong> Sau khi cài, plugin tự bật. Kỹ năng chạy khi đúng việc và lệnh gõ tắt dùng được ngay trong phiên (theo README gốc).</li>
+<li><strong>NGƯỜI</strong> Nối công cụ: CONNECTORS.md liệt kê các nguồn: chat (Slack), email (Microsoft 365), kho tài liệu đám mây (Microsoft 365), kho kiến thức (Notion, Guru), công cụ dự án (Atlassian, Asana), CRM, bộ văn phòng (Microsoft 365). Các lựa chọn khác gồm Microsoft Teams, Discord, Dropbox, Confluence, Slite, Linear, monday.com, Salesforce, HubSpot, Google Workspace. CRM không được cấu hình sẵn. README khuyên bắt đầu với chat, email và kho tài liệu, rồi nối thêm wiki, công cụ dự án và CRM khi cần. Càng nối nhiều nguồn thì kết quả càng đầy đủ.</li>
+</ol>
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách, theo README gốc của kho và tài liệu Claude Code.</p>
+<ol>
+<li>Nói việc bằng lời thường, ví dụ "tìm giúp mình tài liệu về…", "mình đã quyết gì về…". Kỹ năng <code>search</code> tự chạy khi đúng việc.</li>
+<li>Gọi thẳng bằng lệnh gõ tắt <code>/enterprise-search:&lt;tên-kỹ-năng&gt;</code>. Ví dụ theo README của plugin:
+<pre>/enterprise-search:search what's the status of Project Aurora?
+/enterprise-search:search from:sarah about:budget after:2025-01-01
+/enterprise-search:digest --daily
+/enterprise-search:digest --weekly</pre></li>
+</ol>
+<p>Phần câu hỏi viết ngay sau <code>/enterprise-search:search</code> là nội dung cần tìm. README ghi lệnh tìm hỗ trợ các bộ lọc <code>from:</code>, <code>in:</code>, <code>after:</code>, <code>before:</code>, <code>type:</code>. Lệnh <code>digest</code> nhận <code>--daily</code>, <code>--weekly</code> hoặc <code>--since &lt;ngày&gt;</code> (như <code>--since Monday</code>). Ba kỹ năng còn lại không có lệnh gõ tắt, chúng chạy ngầm khi tìm kiếm.</p>
+<h2>Các kỹ năng trong nhóm</h2>
+<ul>
+<li><code>/enterprise-search:search</code>: tìm trong mọi nguồn đã nối (chat, email, kho tài liệu, công cụ dự án) bằng một câu hỏi. Dùng khi cần tìm một quyết định, một tài liệu hay một cuộc trao đổi mà không nhớ nằm ở đâu. <em>Câu gọi mẫu:</em> "Tìm giúp mình tài liệu về kế hoạch khuyến mãi quý này và ai đã chốt phương án."</li>
+<li><code>/enterprise-search:digest</code>: tạo bản tóm tắt hoạt động theo ngày hoặc tuần từ mọi nguồn đã nối. Dùng khi đi nghỉ về, đầu ngày cần xem việc và lượt nhắc tên, hoặc cuối tuần cần xem các quyết định, nhóm theo dự án. <em>Câu gọi mẫu:</em> "Tóm tắt tuần này cho mình, nhóm theo dự án, việc cần làm đứng đầu."</li>
+<li><code>search-strategy</code>: tách câu hỏi thành các truy vấn nhỏ cho từng nguồn, đổi sang cú pháp của từng nguồn, xếp hạng kết quả và có phương án dự phòng khi câu hỏi mơ hồ. Kỹ năng này chạy ngầm, các bạn không gọi bằng lệnh gõ tắt. <em>Câu gọi mẫu:</em> "Tìm giúp mình thread chốt nhà cung cấp, mình chỉ nhớ là hồi đầu tháng."</li>
+<li><code>knowledge-synthesis</code>: gộp kết quả từ nhiều nguồn thành một câu trả lời liền mạch, bỏ trùng, ghi rõ nguồn, chấm độ tin cậy theo độ mới và độ đáng tin, và tóm tắt khi có quá nhiều kết quả. Kỹ năng này chạy ngầm, các bạn không gọi bằng lệnh gõ tắt. <em>Câu gọi mẫu:</em> "Gộp những gì tìm được thành một câu trả lời, ghi rõ lấy từ đâu."</li>
+<li><code>source-management</code>: nắm nguồn nào đang nối, hướng dẫn nối thêm, sắp thứ tự ưu tiên nguồn và để ý giới hạn số lần truy vấn. Kỹ năng này chạy ngầm, các bạn không gọi bằng lệnh gõ tắt. <em>Câu gọi mẫu:</em> "Hiện mình đang nối những nguồn nào, nên nối thêm gì để tìm đầy đủ hơn?"</li>
+</ul>
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Kết quả chỉ tốt bằng số nguồn đã nối. Nếu công ty các bạn trao đổi chủ yếu qua Zalo hay Messenger thì chưa có kết nối mẫu trong CONNECTORS.md. Đây là nhận xét của chúng mình.</li>
+<li>Bộ lọc ví dụ trong README viết bằng tiếng Anh. Các bạn vẫn có thể hỏi bằng tiếng Việt, nhưng tên kênh, tên thư mục và tiêu đề tài liệu viết có dấu hay không dấu sẽ ảnh hưởng độ khớp. Chúng mình khuyên thử cả hai cách viết; README không nói gì về tiếng Việt.</li>
+<li>Plugin đọc dữ liệu từ chat, email và tài liệu của công ty. Các bạn nên hỏi bộ phận công nghệ thông tin hoặc an toàn thông tin trước khi cấp quyền cho từng nguồn.</li>
+</ul>
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

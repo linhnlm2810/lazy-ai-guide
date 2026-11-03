@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude do đối tác làm: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Năm plugin do đối tác làm cho Claude (Apollo, Brand Voice, Common Room, Slack, Zoom), kèm cách cài từng plugin và cách gọi 71 kỹ năng.">
+<meta property="og:title" content="Kỹ năng Claude do đối tác làm: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude do đối tác làm: cách cài và cách gọi</h1>
+  <p>Năm plugin do đối tác làm cho Claude (Apollo, Brand Voice, Common Room, Slack, Zoom), kèm cách cài từng plugin và cách gọi 71 kỹ năng.</p>
+  <div class="pills"><span class="pill">Đối tác</span><span class="pill">71 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Ngoài 17 nhóm theo nghề, kho Knowledge Work Plugins của Anthropic còn một thư mục <code>partner-built</code> gồm 5 plugin do chính các đối tác làm: Apollo, Brand Voice, Common Room, Slack và Zoom. Tổng cộng 71 kỹ năng (Apollo 3, Brand Voice 3, Common Room 6, Slack 2, Zoom 57).</p>
+<p>Mỗi đối tác tự viết README và tự quy định cách cài, nên bài này không dùng một công thức chung. Chúng mình tách thành năm phần, mỗi phần có cách cài chép từ README của đối tác đó, cách gọi và danh sách đủ kỹ năng. Bước nào phải do người làm được ghi <strong>NGƯỜI</strong>, bước máy tự làm ghi <strong>TỰ ĐỘNG</strong>.</p>
+<p>Về cách gọi: nói việc bằng lời thường thì kỹ năng tự chạy khi đúng việc, hoặc gõ thẳng lệnh tắt dạng <code>/&lt;plugin&gt;:&lt;tên-kỹ-năng&gt;</code> (theo README gốc của kho và Docs của Claude Code).</p>
+
+<h2>Apollo (apollo)</h2>
+<p>Apollo.io là công cụ tìm khách tiềm năng và làm giàu thông tin liên hệ cho người bán hàng. Plugin này có 3 kỹ năng, mỗi kỹ năng nối nhiều bước của Apollo thành một việc trọn vẹn. Plugin tự cấu hình máy chủ MCP của Apollo khi cài, các bạn không phải sửa file cấu hình.</p>
+<h3>Cài đặt Apollo</h3>
+<p>Các bước dưới chép theo README riêng của plugin Apollo.</p>
+<p><strong>Cách 1, Claude Cowork:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: bấm liên kết <a href="https://claude.ai/desktop/customize/plugins/new?marketplace=apolloio/apollo-mcp-plugin&amp;plugin=apollo">Install in Cowork</a> mà README đưa ra và xác nhận cài.</li>
+<li><strong>NGƯỜI</strong>: khởi động lại Cowork để máy chủ MCP chạy đúng.</li>
+<li><strong>NGƯỜI</strong>: gõ <code>/mcp</code>, chọn máy chủ <strong>Apollo</strong>, bấm <strong>Authenticate</strong> và đăng nhập tài khoản Apollo.io trên trình duyệt.</li>
+</ol>
+<p><strong>Cách 2, Claude Code:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: trong Claude Code, thêm kho của Apollo:<pre>/plugin marketplace add apolloio/apollo-mcp-plugin</pre></li>
+<li><strong>NGƯỜI</strong>: cài plugin:<pre>/plugin install apollo@apollo-plugin-marketplace</pre></li>
+<li><strong>NGƯỜI</strong>: khởi động lại Claude Code, rồi làm bước đăng nhập <code>/mcp</code> như ở Cách 1.</li>
+<li><strong>TỰ ĐỘNG</strong>: máy chủ MCP của Apollo được cấu hình cùng lúc cài plugin (theo README).</li>
+</ol>
+<p>Kiểm đã cài: gõ <code>/plugin</code> và xem thẻ Installed, hoặc gõ <code>/</code> và tìm <code>/apollo:</code> (theo Docs của Claude Code). README của Apollo không ghi lệnh tắt hay gỡ; lệnh gỡ chung của Claude Code là <code>claude plugin uninstall apollo@apollo-plugin-marketplace</code> (suy từ tên kho trong README, chúng mình chưa chạy).</p>
+<p>Về điểm cần lưu tâm: một số thao tác tiêu hao credit của Apollo. README ghi làm giàu thông tin mỗi người tốn 1 credit, làm giàu hàng loạt cũng tính 1 credit mỗi người trong lô, và plugin luôn cảnh báo trước khi dùng credit.</p>
+<h3>Cách gọi kỹ năng Apollo</h3>
+<p>Hai cách: nói việc bằng lời thường để kỹ năng tự chạy, hoặc gõ thẳng lệnh tắt kèm nội dung theo sau (ba kỹ năng đều nhận nội dung sau lệnh, theo README và khai báo của kỹ năng).</p>
+<pre>/apollo:enrich-lead tên người, công ty, link LinkedIn hoặc email
+/apollo:prospect mô tả khách hàng lý tưởng bằng tiếng thường
+/apollo:sequence-load tiêu chí tìm khách + tên chuỗi gửi thư</pre>
+<h3>Các kỹ năng của Apollo</h3>
+<ul>
+<li><code>/apollo:enrich-lead</code>: nhập tên, công ty, link LinkedIn hoặc email, nhận thẻ liên hệ đầy đủ gồm email, số điện thoại, chức danh, thông tin công ty và việc nên làm tiếp; tra mờ được và tự chuyển sang tìm kiếm khi không khớp chính xác. <em>Câu gọi mẫu:</em> "Tìm thông tin liên hệ của giám đốc kinh doanh công ty ABC."</li>
+<li><code>/apollo:prospect</code>: mô tả khách hàng lý tưởng bằng lời thường, nhận bảng khách xếp hạng kèm điểm phù hợp, đã làm giàu thông tin người ra quyết định. <em>Câu gọi mẫu:</em> "Tìm giúp mình 20 trưởng phòng mua hàng của các nhà máy nhựa quy mô vừa."</li>
+<li><code>/apollo:sequence-load</code>: tìm khách theo tiêu chí, làm giàu, tạo liên hệ có loại trùng rồi thêm hàng loạt vào một chuỗi gửi thư có sẵn; xem trước danh sách trước khi ghi danh và có tổng kết sau cùng. <em>Câu gọi mẫu:</em> "Tìm 30 chủ shop thời trang ở TP.HCM và thêm vào chuỗi Chào hàng tháng 11."</li>
+</ul>
+
+<h2>Brand Voice (brand-voice)</h2>
+<p>Brand Voice của Tribe AI gom tài liệu thương hiệu rải rác thành bộ quy tắc giọng văn cho AI, rồi kiểm nội dung AI viết có đúng quy tắc không. Plugin có 3 kỹ năng, đi theo thứ tự: tìm tài liệu, tạo hướng dẫn giọng văn, áp dụng khi viết.</p>
+<h3>Cài đặt Brand Voice</h3>
+<p>README riêng của Brand Voice chỉ ghi "cài plugin rồi mở Claude Cowork", không có dòng lệnh cài. Vì vậy phần lệnh ở Cách 2 lấy từ README gốc của kho Anthropic, nơi <code>brand-voice</code> có trong danh sách marketplace.</p>
+<p><strong>Cách 1, Claude Cowork:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: cài plugin Brand Voice từ claude.com/plugins rồi mở Claude Cowork.</li>
+<li><strong>NGƯỜI</strong>: nối ít nhất một nền tảng chứa tài liệu thương hiệu. README khuyên chọn Notion vì Notion tìm xuyên được Google Drive, SharePoint, Slack và Jira.</li>
+<li><strong>TỰ ĐỘNG</strong>: gõ <code>/brand-voice:discover-brand</code>, Claude tự tìm tài liệu thương hiệu trong các nền tảng đã nối.</li>
+</ol>
+<p><strong>Cách 2, Claude Code:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: thêm kho và cài (lệnh ngoài terminal, theo README gốc của kho Anthropic):<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install brand-voice@knowledge-work-plugins</pre></li>
+<li><strong>NGƯỜI</strong> (không bắt buộc): chép file <code>settings/brand-voice.local.md.example</code> của plugin thành <code>.claude/brand-voice.local.md</code> trong dự án và điền tên công ty, nền tảng đang bật, nơi để tài liệu thương hiệu (theo README mục Per-Project Settings).</li>
+</ol>
+<p>Các nền tảng README liệt kê gồm Notion, Atlassian (Confluence, Jira), Box, Microsoft 365, Figma, Gong, Granola; Google Drive và Slack là tích hợp sẵn của Claude nên không cần cài kết nối MCP. Kiểm đã cài bằng <code>/plugin</code>, thẻ Installed. Tắt hoặc gỡ: <code>claude plugin disable brand-voice@knowledge-work-plugins</code>, <code>claude plugin uninstall brand-voice@knowledge-work-plugins</code>. README ghi hiện chỉ dùng ở mức cá nhân, chế độ cho cả nhóm "sắp có".</p>
+<h3>Cách gọi kỹ năng Brand Voice</h3>
+<p>Nói việc bằng lời thường (ví dụ "viết giúp mình email theo giọng của công ty") thì kỹ năng tự chạy. Hoặc gõ lệnh tắt, README cho phép viết thêm nội dung sau lệnh:</p>
+<pre>/brand-voice:discover-brand
+/brand-voice:discover-brand Acme Corp
+/brand-voice:generate-guidelines from the discovery report and these 3 PDFs
+/brand-voice:enforce-voice Write a LinkedIn post announcing our new feature</pre>
+<p>Tên lệnh và tên thư mục kỹ năng không trùng hoàn toàn, nên mỗi mục dưới đây ghi cả hai.</p>
+<h3>Các kỹ năng của Brand Voice</h3>
+<ul>
+<li><code>/brand-voice:discover-brand</code> (thư mục <code>discover-brand</code>): tự tìm tài liệu thương hiệu (cẩm nang phong cách, bản thuyết trình, mẫu email, bản ghi cuộc gọi) trên các nền tảng đã nối và xếp hạng nguồn. <em>Câu gọi mẫu:</em> "Công ty mình có cẩm nang thương hiệu nào không? Tìm giúp mình trong Notion và Google Drive."</li>
+<li><code>/brand-voice:generate-guidelines</code> (thư mục <code>guideline-generation</code>): biến tài liệu và bản ghi cuộc gọi thành hướng dẫn giọng văn cho AI: trụ cột giọng, thông số sắc thái, khung "chúng tôi là / không phải", thuật ngữ chuẩn. <em>Câu gọi mẫu:</em> "Từ báo cáo vừa tìm được, tạo giúp mình bộ hướng dẫn giọng văn."</li>
+<li><code>/brand-voice:enforce-voice</code> (thư mục <code>brand-voice-enforcement</code>): áp hướng dẫn giọng văn khi viết email, đề xuất, bài đăng; giọng giữ nguyên còn sắc thái đổi theo từng loại nội dung, và báo chỗ lệch giọng. <em>Câu gọi mẫu:</em> "Viết một email chào hàng ngắn gửi giám đốc mua hàng, đúng giọng thương hiệu của mình."</li>
+</ul>
+
+<h2>Common Room (common-room)</h2>
+<p>Common Room là nền tảng gom tín hiệu khách hàng từ sản phẩm, cộng đồng và nguồn bên ngoài. Plugin biến nó thành trợ lý cho người bán hàng: tìm hiểu công ty và người liên hệ, chuẩn bị cuộc gọi, soạn thư chào hàng, lập danh sách khách, lập bản tin tuần. Plugin có 6 kỹ năng và 2 lệnh gõ tắt.</p>
+<h3>Cài đặt Common Room</h3>
+<p>README riêng của Common Room ghi mục Setup gồm ba bước và không có dòng lệnh cài. Phần lệnh ở Cách 2 lấy từ README gốc của kho Anthropic, nơi <code>common-room</code> có trong danh sách marketplace.</p>
+<p><strong>Cách 1, Claude Cowork:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: nối và xác thực máy chủ Common Room MCP (<code>mcp.commonroom.io/mcp</code>) trong phần cài đặt của Cowork. Đây là nguồn dữ liệu chính, bắt buộc có. Các bạn cần tài khoản Common Room.</li>
+<li><strong>NGƯỜI</strong> (không bắt buộc): nối thêm một kết nối lịch để chuẩn bị cuộc gọi tự lấy cuộc họp. Không nối thì hai kỹ năng này hỏi các bạn thông tin cuộc họp.</li>
+<li><strong>NGƯỜI</strong>: cài plugin từ claude.com/plugins. Theo README, cài xong là dùng được ngay.</li>
+</ol>
+<p><strong>Cách 2, Claude Code:</strong></p>
+<ol>
+<li><strong>NGƯỜI</strong>: thêm kho và cài (theo README gốc của kho Anthropic):<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install common-room@knowledge-work-plugins</pre></li>
+<li><strong>NGƯỜI</strong>: xác thực Common Room MCP như ở Cách 1.</li>
+</ol>
+<p>Kết nối lịch, theo CONNECTORS.md của plugin: Google Calendar đi kèm, tùy chọn khác là Outlook hoặc Microsoft 365 Calendar. Kiểm đã cài bằng <code>/plugin</code>, thẻ Installed. Tắt hoặc gỡ: <code>claude plugin disable common-room@knowledge-work-plugins</code>, <code>claude plugin uninstall common-room@knowledge-work-plugins</code>.</p>
+<h3>Cách gọi kỹ năng Common Room</h3>
+<p>README ghi rõ sáu kỹ năng kích hoạt bằng lời thường: các bạn mô tả việc, Claude tự nạp kỹ năng đúng. Hai lệnh gõ tắt dành cho việc phức tạp, README viết dạng <code>/generate-account-plan</code> và <code>/weekly-brief</code>; theo Docs của Claude Code, tên đầy đủ có tiền tố plugin, tức <code>/common-room:generate-account-plan</code> (chúng mình chưa kiểm).</p>
+<pre>/generate-account-plan &lt;công ty hoặc tên miền&gt;
+/weekly-brief [khoảng ngày, mặc định 7 ngày tới]</pre>
+<p>Lệnh <code>/generate-account-plan</code> lập kế hoạch tài khoản đầy đủ: sơ đồ người ra quyết định, mức tương tác, cơ hội, rủi ro, việc cần làm. Lệnh <code>/weekly-brief</code> chạy kỹ năng <code>weekly-prep-brief</code>.</p>
+<h3>Các kỹ năng của Common Room</h3>
+<ul>
+<li><code>account-research</code>: tìm hiểu một công ty bằng dữ liệu Common Room: tổng quan, hỏi đúng một trường, trả lời trung thực khi dữ liệu thưa; có tra tin mới trên web và tự giới hạn theo phân khúc của người dùng. <em>Câu gọi mẫu:</em> "Tìm hiểu giúp mình công ty abc.com, họ có tín hiệu mua hàng không?"</li>
+<li><code>contact-research</code>: tra một người theo email, tên kèm công ty hoặc tài khoản mạng xã hội: thông tin đã làm giàu, điểm số, lượt vào website, lịch sử hoạt động, gợi ý mở chuyện. <em>Câu gọi mẫu:</em> "Chị Lan, email lan@abc.com là ai, có phải khách nóng không?"</li>
+<li><code>call-prep</code>: bản chuẩn bị trước cuộc gọi: tóm tắt công ty, hồ sơ từng người dự, tín hiệu nổi bật, ý chính nên nói, phản đối có thể gặp, kết quả nên hướng tới. <em>Câu gọi mẫu:</em> "Chuẩn bị giúp mình cuộc gọi chiều nay với công ty abc.com."</li>
+<li><code>compose-outreach</code>: soạn ba dạng tin chào hàng cá nhân hóa gồm email, kịch bản gọi, tin LinkedIn, dựa trên tín hiệu Common Room. <em>Câu gọi mẫu:</em> "Soạn thư chào hàng cho anh Minh, giám đốc vận hành công ty abc.com."</li>
+<li><code>prospect</code>: lập danh sách công ty hoặc người liên hệ bằng Prospector của Common Room; phân biệt công ty hoàn toàn mới và tài khoản đã có, tìm công ty tương tự, chỉnh dần qua hội thoại. <em>Câu gọi mẫu:</em> "Lập danh sách công ty logistics đang tuyển nhân viên bán hàng."</li>
+<li><code>weekly-prep-brief</code>: bản tin tuần cho mọi cuộc gọi với bên ngoài trong 7 ngày tới, mỗi cuộc có tóm tắt công ty, hồ sơ người dự, tín hiệu và mục tiêu đề xuất. <em>Câu gọi mẫu:</em> "Chuẩn bị tuần mới giúp mình, tuần này có những cuộc gọi nào?"</li>
+</ul>
+
+<h2>Slack (slack)</h2>
+<p>Plugin Slack do Salesforce làm, nối Claude với máy chủ MCP chính thức của Slack để tìm tin nhắn, đọc kênh, gửi tin, tạo canvas. Plugin có 2 kỹ năng hướng dẫn cách viết tin và cách tìm, cộng 5 lệnh gõ tắt.</p>
+<h3>Cài đặt Slack</h3>
+<p>README riêng của plugin Slack nói về Claude Code và Cursor; chúng mình chỉ chép phần Claude Code.</p>
+<ol>
+<li><strong>NGƯỜI</strong>: nhờ quản trị viên Slack của các bạn duyệt cho phép dùng tích hợp MCP. README ghi rõ chưa được duyệt thì chưa dùng được.</li>
+<li><strong>NGƯỜI</strong>: tải plugin về máy rồi mở Claude Code kèm thư mục đó:<pre>git clone https://github.com/slackapi/slack-mcp-plugin.git
+cd slack-mcp-plugin
+claude --plugin-dir ./</pre></li>
+<li><strong>TỰ ĐỘNG</strong>: máy chủ Slack MCP được cấu hình khi plugin nạp (theo README).</li>
+<li><strong>NGƯỜI</strong>: đăng nhập vào workspace Slack qua OAuth khi Claude Code hỏi.</li>
+</ol>
+<p>Cờ <code>--plugin-dir</code> nạp plugin cho một phiên làm việc; Docs của Claude Code dùng cờ này để thử plugin chép trên đĩa. Plugin này cũng nằm trong marketplace của kho Anthropic với tên <code>slack-by-salesforce</code>, nhưng README Slack không nhắc cách đó. Kiểm đã nạp: gõ <code>/</code> và tìm <code>/slack:</code>. README chỉ có máy chủ từ xa, không cài máy chủ cục bộ.</p>
+<h3>Cách gọi kỹ năng Slack</h3>
+<p>Hai cách: nói việc bằng lời thường (README ví dụ: "Search for messages about the product launch in the last week"), hoặc gõ lệnh tắt kèm tên kênh hoặc chủ đề. Năm lệnh theo file CLAUDE.md của plugin:</p>
+<pre>/slack:summarize-channel &lt;tên-kênh&gt;
+/slack:find-discussions &lt;chủ đề&gt;
+/slack:draft-announcement &lt;chủ đề&gt;
+/slack:standup
+/slack:channel-digest &lt;kênh1, kênh2, ...&gt;</pre>
+<p>Tóm tắt năm lệnh: tóm tắt hoạt động gần đây của một kênh; tìm các cuộc thảo luận về một chủ đề; soạn thông báo đúng định dạng và lưu làm bản nháp; viết bản cập nhật standup từ hoạt động Slack của chính các bạn; gom hoạt động của nhiều kênh thành một bản tổng hợp.</p>
+<h3>Các kỹ năng của Slack</h3>
+<ul>
+<li><code>slack-messaging</code>: hướng dẫn soạn tin Slack đúng định dạng mrkdwn; áp dụng mỗi khi soạn, nháp tin hoặc tạo canvas. <em>Câu gọi mẫu:</em> "Soạn giúp mình tin báo triển khai xong gửi kênh #general, định dạng cho gọn."</li>
+<li><code>slack-search</code>: hướng dẫn tìm kiếm trong Slack để ra tin nhắn, tệp, kênh, người; áp dụng khi cần gom ngữ cảnh về chuyện đang diễn ra trên Slack. <em>Câu gọi mẫu:</em> "Tìm trong Slack các tin nói về buổi ra mắt sản phẩm tuần trước."</li>
+</ul>
+
+<h2>Zoom (zoom-plugin)</h2>
+<p>Plugin Zoom do Zoom làm, dành cho người lập kế hoạch, xây và sửa lỗi các tích hợp Zoom: chọn đúng bề mặt Zoom, định hình cách làm, tìm tầng bị hỏng. Plugin có 57 kỹ năng, nhiều nhất trong nhóm đối tác, và chủ yếu hướng tới lập trình viên chứ không phải người chỉ muốn họp Zoom.</p>
+<h3>Cài đặt Zoom</h3>
+<p>Zoom cài khác bốn plugin trên. README ghi: cài thư mục plugin như một plugin Claude cục bộ, rồi đặt sẵn mã truy cập (bearer token) cho từng máy chủ MCP của Zoom mà các bạn muốn dùng. Theo CONNECTORS.md, chưa có mã thì plugin vẫn chạy ở chế độ riêng lẻ với các kỹ năng và tài liệu tham khảo đi kèm; có mã thì thêm được thao tác sống trên cuộc họp, bản ghi và tài liệu.</p>
+<ol>
+<li><strong>NGƯỜI</strong>: tải kho về máy (thư mục plugin nằm ở <code>partner-built/zoom-plugin</code>):<pre>git clone https://github.com/anthropics/knowledge-work-plugins.git</pre></li>
+<li><strong>NGƯỜI</strong> (chỉ khi cần thao tác sống qua Zoom MCP): tự lấy mã truy cập OAuth từ tài khoản Zoom của các bạn. README không hướng dẫn cách lấy mã. Mã là bí mật: không dán vào khung chat, không chép vào bài viết, không đưa vào kho git.</li>
+<li><strong>NGƯỜI</strong>: đặt ba biến môi trường trong terminal trước khi mở Claude Code. Dòng dưới là mẫu từ README, các bạn thay phần trong ngoặc kép bằng mã của chính mình:<pre>export ZOOM_MCP_ACCESS_TOKEN=&quot;your_zoom_user_oauth_access_token&quot;
+export ZOOM_DOCS_MCP_ACCESS_TOKEN=&quot;your_zoom_docs_mcp_access_token&quot;
+export ZOOM_WHITEBOARD_MCP_ACCESS_TOKEN=&quot;your_zoom_user_oauth_access_token&quot;</pre></li>
+<li><strong>NGƯỜI</strong>: mở Claude Code kèm thư mục plugin (cờ <code>--plugin-dir</code> theo Docs của Claude Code, nạp plugin cho một phiên):<pre>claude --plugin-dir ./knowledge-work-plugins/partner-built/zoom-plugin</pre></li>
+<li><strong>TỰ ĐỘNG</strong>: ba máy chủ MCP (<code>zoom-mcp</code>, <code>zoom-docs-mcp</code>, <code>zoom-whiteboard-mcp</code>) được khai báo sẵn trong <code>.mcp.json</code> của plugin và đọc ba biến trên.</li>
+</ol>
+<p>README ghi một mã dùng chung cho nhiều biến được, nếu mã đó có đủ quyền cho cả Zoom MCP chính và Zoom Docs MCP. Đổi hoặc làm mới mã thì phải khởi động lại Claude Code hoặc bật lại plugin để máy chủ MCP đọc mã mới. Kiểm đã nạp: gõ <code>/</code> và tìm <code>/zoom-plugin:</code>. Kho Anthropic cũng liệt kê plugin này trong marketplace với tên <code>zoom-plugin</code>, nhưng README Zoom chỉ nêu cách cài cục bộ nên chúng mình theo cách đó.</p>
+<h3>Cách gọi kỹ năng Zoom</h3>
+<p>Hai cách: nói việc bằng lời thường, hoặc gõ lệnh tắt kèm mô tả việc (README có ví dụ truyền nội dung sau lệnh). README viết lệnh dạng ngắn như <code>/start</code>; theo Docs, tên đầy đủ có tiền tố plugin như bên dưới (chúng mình chưa kiểm cách nào chạy ở máy các bạn). Chỉ 15 kỹ năng ở nhóm đầu là lệnh gõ được; phần còn lại Claude tự nạp khi cần.</p>
+<pre>/zoom-plugin:start Build an internal meeting assistant that joins calls, extracts action items, and stores summaries
+/zoom-plugin:debug-zoom My Zoom webhook signature verification fails in production but not locally
+/zoom-plugin:setup-zoom-mcp I want Claude to search meetings, pull recording resources, and create follow-up docs</pre>
+<p>Ba ví dụ trên chép từ README, giữ tiếng Anh. Các bạn viết tiếng Việt cũng được, nhưng chúng mình chưa thử.</p>
+<h3>Các kỹ năng của Zoom: 15 lệnh gõ tắt</h3>
+<p>Nhóm "Slash Workflows" trong README. Gõ được bằng lệnh.</p>
+<ul>
+<li><code>/zoom-plugin:start</code>: điểm vào cho mọi ý tưởng ứng dụng Zoom: chọn đúng bề mặt Zoom, định hình kiến trúc và chỉ sang kỹ năng triển khai phù hợp. <em>Câu gọi mẫu:</em> "Mình muốn làm trợ lý họp tự vào cuộc gọi, rút việc cần làm và lưu bản tóm tắt. Bắt đầu từ đâu?"</li>
+<li><code>/zoom-plugin:setup-zoom-oauth</code>: chọn mô hình xác thực, quyền (scope) và luồng chuyển hướng cho ứng dụng Zoom; xử lý làm mới mã và sửa lỗi xác thực. <em>Câu gọi mẫu:</em> "Ứng dụng của mình nên dùng loại OAuth nào và xin những quyền nào?"</li>
+<li><code>/zoom-plugin:build-zoom-meeting-app</code>: dựng hoặc nhúng luồng họp Zoom: vào họp bằng Meeting SDK, nhúng web hoặc di động, vòng đời cuộc họp, và cân nhắc Meeting SDK với Video SDK. <em>Câu gọi mẫu:</em> "Nhúng cuộc họp Zoom vào trang web của mình cho khách đặt lịch và tham gia."</li>
+<li><code>/zoom-plugin:build-zoom-bot</code>: dựng bot họp, bot ghi hình, bộ xử lý cuộc họp thời gian thực, kết hợp Meeting SDK, RTMS và dịch vụ phía máy chủ. <em>Câu gọi mẫu:</em> "Làm bot tự vào cuộc họp để ghi lại bản chép lời theo thời gian thực."</li>
+<li><code>/zoom-plugin:debug-zoom</code>: khoanh vùng tầng hỏng của một tích hợp Zoom và đưa danh sách giả thuyết xếp hạng kèm bước kiểm. <em>Câu gọi mẫu:</em> "Webhook Zoom của mình lỗi xác thực chữ ký trên máy chủ thật nhưng chạy tốt ở máy mình."</li>
+<li><code>/zoom-plugin:setup-zoom-mcp</code>: quyết định khi nào Zoom MCP phù hợp và lập kế hoạch thiết lập an toàn cho Claude, gồm cả mô hình lai MCP với REST. <em>Câu gọi mẫu:</em> "Mình muốn Claude tìm cuộc họp, lấy bản ghi và tạo tài liệu theo dõi. Thiết lập thế nào?"</li>
+<li><code>/zoom-plugin:build-zoom-rest-api-app</code>: chọn endpoint REST, mẫu quản lý tài nguyên, yêu cầu OAuth, giới hạn tốc độ và gỡ lỗi API (thư mục <code>rest-api</code>). <em>Câu gọi mẫu:</em> "Dùng REST API để liệt kê cuộc họp của cả công ty thì gọi endpoint nào?"</li>
+<li><code>/zoom-plugin:build-zoom-meeting-sdk-app</code>: tham chiếu Meeting SDK: vào họp thật, hành vi theo từng nền tảng, xác thực, phòng chờ, mẫu bot họp (thư mục <code>meeting-sdk</code>). <em>Câu gọi mẫu:</em> "Vào họp bằng Meeting SDK mà bị kẹt ở phòng chờ, kiểm chỗ nào?"</li>
+<li><code>/zoom-plugin:build-zoom-video-sdk-app</code>: tham chiếu Video SDK khi cần toàn quyền thiết kế trải nghiệm video, không phải cuộc họp Zoom thật (thư mục <code>video-sdk</code>). <em>Câu gọi mẫu:</em> "Mình cần buổi tư vấn video một-kèm-một với giao diện riêng, nên dùng SDK nào?"</li>
+<li><code>/zoom-plugin:setup-zoom-webhooks</code>: thiết lập đăng ký webhook, xác minh chữ ký, xử lý nhận tin, thử lại và chọn loại sự kiện (thư mục <code>webhooks</code>). <em>Câu gọi mẫu:</em> "Cài webhook báo cho hệ thống của mình mỗi khi cuộc họp kết thúc."</li>
+<li><code>/zoom-plugin:setup-zoom-websockets</code>: thiết lập nhận sự kiện qua WebSocket khi cần kết nối bền, nhanh hơn webhook hoặc bị ràng buộc bảo mật (thư mục <code>websockets</code>). <em>Câu gọi mẫu:</em> "Webhook chậm quá, chuyển sang WebSocket được không?"</li>
+<li><code>/zoom-plugin:build-zoom-team-chat-app</code>: xây tích hợp Team Chat cho người dùng hoặc chatbot: thẻ giàu nội dung, nút bấm, lệnh gạch chéo, webhook chat (thư mục <code>team-chat</code>). <em>Câu gọi mẫu:</em> "Làm chatbot trong Zoom Team Chat để nhân viên hỏi quy định nội bộ."</li>
+<li><code>/zoom-plugin:build-zoom-phone-integration</code>: xây tích hợp Zoom Phone: Smart Embed, API, sự kiện, tổng đài gắn CRM, tự động hóa xử lý cuộc gọi (thư mục <code>phone</code>). <em>Câu gọi mẫu:</em> "Gắn Zoom Phone vào CRM để bấm số gọi ngay từ hồ sơ khách."</li>
+<li><code>/zoom-plugin:build-zoom-contact-center-app</code>: xây tích hợp Contact Center cho ứng dụng, web hoặc ứng dụng gốc; xử lý ngữ cảnh cuộc trò chuyện, chiến dịch, gọi lại (thư mục <code>contact-center</code>). <em>Câu gọi mẫu:</em> "Nhúng chat chăm sóc khách của Zoom Contact Center vào ứng dụng của mình."</li>
+<li><code>/zoom-plugin:build-zoom-virtual-agent</code>: xây tích hợp Virtual Agent dạng nhúng web hoặc lớp bao cho di động, đồng bộ cơ sở kiến thức, xử lý vòng đời (thư mục <code>virtual-agent</code>). <em>Câu gọi mẫu:</em> "Nhúng trợ lý ảo của Zoom vào website bán hàng."</li>
+</ul>
+<h3>Các kỹ năng của Zoom: 5 kỹ năng định tuyến nội bộ</h3>
+<p>Nhóm "Internal Routing Skills" trong README (kỹ năng <code>start</code> cũng nằm ở nhóm này nhưng đã liệt kê ở trên). Không phải lệnh gõ tắt công khai; Claude tự dùng để dẫn đường.</p>
+<ul>
+<li><code>plan-zoom-product</code> (Claude tự nạp, không gõ lệnh): chọn bề mặt xây dựng Zoom hợp với một nhu cầu và giải thích đánh đổi giữa REST API, webhook, WebSocket, SDK, Phone, Contact Center, MCP. <em>Câu gọi mẫu:</em> "So sánh giúp mình các cách làm Zoom cho bài toán họp khách hàng."</li>
+<li><code>plan-zoom-integration</code> (Claude tự nạp, không gõ lệnh): biến ý tưởng tích hợp Zoom thành kế hoạch triển khai gồm kiến trúc, xác thực, mốc giao việc, danh sách rủi ro, bước đi tiếp theo. <em>Câu gọi mẫu:</em> "Lập kế hoạch từng giai đoạn để làm tích hợp Zoom với hệ thống của mình."</li>
+<li><code>choose-zoom-approach</code> (Claude tự nạp, không gõ lệnh): chọn kiến trúc Zoom hợp với một trường hợp dùng, kể cả phương án kết hợp nhiều cách. <em>Câu gọi mẫu:</em> "Mình nên dùng webhook hay WebSocket cho việc nhận sự kiện họp?"</li>
+<li><code>design-mcp-workflow</code> (Claude tự nạp, không gõ lệnh): thiết kế quy trình Zoom MCP cho Claude: việc nào hợp với MCP, việc nào để REST API lo. <em>Câu gọi mẫu:</em> "Phần nào của quy trình này nên giao cho Zoom MCP, phần nào gọi REST?"</li>
+<li><code>debug-zoom-integration</code> (Claude tự nạp, không gõ lệnh): tìm nhanh tầng hỏng của tích hợp Zoom (xác thực, webhook, vào họp bằng SDK, MCP, media thời gian thực) trước khi đề xuất cách sửa. <em>Câu gọi mẫu:</em> "Bot của mình vào họp được nhưng không nhận âm thanh, hỏng ở tầng nào?"</li>
+</ul>
+<h3>Các kỹ năng của Zoom: 3 tham chiếu sâu chung</h3>
+<p>Nhóm "Deep References" trong README, phần chưa liệt kê ở trên. Nhóm này là thư viện tham khảo; Claude nạp sau khi đã chọn được hướng đi.</p>
+<ul>
+<li><code>zoom-general</code> (Claude tự nạp, không gõ lệnh): tham chiếu chung nhiều sản phẩm Zoom: so sánh mô hình ứng dụng, xác thực, quyền, marketplace, chọn API hay MCP (thư mục <code>general</code>). <em>Câu gọi mẫu:</em> "Zoom Apps và Meeting SDK khác nhau chỗ nào?"</li>
+<li><code>zoom-oauth</code> (Claude tự nạp, không gõ lệnh): tham chiếu xác thực Zoom: loại thông tin ứng dụng, kiểu cấp quyền, scope, làm mới mã, lỗi OAuth (thư mục <code>oauth</code>). <em>Câu gọi mẫu:</em> "Báo lỗi redirect URI mismatch khi đăng nhập Zoom, sửa sao?"</li>
+<li><code>zoom-mcp</code> (Claude tự nạp, không gõ lệnh): hướng dẫn cho các kết nối Zoom MCP đi kèm: bề mặt công cụ, xác thực, giới hạn khi truy cập cuộc họp, bản ghi, tài sản cuộc họp, bản chép lời (thư mục <code>zoom-mcp</code>). <em>Câu gọi mẫu:</em> "Zoom MCP lấy được bản chép lời cuộc họp ở bước nào?"</li>
+</ul>
+<h3>Các kỹ năng của Zoom: 34 tham chiếu theo sản phẩm và nền tảng</h3>
+<p>README chỉ gọi chung nhóm này là "existing Zoom reference skills", không chia nhỏ hơn, nên chúng mình giữ nguyên một nhóm. Danh sách theo thứ tự tên thư mục: Cobrowse, Contact Center, Meeting SDK theo nền tảng, Probe, Rivet, RTMS, Scribe, UI Toolkit, Video SDK theo nền tảng, Virtual Agent, Zoom Apps, Whiteboard MCP. Tên hiển thị là trường <code>name</code> trong từng kỹ năng, nên vài tên có dấu gạch chéo.</p>
+<ul>
+<li><code>zoom-cobrowse-sdk</code> (Claude tự nạp, không gõ lệnh): Cobrowse SDK: cùng duyệt web, công cụ chú thích, che dữ liệu riêng tư, hỗ trợ từ xa, chia sẻ phiên bằng mã PIN (thư mục <code>cobrowse-sdk</code>). <em>Câu gọi mẫu:</em> "Làm tính năng nhân viên hỗ trợ cùng xem màn hình trình duyệt của khách."</li>
+<li><code>contact-center/android</code> (Claude tự nạp, không gõ lệnh): Contact Center SDK cho Android: chat, video, trợ lý ảo, gọi lại theo lịch, chế độ chiến dịch, vòng đời dịch vụ. <em>Câu gọi mẫu:</em> "Nhúng chat Contact Center vào ứng dụng Android."</li>
+<li><code>contact-center/ios</code> (Claude tự nạp, không gõ lệnh): Contact Center SDK cho iOS: chat, video, trợ lý ảo, gọi lại theo lịch, nối vòng đời ứng dụng, vào lại phiên. <em>Câu gọi mẫu:</em> "Nhúng Contact Center vào ứng dụng iOS."</li>
+<li><code>contact-center/web</code> (Claude tự nạp, không gõ lệnh): Contact Center SDK cho web: nhúng chat, video, chiến dịch, xử lý sự kiện, tích hợp ngữ cảnh ứng dụng, Smart Embed postMessage. <em>Câu gọi mẫu:</em> "Nhúng chat Contact Center vào website."</li>
+<li><code>zoom-meeting-sdk-android</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho ứng dụng Android: giao diện mặc định hoặc tùy biến, xác thực PKCE và SDK, vào họp và bắt đầu họp. <em>Câu gọi mẫu:</em> "Nhúng cuộc họp Zoom vào ứng dụng Android của mình."</li>
+<li><code>zoom-meeting-sdk-electron</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho ứng dụng máy tính Electron: gói Node, xác thực JWT, vào họp, bộ điều khiển cài đặt, dữ liệu thô. <em>Câu gọi mẫu:</em> "Nhúng Zoom vào ứng dụng Electron."</li>
+<li><code>zoom-meeting-sdk-ios</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho ứng dụng iOS: giao diện mặc định hoặc tùy biến, PKCE và SDK, chủ phòng bắt đầu họp bằng ZAK, vòng đời di động. <em>Câu gọi mẫu:</em> "Nhúng cuộc họp Zoom vào ứng dụng iOS."</li>
+<li><code>meeting-sdk/linux</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho Linux: bot họp C++ không giao diện, truy cập âm thanh và hình thô, chép lời, ghi hình, tích hợp AI. <em>Câu gọi mẫu:</em> "Làm bot họp chạy trên máy chủ Linux để chép lời tự động."</li>
+<li><code>zoom-meeting-sdk-macos</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho ứng dụng macOS: giao diện mặc định hoặc tùy biến, PKCE và SDK, bộ điều khiển tính năng họp trên máy tính. <em>Câu gọi mẫu:</em> "Nhúng cuộc họp Zoom vào ứng dụng macOS."</li>
+<li><code>zoom-meeting-sdk-react-native</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho React Native: nhúng họp trên iOS và Android, xác thực JWT, vào hoặc bắt đầu họp, xử lý cầu nối gốc. <em>Câu gọi mẫu:</em> "Nhúng họp Zoom vào ứng dụng React Native."</li>
+<li><code>zoom-meeting-sdk-unreal</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho Unreal Engine: lớp bao C++ và Blueprint, đối chiếu lớp bao với SDK gốc. <em>Câu gọi mẫu:</em> "Nhúng họp Zoom vào dự án Unreal."</li>
+<li><code>zoom-meeting-sdk-web</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho web, hai kiểu Client View và Component View; có cấu hình SharedArrayBuffer cho video HD, xem dạng lưới, nền ảo. <em>Câu gọi mẫu:</em> "Nhúng họp Zoom vào ứng dụng React của mình."</li>
+<li><code>zoom-meeting-sdk-web-client-view</code> (Claude tự nạp, không gõ lệnh): Meeting SDK web kiểu Client View: toàn trang với giao diện Zoom quen thuộc, dùng đối tượng <code>ZoomMtg</code>, hợp khi cần tích hợp nhanh, ít tùy biến. <em>Câu gọi mẫu:</em> "Tích hợp nhanh họp Zoom toàn trang vào web."</li>
+<li><code>zoom-meeting-sdk-web-component-view</code> (Claude tự nạp, không gõ lệnh): Meeting SDK web kiểu Component View: thành phần nhúng được, API dạng Promise, hợp với React, Vue, Angular và bố cục riêng. <em>Câu gọi mẫu:</em> "Làm giao diện riêng quanh cuộc họp Zoom thật trong ứng dụng Vue."</li>
+<li><code>zoom-meeting-sdk-windows</code> (Claude tự nạp, không gõ lệnh): Meeting SDK cho Windows: C++ gốc, kiến trúc giao diện tùy biến, dữ liệu âm thanh và hình thô, bot không giao diện, vòng lặp thông điệp Windows. <em>Câu gọi mẫu:</em> "Làm ứng dụng Windows nhúng họp Zoom."</li>
+<li><code>probe-sdk</code> (Claude tự nạp, không gõ lệnh): Probe SDK: kiểm tra trình duyệt, quyền media, chẩn đoán âm thanh và video, độ sẵn sàng của mạng trước khi người dùng vào họp (thư mục <code>probe-sdk</code>). <em>Câu gọi mẫu:</em> "Kiểm tra máy và mạng của khách trước khi họ vào buổi họp."</li>
+<li><code>rivet-sdk</code> (Claude tự nạp, không gõ lệnh): Rivet SDK: xử lý xác thực, bộ nhận webhook, lớp bao API, ghép nhiều mô-đun, mẫu nhận trên Lambda (thư mục <code>rivet-sdk</code>). <em>Câu gọi mẫu:</em> "Dùng Rivet để dựng máy chủ nhận sự kiện Zoom."</li>
+<li><code>zoom-rtms</code> (Claude tự nạp, không gõ lệnh): RTMS: xử lý âm thanh, video, chat, chép lời, chia sẻ màn hình và giọng nói tổng đài theo thời gian thực (thư mục <code>rtms</code>). <em>Câu gọi mẫu:</em> "Lấy dòng âm thanh cuộc họp theo thời gian thực để phân tích."</li>
+<li><code>scribe</code> (Claude tự nạp, không gõ lệnh): Scribe của Zoom AI Services: chép lời tệp media đã tải lên hoặc lưu sẵn, xác thực JWT, chế độ nhanh, tác vụ hàng loạt, thiết kế quy trình bản chép lời. <em>Câu gọi mẫu:</em> "Chép lời hàng loạt các file ghi âm cuộc họp đã lưu."</li>
+<li><code>ui-toolkit/web</code> (Claude tự nạp, không gõ lệnh): UI Toolkit của Video SDK cho web: giao diện React dựng sẵn khi không muốn tự làm toàn bộ giao diện (thư mục <code>ui-toolkit</code>). <em>Câu gọi mẫu:</em> "Dùng giao diện React dựng sẵn cho phiên video của mình."</li>
+<li><code>zoom-video-sdk-android</code> (Claude tự nạp, không gõ lệnh): Video SDK cho Android: trải nghiệm video tùy biến hoàn toàn, mã phiên, tùy chọn media thô, trạng thái người tham gia theo sự kiện. <em>Câu gọi mẫu:</em> "Làm phiên video riêng trên Android."</li>
+<li><code>zoom-video-sdk-flutter</code> (Claude tự nạp, không gõ lệnh): Video SDK cho Flutter: ứng dụng video tùy biến, kiến trúc theo sự kiện, vòng đời phiên, nền tảng di động. <em>Câu gọi mẫu:</em> "Làm phiên video riêng bằng Flutter."</li>
+<li><code>zoom-video-sdk-ios</code> (Claude tự nạp, không gõ lệnh): Video SDK cho iOS: phiên video tùy biến, xác thực phiên bằng mã, luồng media và người tham gia theo sự kiện. <em>Câu gọi mẫu:</em> "Làm phiên video riêng trên iOS."</li>
+<li><code>video-sdk/linux</code> (Claude tự nạp, không gõ lệnh): Video SDK cho Linux: bot C++ không giao diện, thu và chèn âm thanh, hình thô, tích hợp Qt/GTK, hỗ trợ Docker. <em>Câu gọi mẫu:</em> "Làm bot video chạy trong Docker trên Linux."</li>
+<li><code>zoom-video-sdk-macos</code> (Claude tự nạp, không gõ lệnh): Video SDK cho ứng dụng macOS: giao diện gốc tùy biến, vào phiên bằng mã, quy trình thiết bị và media trên máy tính. <em>Câu gọi mẫu:</em> "Làm phiên video riêng cho ứng dụng macOS."</li>
+<li><code>zoom-video-sdk-react-native</code> (Claude tự nạp, không gõ lệnh): Video SDK cho React Native: phiên video di động tùy biến, trình nghe sự kiện, API dạng helper, luồng mã JWT phía máy chủ. <em>Câu gọi mẫu:</em> "Làm phiên video riêng bằng React Native."</li>
+<li><code>zoom-video-sdk-unity</code> (Claude tự nạp, không gõ lệnh): Video SDK cho Unity: lớp bao, ánh xạ trạng thái cảnh và giao diện Unity sang sự kiện của Video SDK. <em>Câu gọi mẫu:</em> "Làm phiên video trong ứng dụng Unity."</li>
+<li><code>video-sdk/web</code> (Claude tự nạp, không gõ lệnh): Video SDK cho web: JavaScript/TypeScript, phiên video trên trình duyệt, giao tiếp thời gian thực, chia sẻ màn hình, ghi hình, chép lời trực tiếp. <em>Câu gọi mẫu:</em> "Làm phòng tư vấn video ngay trong trình duyệt."</li>
+<li><code>video-sdk/windows</code> (Claude tự nạp, không gõ lệnh): Video SDK cho Windows: C++, phiên video, thu âm thanh và hình thô, chia sẻ màn hình, ghi hình, giao tiếp thời gian thực. <em>Câu gọi mẫu:</em> "Làm phiên video riêng cho ứng dụng Windows."</li>
+<li><code>virtual-agent/android</code> (Claude tự nạp, không gõ lệnh): Virtual Agent cho Android qua WebView: cầu nối Java/Kotlin, xử lý URL gốc, chuyển giao sang nhân viên, nhúng an toàn theo vòng đời. <em>Câu gọi mẫu:</em> "Nhúng trợ lý ảo vào ứng dụng Android."</li>
+<li><code>virtual-agent/ios</code> (Claude tự nạp, không gõ lệnh): Virtual Agent cho iOS qua WKWebView: chèn script Swift/Objective-C, bộ xử lý thông điệp, chuyển giao sang nhân viên, chính sách điều hướng URL. <em>Câu gọi mẫu:</em> "Nhúng trợ lý ảo vào ứng dụng iOS."</li>
+<li><code>virtual-agent/web</code> (Claude tự nạp, không gõ lệnh): Virtual Agent cho web: mở chat theo chiến dịch hoặc mã mục nhập, điều khiển theo sự kiện, cập nhật ngữ cảnh người dùng, triển khai tương thích CSP. <em>Câu gọi mẫu:</em> "Nhúng trợ lý ảo vào website."</li>
+<li><code>zoom-apps-sdk</code> (Claude tự nạp, không gõ lệnh): Zoom Apps SDK: ứng dụng web chạy bên trong cuộc họp, hội thảo trực tuyến, ứng dụng chính hoặc Zoom Phone (thư mục <code>zoom-apps-sdk</code>). <em>Câu gọi mẫu:</em> "Làm ứng dụng chạy ngay bên trong cuộc họp Zoom."</li>
+<li><code>zoom-mcp/whiteboard</code> (Claude tự nạp, không gõ lệnh): hướng dẫn cho kết nối Zoom Whiteboard MCP: xác thực, endpoint, ánh xạ mã định danh, công cụ như liệt kê và lấy bảng trắng. <em>Câu gọi mẫu:</em> "Liệt kê các bảng trắng Zoom của mình qua MCP."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<p><strong>Apollo:</strong> README không nói độ phủ dữ liệu theo quốc gia. Nhận xét của chúng mình, chưa kiểm: dữ liệu liên hệ có thể thưa hơn với doanh nghiệp nhỏ ở Việt Nam, nên các bạn thử với vài khách trước khi nạp cả danh sách vào chuỗi gửi thư, và tránh lãng phí credit.</p>
+<p><strong>Brand Voice và Common Room:</strong> cả hai viết quy trình và ví dụ bằng tiếng Anh. Nhận xét của chúng mình, chưa thử: tài liệu thương hiệu tiếng Việt cần kiểm kỹ kết quả tìm và giọng văn; nhiều đội ở Việt Nam dùng Zalo, Google Workspace hay công cụ bán hàng nội địa, những thứ không có trong danh sách kết nối của hai plugin này.</p>
+<p><strong>Slack:</strong> README yêu cầu quản trị viên workspace duyệt tích hợp MCP trước. Với công ty có quy định về dữ liệu, các bạn nên hỏi bộ phận phụ trách công nghệ hoặc pháp lý trước khi cho AI đọc tin nhắn nội bộ. Đây là lời khuyên của chúng mình, README không nói.</p>
+<p><strong>Zoom:</strong> plugin viết cho người xây ứng dụng. Nếu các bạn chỉ muốn tóm tắt cuộc họp của mình thì cần mã truy cập OAuth từ tài khoản Zoom và nên để người rành kỹ thuật hỗ trợ. Mã truy cập coi như mật khẩu, không để lộ.</p>
+<p>Chúng mình chưa cài thử năm plugin đối tác này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic và README của từng đối tác.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho chủ cơ sở nhỏ: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Plugin small-business của Anthropic có 44 kỹ năng cho chủ shop, quán, doanh nghiệp nhỏ: tiền, bán hàng, marketing, tuyển người. Cách cài và cách gọi.">
+<meta property="og:title" content="Kỹ năng Claude cho chủ cơ sở nhỏ: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho chủ cơ sở nhỏ: cách cài và cách gọi</h1>
+  <p>Plugin small-business của Anthropic có 44 kỹ năng cho chủ shop, quán, doanh nghiệp nhỏ: tiền, bán hàng, marketing, tuyển người. Cách cài và cách gọi.</p>
+  <div class="pills"><span class="pill">Chủ cơ sở nhỏ</span><span class="pill">44 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhóm này dành cho chủ cơ sở nhỏ: chủ shop, chủ quán, chủ doanh nghiệp tự lo cả tiền, bán hàng, marketing và tuyển người. Anthropic gom các việc đó vào một plugin tên <code>small-business</code>, và plugin này có 44 kỹ năng (chúng mình đếm lại từ thư mục <code>skills/</code> của kho).</p>
+<p>README của plugin viết rằng các bạn không cần nhớ tên kỹ năng nào. Các bạn nói việc mình cần, ví dụ "ai đang nợ tiền mình?", và Claude chọn kỹ năng phù hợp. Theo README, mọi kỹ năng đều dừng lại hỏi trước khi gửi, đăng hay thanh toán bất cứ thứ gì.</p>
+
+<h2>Cài đặt</h2>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở <a href="https://claude.com/plugins/">claude.com/plugins</a> trong Cowork, tìm plugin Small Business và cài.</li>
+<li><strong>NGƯỜI:</strong> gõ "get me started" (hoặc "giúp mình bắt đầu"). README mô tả đây là phần khởi động khoảng 15 phút: nối hai công cụ đầu tiên, chạy thử một việc thật, tìm hiểu doanh nghiệp của các bạn và lấy màu thương hiệu cho báo cáo.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở terminal và chạy hai lệnh sau.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install small-business@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> Claude Code tải plugin về. Theo Docs, các bạn có thể được hỏi chọn phạm vi cài (cho riêng bạn, cho cả kho mã, hoặc chỉ trong kho mã hiện tại) và đọc thông báo cuối để biết plugin đã dùng được ngay hay cần chạy <code>/reload-plugins</code>.</li>
+<li><strong>NGƯỜI:</strong> kiểm đã cài: mở Claude Code, gõ <code>/plugin</code> và xem thẻ <strong>Installed</strong>. Hoặc gõ <code>/</code> và tìm các lệnh có dạng <code>/small-business:&lt;tên-kỹ-năng&gt;</code>.</li>
+<li><strong>NGƯỜI:</strong> khi cần tắt hoặc gỡ, chạy <code>claude plugin disable small-business@knowledge-work-plugins</code> hoặc <code>claude plugin uninstall small-business@knowledge-work-plugins</code>.</li>
+</ol>
+<h3>Nối công cụ (không bắt buộc)</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> nối các công cụ mình đang dùng. README ghi rõ nếu chưa nối gì thì mọi kỹ năng vẫn chạy được từ file CSV xuất ra, email dán vào, file PDF tải lên hoặc nói chuyện trực tiếp; kết nối chỉ làm kết quả sâu hơn chứ không bắt buộc.</li>
+<li><strong>TỰ ĐỘNG:</strong> plugin đã khai sẵn 35 kết nối trong file <code>.mcp.json</code>: Airwallex, Apollo.io, Atlassian Rovo, Canva, Clay, DocuSign, Emergent, Expensify, Gmail, Google Calendar, Google Drive, Gusto, HubSpot, Intuit Mailchimp, Intuit QuickBooks, monday.com, MYOB, Notion, PayPal, Ramp, RingEx Chat, Shopify, Slack, Square, Stripe, TikTok Ads, Trello, Wix, Xero, Zapier, Zoho Books, Zoho CRM, Zoho Desk, Zoho Projects, Zoom. Kỹ năng <code>build-connector</code> nối thêm công cụ nào chưa có trong danh sách qua Zapier.</li>
+<li>Nếu các bạn đã nối một công cụ từ trước, README nói có thể thấy nó hiện hai lần: một lần ở kết nối của riêng bạn, một lần ở thẻ Connectors của plugin. Đó là cùng một công cụ, dùng một mục là đủ.</li>
+</ol>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách. README gốc của kho viết rằng kỹ năng tự chạy khi đúng việc, và có thể gọi thẳng bằng lệnh gõ tắt.</p>
+<ol>
+<li><strong>Nói việc bằng lời thường.</strong> Ví dụ: "Mình lo tuần này không đủ tiền trả lương" hoặc "Có một khách đang bực". Claude chọn kỹ năng phù hợp, và <code>smb-router</code> là cửa vào cho những câu nói chung chung.</li>
+<li><strong>Gọi thẳng bằng lệnh</strong> theo dạng <code>/small-business:&lt;tên-kỹ-năng&gt;</code>. Ví dụ:
+<pre>/small-business:invoice-chase
+/small-business:cash-flow-snapshot
+/small-business:inbox-manager</pre></li>
+</ol>
+<p>Năm kỹ năng chạy theo chuỗi có thêm tham số, ghi ở đầu file SKILL.md của từng kỹ năng:</p>
+<ul>
+<li><code>/small-business:call-list</code>: <code>--n</code> (số khách muốn lấy, 1 đến 10, mặc định 5) và <code>--date</code> (ngày, dạng YYYY-MM-DD).</li>
+<li><code>/small-business:close-month</code>: <code>--month</code> (dạng YYYY-MM, mặc định là tháng trước) và <code>--save-to</code> (<code>files</code>, <code>desktop</code> hoặc <code>both</code>).</li>
+<li><code>/small-business:monday-brief</code>: <code>--post</code> (<code>slack</code>, <code>teams</code> hoặc <code>none</code>) và <code>--save-to</code>.</li>
+<li><code>/small-business:plan-payroll</code>: <code>--horizon</code> (30, 60 hoặc 90 ngày) và <code>--payroll-date</code>.</li>
+<li><code>/small-business:tax-prep</code>: <code>--mode</code> (<code>quarterly</code>, <code>1099</code> hoặc <code>both</code>) và <code>--year</code>.</li>
+</ul>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>README chia 44 kỹ năng thành bảy nhóm. Mười một kỹ năng trong đó là chuỗi nối nhiều kỹ năng khác, có điểm chờ duyệt ở mỗi bước.</p>
+<h3>Tiền và sổ sách (12)</h3>
+<ul>
+<li><code>/small-business:ap-processor</code>: đọc hóa đơn và sao kê của nhà cung cấp từ hộp thư hoặc file PDF, ảnh chụp, tách nhà cung cấp, số tiền, hạn thanh toán, định khoản rồi soạn sẵn bút toán và đợt thanh toán để chủ duyệt một lượt. <em>Câu gọi mẫu:</em> "Hóa đơn nhà cung cấp đang chất đống, đọc giúp mình xem tháng này phải trả những gì."</li>
+<li><code>/small-business:cash-flow-snapshot</code>: đọc khoản phải thu, phải trả và chi phí cố định rồi dự báo dòng tiền 30/60/90 ngày, kèm các cảnh báo rủi ro và file XLSX. <em>Câu gọi mẫu:</em> "Dự báo dòng tiền 60 ngày tới giúp mình, cuối tháng có đủ tiền không?"</li>
+<li><code>/small-business:close-month</code>: chốt sổ tháng theo chuỗi ba bước: đối soát sổ kế toán, làm mới dự báo dòng tiền, rồi lập và gửi bộ hồ sơ chốt sổ. <em>Câu gọi mẫu:</em> "Chốt sổ tháng trước giúp mình và gửi bộ hồ sơ cho kế toán."</li>
+<li><code>/small-business:invoice-chase</code>: soạn thư nhắc hóa đơn quá hạn, giọng nhẹ với khách tốt, giọng cứng hơn với khách hay trả trễ; gửi hay không do chủ quyết. <em>Câu gọi mẫu:</em> "Ai đang nợ tiền mình? Soạn giúp mình tin nhắc từng người."</li>
+<li><code>/small-business:month-end-prep</code>: đối soát sổ kế toán với các khoản thanh toán qua cổng thanh toán, đánh dấu giao dịch trùng hoặc thiếu chứng từ, viết nhận xét lãi lỗ và xuất bộ hồ sơ chốt sổ. <em>Câu gọi mẫu:</em> "Chỉ đối soát giúp mình, chưa cần dự báo hay gửi đi đâu."</li>
+<li><code>/small-business:pay-the-bills</code>: đi hết đường từ hộp thư hóa đơn đến đợt thanh toán đã dựng sẵn: đọc và định khoản, kiểm tra tiền mặt, rồi trình duyệt. Định khoản và thanh toán là hai lần duyệt riêng. <em>Câu gọi mẫu:</em> "Hóa đơn chất đống rồi, xử lý giúp mình từ đầu đến lúc sẵn sàng trả."</li>
+<li><code>/small-business:payroll-prep</code>: gom bảng chấm công, cộng giờ thường, giờ tăng ca, ngày nghỉ phép của từng người, nêu mọi điểm bất thường rồi dựng sẵn kỳ lương để chủ duyệt từng dòng. <em>Câu gọi mẫu:</em> "Kiểm bảng chấm công giúp mình trước khi tính lương."</li>
+<li><code>/small-business:plan-payroll</code>: chạy chuỗi "đủ tiền trả lương chưa": dự báo dòng tiền, soạn thư đòi nợ để bù chỗ thiếu, rồi chuẩn bị kỳ lương. Chuỗi này không bao giờ bấm nút trả lương thay chủ. <em>Câu gọi mẫu:</em> "Thứ Sáu tới trả lương, mình có đủ tiền không?"</li>
+<li><code>/small-business:report-builder</code>: biến mô tả báo cáo định kỳ bằng lời thường thành báo cáo chạy lại được, có tóm tắt trong khung chat và file XLSX, lưu định nghĩa để chạy lại theo lịch. <em>Câu gọi mẫu:</em> "Lập giúp mình báo cáo doanh thu theo từng chi nhánh, tuần nào cũng chạy lại."</li>
+<li><code>/small-business:report-pack</code>: giao bộ báo cáo định kỳ của chủ theo lịch đã đặt: chạy báo cáo đã lưu, thêm bức tranh tổng quan để số liệu có bối cảnh. <em>Câu gọi mẫu:</em> "Gửi mình bộ báo cáo quen thuộc của tuần này."</li>
+<li><code>/small-business:tax-prep</code>: chuẩn bị tài liệu thuế theo chuỗi hai bước: xác nhận sổ đã chốt, rồi tính tạm nộp theo quý hoặc dựng danh sách và hồ sơ cuối năm cho kế toán. Đây là tài liệu để kế toán xem, không phải tư vấn thuế. <em>Câu gọi mẫu:</em> "Chuẩn bị giúp mình hồ sơ thuế quý này để gửi kế toán."</li>
+<li><code>/small-business:tax-season-organizer</code>: chuẩn bị tài liệu mùa thuế cho kế toán: ước tính tạm nộp theo quý từ thu nhập lũy kế, hoặc lọc danh sách nhà thầu cuối năm. Kho ghi rõ phần tính thuế theo luật liên bang Hoa Kỳ. <em>Câu gọi mẫu:</em> "Sổ đã chốt rồi, tổng hợp giúp mình tài liệu thuế cho kế toán."</li>
+</ul>
+<h3>Bán hàng và khách tiềm năng (8)</h3>
+<ul>
+<li><code>/small-business:call-list</code>: lập danh sách gọi hôm nay: chọn các khách tiềm năng đáng gọi nhất, gợi ý ý chính từ lịch sử email, chặn giờ trên lịch và soạn tin theo dõi. <em>Câu gọi mẫu:</em> "Hôm nay mình nên gọi cho ai? Chặn giờ trên lịch giúp mình luôn."</li>
+<li><code>/small-business:crm-autopilot</code>: giữ CRM luôn mới mà chủ không phải mở nó: tạo và cập nhật liên hệ, thương vụ từ email, lịch, bản ghi cuộc gọi; soạn tin cho thương vụ im lặng; dọn bản ghi trùng. <em>Câu gọi mẫu:</em> "Cập nhật CRM giúp mình từ các email tuần này."</li>
+<li><code>/small-business:grow-pipeline</code>: làm đầy phễu bán hàng từ đầu đến cuối: đọc thị trường và đối thủ, lập danh sách khách có lý do kèm theo, viết thư chào bằng giọng của chủ, ghi mọi lần liên hệ vào CRM. Mỗi chặng đều chờ chủ duyệt. <em>Câu gọi mẫu:</em> "Mình cần thêm khách, lập danh sách và soạn thư chào giúp mình."</li>
+<li><code>/small-business:lead-finder</code>: dựng danh sách khách đáng liên hệ: suy ra chân dung khách lý tưởng từ khách hiện có, tìm doanh nghiệp giống họ, người liên hệ phù hợp, chấm điểm và giao file XLSX. <em>Câu gọi mẫu:</em> "Tìm giúp mình thêm khách giống nhóm khách tốt nhất của mình."</li>
+<li><code>/small-business:lead-triage</code>: chấm điểm khách tiềm năng đến từ HubSpot theo mức quan tâm, độ phù hợp và độ gấp, xếp hạng người đáng gọi hôm nay, soạn tin theo dõi và đề xuất giờ hẹn. <em>Câu gọi mẫu:</em> "Xếp hạng giúp mình các khách mới, ai nên gọi trước?"</li>
+<li><code>/small-business:outreach-composer</code>: viết thư chào và chuỗi theo dõi nghe như chính chủ viết: học giọng từ thư đã gửi, bám vào một điều cụ thể về từng khách, mọi tin gửi đều chờ duyệt. <em>Câu gọi mẫu:</em> "Viết giúp mình thư chào cho nhóm khách này, đúng giọng của mình."</li>
+<li><code>/small-business:reactivate</code>: kéo lại khách đã lâu không mua: tìm người có khoảng cách vượt nhịp mua quen thuộc, xếp theo giá trị mối quan hệ, soạn tin gợi lại từng người. Tin đầu tiên nhắc đến khoảng trống chứ không chào bán ngay. <em>Câu gọi mẫu:</em> "Những khách quen nào lâu rồi không đặt hàng? Soạn giúp mình tin hỏi thăm."</li>
+<li><code>/small-business:speed-to-lead</code>: bảo đảm không có yêu cầu nào bị bỏ sót: theo dõi form web, hộp thư chung và CRM, soạn trả lời kèm giờ hẹn thật, báo ngay người cần xử lý gấp. Không tự gửi. <em>Câu gọi mẫu:</em> "Sáng nào cũng soạn sẵn trả lời cho các yêu cầu báo giá mới đêm qua."</li>
+</ul>
+<h3>Marketing (8)</h3>
+<ul>
+<li><code>/small-business:ad-manager</code>: đọc hiệu quả quảng cáo, nói bằng lời thường cái gì đang hiệu quả và cái gì đang đốt tiền, đề xuất đổi ngân sách, nhắm đối tượng, nội dung; chỉ thực thi sau khi chủ đồng ý. Dùng được với file CSV xuất ra. <em>Câu gọi mẫu:</em> "Quảng cáo tuần này cái nào đang đốt tiền? Đề xuất giúp mình chỉnh gì."</li>
+<li><code>/small-business:canva-creator</code>: nhận bản kế hoạch nội dung đã duyệt rồi chạy cả chiến dịch: dựng lịch đăng, tạo thiết kế Canva cho bài mạng xã hội, viết chú thích và nội dung email. Mỗi bước đều chờ chủ duyệt. <em>Câu gọi mẫu:</em> "Chạy chiến dịch theo bản kế hoạch này giúp mình."</li>
+<li><code>/small-business:content-strategy</code>: phân tích dữ liệu bán hàng để tìm món bán chạy và bán chậm, thêm yếu tố mùa vụ, rồi lập bản kế hoạch nội dung 30 ngày: đẩy gì, khuyến mãi gì, giữ gì. Chỉ ra chiến lược, không làm lịch hay hình. <em>Câu gọi mẫu:</em> "Tháng này mình nên quảng bá món nào?"</li>
+<li><code>/small-business:growth-pulse</code>: trả lời một câu: động cơ tăng trưởng có đang chạy không. Gom doanh số theo kênh, tỷ lệ chuyển đổi, hiệu quả chiến dịch, sản phẩm tốt và kém, cảm nhận của khách, rồi chốt ba việc nên làm tuần này. <em>Câu gọi mẫu:</em> "Marketing của mình có hiệu quả không?"</li>
+<li><code>/small-business:marketing-monday</code>: giao bản tin tăng trưởng đầu tuần trong một trang: động cơ tăng trưởng, khách nói gì, đối thủ đổi gì, ba việc nên làm. Có thể đặt chạy hằng tuần. <em>Câu gọi mẫu:</em> "Cho mình bản tin tăng trưởng sáng thứ Hai."</li>
+<li><code>/small-business:review-reputation</code>: theo dõi khách nói gì công khai lẫn riêng tư, gom thành các chủ đề kèm trích dẫn nguyên văn, soạn trả lời từng đánh giá, tìm khách có dấu hiệu rời đi và soạn lời kéo lại. <em>Câu gọi mẫu:</em> "Khách đang nói gì về quán mình trên Google? Soạn giúp mình trả lời."</li>
+<li><code>/small-business:seo-ai-visibility</code>: kiểm tra và sửa cả hai nửa của việc được tìm thấy: tìm kiếm thông thường và câu trả lời của trợ lý AI. Với cửa hàng online còn dọn hàng loạt tên và mô tả sản phẩm theo từng đợt duyệt. <em>Câu gọi mẫu:</em> "Website của mình trên Google và trên các trợ lý AI đang ra sao?"</li>
+<li><code>/small-business:social-content-engine</code>: vận hành nội dung như một việc thường trực: giữ lịch đăng cuốn chiếu, học giọng của chủ, tạo hình Canva đúng nhận diện, viết chú thích, chuyển một nội dung sang mọi kênh và chuẩn bị bài chờ duyệt thay vì tự đăng. <em>Câu gọi mẫu:</em> "Lên lịch bài đăng cả tháng giúp mình, mình duyệt rồi mới đăng."</li>
+</ul>
+<h3>Khách hàng và hồ sơ (4)</h3>
+<ul>
+<li><code>/small-business:contract-review</code>: xem nhanh hợp đồng bảo mật, hợp đồng khung, hợp đồng nhà cung cấp cho doanh nghiệp không có pháp chế: đánh dấu điều khoản bất thường, giải thích rủi ro bằng lời thường, xuất bản chỉnh sửa thành file DOCX riêng. <em>Câu gọi mẫu:</em> "Xem giúp mình hợp đồng này, có điều khoản nào đáng lo không?"</li>
+<li><code>/small-business:grant-rfp-writer</code>: tìm cơ hội tài trợ hoặc mời thầu mà tổ chức đủ điều kiện, cân nhắc có nên làm không trước khi viết, soạn hồ sơ từ các hồ sơ cũ và theo dõi hạn nộp. Kho ghi dành cho tổ chức phi lợi nhuận, nhà thầu nhà nước và giáo dục. <em>Câu gọi mẫu:</em> "Có gói tài trợ nào mình đủ điều kiện nộp không? Soạn hồ sơ giúp mình."</li>
+<li><code>/small-business:proposal-builder</code>: biến nội dung buổi trao đổi ban đầu (bản ghi cuộc gọi, ghi âm, ảnh hiện trường, bản vẽ, ghi chú) thành báo giá hoặc đề xuất có thương hiệu, tính chi phí theo mẫu và bảng giá cũ của chủ, xuất DOCX và PDF. <em>Câu gọi mẫu:</em> "Soạn giúp mình báo giá cho khách vừa gặp, đây là ghi chú cuộc gọi."</li>
+<li><code>/small-business:ticket-deflector</code>: đọc email hoặc yêu cầu hỗ trợ của khách, tra tình trạng đơn hàng và hoàn tiền, soạn trả lời đúng giọng chủ. Hoàn tiền chỉ thực hiện khi chủ duyệt rõ ràng. Có chế độ rà đơn hàng sắp có vấn đề. <em>Câu gọi mẫu:</em> "Khách này đang bực, soạn giúp mình thư trả lời và kiểm tra đơn của họ."</li>
+</ul>
+<h3>Vận hành và tuyển người (5)</h3>
+<ul>
+<li><code>/small-business:hiring-screener</code>: biến chồng hồ sơ ứng tuyển thành danh sách rút gọn, chấm chỉ theo tiêu chí của vị trí, soạn thư trả lời từng ứng viên, xếp lịch phỏng vấn và danh mục việc cho người được nhận. <em>Câu gọi mẫu:</em> "Mình có 40 hồ sơ mà không có thời gian, lọc giúp mình."</li>
+<li><code>/small-business:inbox-manager</code>: rút hộp thư đầy thành danh sách ngắn việc cần chủ xử lý: phân loại, soạn trả lời bằng giọng của chủ, rút việc cần làm và hạn chót trong các chuỗi thư dài, chuyển hóa đơn, khách và lịch hẹn sang kỹ năng phụ trách. <em>Câu gọi mẫu:</em> "Hộp thư mình 300 thư chưa đọc, thư nào cần mình trả lời?"</li>
+<li><code>/small-business:inventory-planner</code>: tính cần đặt gì và khi nào dựa trên hàng thực sự bán ra: tốc độ bán 7 và 28 ngày, ngày hết hàng thận trọng, số lượng đặt cho 60 ngày, soạn đơn đặt hàng và thư gửi nhà cung cấp. Cũng chỉ ra hàng tồn đọng cần xả. <em>Câu gọi mẫu:</em> "Mặt hàng nào sắp hết? Soạn giúp mình đơn đặt hàng."</li>
+<li><code>/small-business:job-post-builder</code>: dựng trọn gói tuyển dụng từ một bản yêu cầu: tin tuyển dụng, bộ câu hỏi phỏng vấn có thang chấm, mẫu thư mời nhận việc. Không sàng lọc hay xếp hạng ứng viên. <em>Câu gọi mẫu:</em> "Mình cần tuyển một nhân viên bán hàng, viết giúp tin tuyển dụng và câu hỏi phỏng vấn."</li>
+<li><code>/small-business:restock</code>: biến hàng đang bán thành quyết định nhập hàng và đưa nó vào sổ sách: tính tốc độ bán và ngày hết hàng, soạn đơn đặt hàng và thư nhà cung cấp, rồi chuẩn bị bút toán để hóa đơn khớp với đơn khi hàng về. <em>Câu gọi mẫu:</em> "Mình có sắp hết hàng không? Lập đơn nhập giúp mình."</li>
+</ul>
+<h3>Bản tin tổng hợp (2)</h3>
+<ul>
+<li><code>/small-business:business-pulse</code>: lập bản chụp nhanh một trang về tình hình kinh doanh: tiền mặt, xu hướng doanh số, tiến triển khách tiềm năng, cam kết trong tuần, các mục cần theo dõi gấp, và việc quan trọng nhất hôm nay. Có công cụ nào nối thì dùng công cụ đó. <em>Câu gọi mẫu:</em> "Công việc kinh doanh của mình đang thế nào?"</li>
+<li><code>/small-business:monday-brief</code>: chạy buổi họp sáng thứ Hai theo chuỗi: bản chụp nhanh từ business-pulse, các báo cáo đã lưu từ report-builder, cộng lịch và thư tuần tới, gộp thành một tài liệu một trang. <em>Câu gọi mẫu:</em> "Cho mình bản tin sáng thứ Hai."</li>
+</ul>
+<h3>Cài đặt ban đầu và tự xây (5)</h3>
+<ul>
+<li><code>/small-business:smb-onboard</code>: dẫn chủ cơ sở qua phần khởi động: nối hai công cụ đầu tiên, chạy thử một việc để thấy giá trị ngay, hỏi về doanh nghiệp, lưu bối cảnh cho mọi kỹ năng khác và đặt nhịp kiểm tra hằng tuần. <em>Câu gọi mẫu:</em> "Giúp mình bắt đầu."</li>
+<li><code>/small-business:smb-router</code>: cửa vào của plugin: nghe việc chủ cần, mơ hồ hay cụ thể đều được, rồi chọn kỹ năng hoặc lệnh phù hợp; cũng giải thích plugin có gì và gợi ý bước tiếp theo. <em>Câu gọi mẫu:</em> "Mình không biết bắt đầu từ đâu, plugin này làm được gì cho quán mình?"</li>
+<li><code>/small-business:brand-style</code>: đặt và cập nhật diện mạo thương hiệu cùng cách nhận kết quả, để mọi trang và tài liệu về sau tự theo. Lấy thương hiệu từ đường dẫn website hoặc mô tả bằng lời, không cần mã màu. <em>Câu gọi mẫu:</em> "Cập nhật thương hiệu của mình theo website này."</li>
+<li><code>/small-business:build-agent</code>: biến việc chủ cứ làm tay thành kỹ năng có tên, gọi theo tên hoặc chạy theo lịch: xem chủ làm một lần hoặc nghe mô tả, xác định phần đổi và phần cố định, viết kỹ năng có điểm chờ duyệt. <em>Câu gọi mẫu:</em> "Tuần nào mình cũng làm việc này, làm thành một kỹ năng để mình gọi lại được."</li>
+<li><code>/small-business:build-connector</code>: nối Claude với công cụ chưa có kết nối chính thức: kiểm tra thư mục kết nối của Claude trước, nếu chưa có thì nối qua Zapier, xử lý thông tin đăng nhập an toàn, có điểm chờ duyệt cho mọi thao tác ghi. <em>Câu gọi mẫu:</em> "Phần mềm quản lý của mình chưa được hỗ trợ, nối giúp mình."</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Phần tiền và thuế viết cho thị trường Mỹ. Kỹ năng <code>tax-prep</code> và <code>tax-season-organizer</code> tính thuế liên bang Hoa Kỳ; theo kho, doanh nghiệp ngoài Mỹ chỉ nhận bộ hồ sơ sổ sách đã chốt để đưa kế toán, không có phép tính thuế Mỹ. Các bạn không nên dùng phần này để tính thuế ở Việt Nam.</li>
+<li>Sổ kế toán được hỗ trợ là QuickBooks, Xero, MYOB, Zoho Books và NetSuite. Nhận xét của chúng mình: nhiều doanh nghiệp nhỏ ở Việt Nam dùng phần mềm kế toán trong nước, các bạn nên dùng đường xuất file CSV hoặc Excel mà README nói mọi kỹ năng đều hỗ trợ.</li>
+<li>Cổng thanh toán trong danh sách (PayPal, Stripe, Square) và các công cụ như HubSpot, Gusto là công cụ phổ biến ở Mỹ. Nhận xét của chúng mình: ví điện tử, mạng xã hội và sàn thương mại điện tử mà khách Việt hay dùng không có trong danh sách, nên các bạn cần xuất dữ liệu ra file rồi đưa vào.</li>
+<li>Các kỹ năng kế toán, thuế, hợp đồng, tuyển dụng chỉ hỗ trợ quy trình. README ghi rõ plugin không đưa ra tư vấn tài chính, thuế, pháp lý hay nhân sự, và các bạn cần để người có chuyên môn xem lại trước khi dùng.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>

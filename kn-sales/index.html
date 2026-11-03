@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ năng Claude cho nhân viên bán hàng: cách cài và cách gọi — Lazy AI Guide</title>
+<meta name="description" content="Nhóm sales của Anthropic có 36 kỹ năng cho người bán hàng: cách cài trên Cowork và Claude Code, cách gọi bằng /sales và danh sách đầy đủ.">
+<meta property="og:title" content="Kỹ năng Claude cho nhân viên bán hàng: cách cài và cách gọi">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Kỹ năng Claude cho nhân viên bán hàng: cách cài và cách gọi</h1>
+  <p>Nhóm sales của Anthropic có 36 kỹ năng cho người bán hàng: cách cài trên Cowork và Claude Code, cách gọi bằng /sales và danh sách đầy đủ.</p>
+  <div class="pills"><span class="pill">Bán hàng</span><span class="pill">36 kỹ năng</span><span class="pill">Cách cài</span></div>
+</header>
+<main>
+<p>Nhóm bán hàng dành cho nhân viên kinh doanh và trưởng nhóm bán hàng. Các kỹ năng trong nhóm giúp chuẩn bị cuộc gọi, tóm tắt và theo dõi sau cuộc gọi, tìm hiểu khách, xử lý thương vụ, rà pipeline và viết dự báo. Plugin <code>sales</code> có 36 kỹ năng (chúng mình đếm thật trong kho gốc của Anthropic).</p>
+<p>Các kỹ năng làm việc với công cụ nhóm các bạn đang dùng (CRM, email, lịch, chat, công cụ ghi âm cuộc gọi). Chưa nối công cụ nào thì các bạn tải file lên hoặc dán ghi chú, kỹ năng vẫn chạy từ đó.</p>
+
+<h2>Cài đặt</h2>
+<p>Có hai cách, tùy các bạn dùng ứng dụng nào.</p>
+<h3>Cách 1: Claude Cowork</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> vào <a href="https://claude.com/plugins/">claude.com/plugins</a>, tìm plugin <code>sales</code> và cài.</li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt. Kỹ năng chạy khi các bạn nói đúng việc.</li>
+</ol>
+<h3>Cách 2: Claude Code</h3>
+<ol>
+<li><strong>NGƯỜI:</strong> mở cửa sổ dòng lệnh (terminal), chạy hai lệnh sau. Lệnh đầu thêm kho của Anthropic, lệnh sau cài plugin.
+<pre>claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install sales@knowledge-work-plugins</pre></li>
+<li><strong>TỰ ĐỘNG:</strong> cài xong, plugin tự kích hoạt trong các phiên làm việc sau đó.</li>
+<li><strong>NGƯỜI:</strong> kiểm tra đã cài chưa. Mở Claude Code, gõ <code>/plugin</code> rồi xem thẻ Installed (đã cài).</li>
+<li><strong>NGƯỜI:</strong> khi cần tắt hoặc gỡ, chạy <code>claude plugin disable sales@knowledge-work-plugins</code> hoặc <code>claude plugin uninstall sales@knowledge-work-plugins</code>.</li>
+</ol>
+<h3>Nối công cụ (không bắt buộc)</h3>
+<p>Mọi kỹ năng đều chạy khi chưa nối gì, bằng file tải lên hoặc ghi chú dán vào. Nối công cụ thì kỹ năng đọc được dữ liệu thật. Theo file CONNECTORS.md của nhóm, các loại công cụ gồm:</p>
+<ul>
+<li>CRM: HubSpot, Salesforce, Close, Monday (thêm Pipedrive, Attio, Zoho CRM, Copper).</li>
+<li>Email: Gmail, Microsoft 365 (Outlook). Lịch: Google Calendar, Calendly, Microsoft 365 (Outlook).</li>
+<li>Chat: Slack, Microsoft 365 (Teams). Tài liệu: Google Drive, Notion, Atlassian (Confluence), Microsoft 365 (SharePoint).</li>
+<li>Ghi âm và phân tích cuộc gọi: Gong, Fireflies, Zoom, Otter.ai. Dữ liệu khách: Clay, ZoomInfo, Apollo, Lusha, Crunchbase.</li>
+<li>Sales engagement: Outreach, Apollo. Tình báo đối thủ: Similarweb. Quản lý công việc: Atlassian (Jira).</li>
+</ul>
+<p>Với Salesforce và Microsoft 365, quản trị viên của tổ chức phải bật kết nối trong Claude trước, người dùng mới đăng nhập được. Mỗi kết nối cho phép đặt từng công cụ ở mức cho phép, hỏi trước hoặc chặn, và kỹ năng không vượt quá mức đó.</p>
+
+<h2>Cách gọi kỹ năng</h2>
+<p>Có hai cách.</p>
+<ul>
+<li>Nói việc bằng lời thường. Kỹ năng tự chạy khi đúng việc. Ví dụ: "Research Acme Corp before my call tomorrow" sẽ gọi <code>account-research</code>, hay "Write my forecast for this quarter" sẽ gọi <code>forecast</code> (hai ví dụ lấy từ README gốc; các bạn có thể nói tiếng Việt).</li>
+<li>Gọi thẳng bằng lệnh gõ tắt <code>/sales:&lt;ten-ky-nang&gt;</code>. Ví dụ: <code>/sales:call-prep</code> trước cuộc họp, <code>/sales:call-summary</code> sau cuộc gọi, <code>/sales:forecast</code> khi cần dự báo.</li>
+</ul>
+<p>Theo README, sau <code>/sales:call-summary</code> các bạn dán ghi chú hoặc bản ghi cuộc gọi, hoặc nêu tên cuộc gọi nếu đã nối công cụ ghi âm. Các bạn nhận được bản tóm tắt, thư theo dõi, tóm tắt cho nhóm và đề xuất cập nhật CRM. Chưa có gì được ghi vào CRM hay gửi đi cho tới khi các bạn đồng ý.</p>
+
+<h2>Các kỹ năng trong nhóm</h2>
+<p>36 kỹ năng, chia theo năm nhóm như README gốc.</p>
+<h3>Một ngày làm việc</h3>
+<ul>
+<li><code>/sales:setup</code>: Chạy lần đầu: cho xem công cụ nào đã nối và mỗi công cụ mở thêm được gì, học cách các bạn viết thư từ email đã gửi, rồi dựng ngay một bảng theo dõi mẫu. <em>Câu gọi mẫu:</em> "Thiết lập giúp mình lần đầu dùng nhóm bán hàng."</li>
+<li><code>/sales:daily-briefing</code>: Bản tin buổi sáng: các cuộc họp hôm nay kèm thông tin khách, thương vụ sắp chốt (có đánh dấu cái đã nguội), email khách đang chờ và những việc nên làm trước. <em>Câu gọi mẫu:</em> "Cho mình bản tin sáng hôm nay."</li>
+<li><code>/sales:call-prep</code>: Bản chuẩn bị trước cuộc gọi: người dự họp, lịch sử khách, nội dung các cuộc gọi trước, tình trạng thương vụ và câu hỏi khám phá gợi ý. <em>Câu gọi mẫu:</em> "Chuẩn bị cho mình cuộc họp 3 giờ chiều với công ty Minh Phát."</li>
+<li><code>/sales:call-summary</code>: Biến bản ghi hoặc ghi chú cuộc gọi thành thư theo dõi gửi khách, bản tóm tắt cho nhóm và các đề xuất cập nhật CRM. Chưa có gì được gửi hay ghi cho tới khi các bạn đồng ý. <em>Câu gọi mẫu:</em> "Tóm tắt cuộc gọi với công ty Minh Phát và soạn thư theo dõi giúp mình."</li>
+<li><code>/sales:inbox-sweep</code>: Quét email khách chưa đọc, phân loại, xếp thứ tự ưu tiên và soạn sẵn thư trả lời. <em>Câu gọi mẫu:</em> "Quét hộp thư giúp mình, email khách nào cần trả lời gấp?"</li>
+<li><code>/sales:schedule-meeting</code>: Tìm giờ phù hợp, soạn thư mời, đặt lịch trên Google Calendar hoặc Outlook, rồi ghi sự kiện vào CRM. <em>Câu gọi mẫu:</em> "Đặt giúp mình buổi demo với anh Hùng bên công ty Minh Phát vào tuần sau."</li>
+<li><code>/sales:log-activity</code>: Ghi một cuộc gọi, cuộc họp hoặc email đã diễn ra vào đúng khách, thương vụ và người liên hệ trong CRM. Bản nháp kèm nguồn, chỉ lưu khi các bạn bảo. <em>Câu gọi mẫu:</em> "Ghi giúp mình là sáng nay mình đã gọi cho chị Lan bên công ty Minh Phát."</li>
+<li><code>/sales:end-of-day</code>: Khép ngày làm việc: mọi cuộc gọi đã xử lý hoặc chủ động bỏ qua, CRM được cập nhật, các cam kết được ghi lại và ba việc đầu tiên của ngày mai. Đi cặp với daily-briefing. <em>Câu gọi mẫu:</em> "Chốt ngày giúp mình, mai mình cần làm gì đầu tiên?"</li>
+<li><code>/sales:weekly-wrap</code>: Tổng kết cuối tuần cho nhân viên hoặc trưởng nhóm: cái gì đã chốt, cái gì đã tiến, cái gì bị trượt, thứ Hai có gì. Có thể soạn sẵn bài đăng cho kênh chat của nhóm. <em>Câu gọi mẫu:</em> "Tổng kết tuần này giúp mình để gửi cho cả nhóm."</li>
+</ul>
+<h3>Khách hàng và tìm khách mới</h3>
+<ul>
+<li><code>/sales:account-research</code>: Tìm hiểu một công ty, và nếu muốn thì cả một người liên hệ: tổng quan, tin gần đây, ưu tiên có thể có, mức hợp với khách hàng lý tưởng (ICP). Đối chiếu với CRM xem công ty đã có chưa. <em>Câu gọi mẫu:</em> "Tìm hiểu công ty Minh Phát trước buổi gọi ngày mai."</li>
+<li><code>/sales:account-context</code>: Một bản tóm tắt về khách đang có, gom từ CRM, email, tài liệu, bản ghi cuộc gọi và chat nội bộ. <em>Câu gọi mẫu:</em> "Cập nhật cho mình tình hình khách Minh Phát đang ra sao."</li>
+<li><code>/sales:stakeholder-map</code>: Vẽ sơ đồ những người trong thương vụ: vai trò, ảnh hưởng, thái độ, ai còn thiếu và đường tiếp cận tốt nhất tới người các bạn chưa gặp. <em>Câu gọi mẫu:</em> "Ai là người quyết định ở Minh Phát, mình có đang chỉ nói chuyện với một người không?"</li>
+<li><code>/sales:draft-outreach</code>: Soạn email tiếp cận cá nhân hóa hoặc chuỗi nhiều lần liên hệ, tạo thành bản nháp để các bạn xem lại. Khi được nhờ, thêm người liên hệ vào chuỗi trong công cụ sales engagement. <em>Câu gọi mẫu:</em> "Soạn giúp mình email đầu tiên gửi chị Lan bên Minh Phát."</li>
+<li><code>/sales:lead-triage</code>: Chấm điểm một khách tiềm năng mới, hoặc xếp hạng cả danh sách tồn, theo ICP và khung đánh giá của các bạn; sau đó đề xuất mức ưu tiên và việc tiếp theo. <em>Câu gọi mẫu:</em> "Xếp hạng giúp mình danh sách khách tiềm năng trong file này."</li>
+<li><code>/sales:route-lead</code>: Quyết định ai nhận một khách hoặc thương vụ chưa có người phụ trách theo quy tắc của tổ chức, đưa ra thẻ phân công để người điều phối chấp nhận hoặc sửa, và soạn ghi chú bàn giao. <em>Câu gọi mẫu:</em> "Khách mới này nên giao cho ai trong nhóm?"</li>
+<li><code>/sales:account-tiering</code>: Chấm điểm và chia hạng một danh sách khách (hoặc cả tập khách các bạn phụ trách) theo mức hợp ICP và tín hiệu quan tâm, để biết nên dành thời gian cho ai. <em>Câu gọi mẫu:</em> "Chia hạng danh sách khách của mình, nhóm nào nên ưu tiên?"</li>
+<li><code>/sales:account-plan</code>: Lập hoặc làm mới kế hoạch khách hàng chiến lược: hiện trạng, mục tiêu, độ phủ người liên hệ, bản đồ cơ hội, rủi ro và kế hoạch hành động. Viết ra tài liệu và đồng bộ các trường chính vào CRM. <em>Câu gọi mẫu:</em> "Lập kế hoạch khách hàng cho Minh Phát trước kỳ họp quý."</li>
+<li><code>/sales:expansion-whitespace</code>: Tìm chỗ còn trống để bán thêm ở một khách hoặc cả tập khách: họ đang có gì, có thể có gì, bằng chứng cho từng hướng và các cơ hội cần tạo. <em>Câu gọi mẫu:</em> "Khách Minh Phát còn có thể bán thêm gì?"</li>
+</ul>
+<h3>Thương vụ</h3>
+<ul>
+<li><code>/sales:deal-review</code>: Xem sâu một thương vụ: điểm sức khỏe đã điều chỉnh theo tín hiệu, rủi ro, chỗ còn thiếu trong việc đánh giá khách và các việc nên làm tiếp. <em>Câu gọi mẫu:</em> "Rà thương vụ Minh Phát giúp mình, khả năng chốt có cao không?"</li>
+<li><code>/sales:deal-advance-gap</code>: Nhìn về phía trước cho một thương vụ: còn thiếu gì để sang giai đoạn kế tiếp và để chốt, ai làm việc gì, hạn khi nào. <em>Câu gọi mẫu:</em> "Thương vụ Minh Phát đang kẹt, còn thiếu gì để đi tiếp?"</li>
+<li><code>/sales:deal-signals</code>: Theo dõi chủ động cả danh mục: thương vụ im ắng, ngày chốt trượt dần, người ủng hộ đổi vị trí, cửa sổ gia hạn mở ra, đối thủ được nhắc tới. Gửi ra một bản cảnh báo ngắn. Có thể đặt chạy theo lịch. <em>Câu gọi mẫu:</em> "Tuần này có thương vụ nào nguội đi không?"</li>
+<li><code>/sales:deal-slip-scenario</code>: Tính điều gì xảy ra với chỉ tiêu nếu một thương vụ trượt, nhỏ lại hoặc mất: ảnh hưởng tới quota, tỷ lệ bao phủ và lượng pipeline thay thế cần có. <em>Câu gọi mẫu:</em> "Nếu thương vụ Minh Phát lùi sang quý sau thì mình còn đạt chỉ tiêu không?"</li>
+<li><code>/sales:close-plan</code>: Lập luận mua hàng và kế hoạch hành động chung với khách: vì sao mua, vì sao mua lúc này, cách tính lợi ích, và từng bước có ngày tháng tới lúc ký. <em>Câu gọi mẫu:</em> "Lập kế hoạch chốt cho thương vụ Minh Phát để gửi cho khách."</li>
+<li><code>/sales:handle-objection</code>: Xử lý một ý phản đối hoặc đối thủ đang chen vào: khách thực sự đang nói gì, cách đáp đã từng hiệu quả, bằng chứng nên dùng. Dựa trên lịch sử thắng thua và lời khách của chính các bạn. <em>Câu gọi mẫu:</em> "Khách nói bên mình đắt hơn đối thủ, mình nên đáp thế nào?"</li>
+<li><code>/sales:competitive-intelligence</code>: Phân tích đối thủ theo hai hướng: cách đánh một đối thủ cụ thể trong một thương vụ, và quy luật thắng thua, lần đối thủ được nhắc, thẻ so sánh (battlecard) trên cả danh mục. <em>Câu gọi mẫu:</em> "Làm thẻ so sánh giữa bên mình và đối thủ A cho thương vụ Minh Phát."</li>
+<li><code>/sales:create-an-asset</code>: Làm bài thuyết trình, tờ một trang hoặc tài liệu để lại cho khách từ dữ liệu khách, ghi chú cuộc gọi và tài liệu đã duyệt, không bịa số liệu. <em>Câu gọi mẫu:</em> "Làm giúp mình tờ một trang để lại cho Minh Phát sau buổi demo."</li>
+<li><code>/sales:update-opportunity</code>: Cập nhật thương vụ có hướng dẫn: đẩy giai đoạn, dời ngày chốt, ghi bước tiếp theo, sửa giá trị hoặc nhóm dự báo. Cho xem trước và sau, chỉ ghi điều các bạn yêu cầu hoặc chấp nhận, rồi kiểm lại bằng đường dẫn tới bản ghi. <em>Câu gọi mẫu:</em> "Dời ngày chốt thương vụ Minh Phát sang cuối tháng sau."</li>
+</ul>
+<h3>Pipeline và dự báo</h3>
+<ul>
+<li><code>/sales:pipeline-review</code>: Kiểm tra sức khỏe pipeline theo từng giai đoạn: độ bao phủ, tuổi thương vụ, tỷ lệ chuyển và thương vụ có rủi ro, dựa trên dữ liệu trong CRM. <em>Câu gọi mẫu:</em> "Rà pipeline của mình, chỗ nào đang kẹt?"</li>
+<li><code>/sales:crm-hygiene-check</code>: Kiểm tra chỉ đọc các thương vụ trong CRM: trường còn trống, ngày quá hạn, giai đoạn không khớp. Cho ra danh sách cần sửa để làm tay hoặc làm qua update-opportunity. <em>Câu gọi mẫu:</em> "Kiểm tra giúp mình dữ liệu CRM có chỗ nào thiếu hoặc cũ không."</li>
+<li><code>/sales:forecast</code>: Viết bản dự báo gồm phần chắc chắn (commit), phần có thể thêm (best-case) và phần pipeline, cho buổi họp dự báo hoặc buổi 1:1 với quản lý: cái gì sắp chốt, cái gì rủi ro, cái gì đổi từ lần trước. <em>Câu gọi mẫu:</em> "Viết dự báo quý này giúp mình từ file xuất pipeline này."</li>
+<li><code>/sales:team-pipeline</code>: Góc nhìn của trưởng nhóm: gộp pipeline của cả nhóm theo người và giai đoạn, đánh dấu thương vụ có rủi ro và những chỗ cần kèm cặp. <em>Câu gọi mẫu:</em> "Cho mình xem pipeline cả nhóm, ai đang cần hỗ trợ?"</li>
+<li><code>/sales:rep-context</code>: Trưởng nhóm chuẩn bị trước buổi 1:1 với một nhân viên: pipeline, hoạt động gần đây, việc họ đang làm theo chat và lịch, và chỗ họ có thể cần giúp. <em>Câu gọi mẫu:</em> "Chuẩn bị cho mình buổi 1:1 với bạn Hoa."</li>
+<li><code>/sales:win-loss-review</code>: Phân tích các thương vụ vừa đóng để tìm quy luật thắng và thua: giai đoạn bị mất, ý phản đối hay gặp trong bản ghi cuộc gọi, đặc điểm thương vụ. Dành cho trưởng nhóm. <em>Câu gọi mẫu:</em> "Vì sao quý này mình thua nhiều thương vụ?"</li>
+</ul>
+<h3>Khách hàng sau khi mua</h3>
+<ul>
+<li><code>/sales:customer-health</code>: Kiểm tra sức khỏe một khách và chuẩn bị họp rà soát định kỳ (QBR): độ gắn bó, xu hướng tương tác, tín hiệu rủi ro, giá trị đã mang lại và chương trình họp. <em>Câu gọi mẫu:</em> "Khách Minh Phát đang khỏe hay yếu, chuẩn bị giúp mình buổi QBR."</li>
+<li><code>/sales:customer-voice</code>: Lấy ra lời khách nói thật, có ghi nguồn, về một chủ đề từ các bản ghi cuộc gọi và email, trên nhiều khách. <em>Câu gọi mẫu:</em> "Khách đang nói gì về tính năng báo cáo?"</li>
+<li><code>/sales:renewal-radar</code>: Các hợp đồng sắp gia hạn: thời điểm, rủi ro, khả năng tăng giá trị, kèm bản ghi cơ hội gia hạn để theo dõi cho đúng. <em>Câu gọi mẫu:</em> "Quý sau có hợp đồng nào sắp gia hạn, cái nào đáng lo?"</li>
+</ul>
+
+<h2>Lưu ý khi dùng ở Việt Nam</h2>
+<ul>
+<li>Danh sách công cụ trong CONNECTORS.md nghiêng về phần mềm của Mỹ (HubSpot, Salesforce, Gong…). Nhận xét của chúng mình: nhiều đội ở Việt Nam quản lý khách bằng Zalo, Google Sheets hoặc CRM trong nước. Những nơi đó chưa có trong danh sách, nên các bạn xuất dữ liệu ra file rồi tải lên, kỹ năng vẫn làm được từ file.</li>
+<li>Các câu hỏi mẫu trong tài liệu gốc viết bằng tiếng Anh. Theo nhận xét của chúng mình, các bạn nên thử nói tiếng Việt và kiểm tra kết quả; thư gửi khách thì đọc lại kỹ trước khi gửi.</li>
+<li>Kỹ năng có thể ghi vào CRM, soạn email và đặt lịch khi các bạn yêu cầu. Tài liệu gốc khuyên đặt quyền gửi và ghi ở mức hỏi trước (ask), nhất là khi chạy theo lịch. Chúng mình cũng khuyên các bạn đọc lại kết quả trước khi đồng ý.</li>
+<li>Bản ghi cuộc gọi và email của khách có thể chứa thông tin cá nhân. Nhận xét của chúng mình: các bạn nên xem quy định của công ty về dữ liệu khách trước khi nối công cụ ghi âm hoặc hộp thư.</li>
+</ul>
+
+<p>Chúng mình chưa cài thử nhóm này; lệnh và tên kỹ năng lấy từ kho gốc của Anthropic.</p>
+<p class="small">Xem các nghề khác: <a href="../ky-nang-theo-nghe/">Kỹ năng AI theo từng nghề</a>.</p>
+
+<h2>Các bạn muốn có bộ kỹ năng riêng cho nghề của mình?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại vấn đề của các bạn để được tư vấn chuyên sâu và lộ trình riêng.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại vấn đề của bạn</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 03/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
