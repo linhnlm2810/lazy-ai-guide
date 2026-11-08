@@ -239,6 +239,18 @@
             padding: 0 4px;
         }
 
+        /* ── GHIM: ĐỘI AI 50K + QUY TRÌNH ── */
+        .ghim { padding-top: 40px; }
+        .ghim .the { background: #ffe600; box-shadow: var(--bong-lon); }
+        .ghim h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.15; margin: 8px 0 12px; }
+        .ghim .dan { font-size: 1.1rem; max-width: 760px; margin-bottom: 20px; }
+        .quy-trinh { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; padding: 0; }
+        .quy-trinh li { background: var(--trang); border: var(--vien); border-radius: var(--bo); padding: 14px; }
+        .quy-trinh b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+        .quy-trinh .so { display: inline-block; min-width: 28px; text-align: center; background: var(--den); color: var(--trang); border-radius: var(--bo); font-weight: 800; margin-right: 6px; }
+        .quy-trinh span.mo { font-size: 0.92rem; }
+        @media (max-width: 860px) { .quy-trinh { grid-template-columns: 1fr; } }
+
         /* ── TỔNG HỢP ── */
         .tong-hop .the {
             background: var(--trang);
@@ -479,6 +491,7 @@
         <div class="nav-inner">
             <a href="#" class="nav-brand">Lazy AI Guide <span style="font-size:0.8rem; font-weight:normal; margin-left:8px;">— Hướng dẫn dùng AI cho người lười</span></a>
             <ul class="nav-links">
+                <li><a href="#bat-dau">Bắt đầu</a></li>
                 <li><a href="#tong-hop">Mới nhất</a></li>
                 <li><a href="#chung-minh">Chúng mình</a></li>
                 <li><a href="#guides">Hướng dẫn</a></li>
@@ -488,6 +501,25 @@
     </nav>
 
     <main>
+    <!-- GHIM: ĐỘI AI 50K -->
+    <section class="ghim" id="bat-dau" data-khoi="ghim">
+        <div class="container">
+            <article class="the">
+                <span class="nhan">Bắt đầu ở đây</span>
+                <h2>Dựng đội AI của riêng các bạn: Đội AI 50k</h2>
+                <p class="dan">Một bot làm thì hay nói dối. Một đội bot có người viết spec, người duyệt, người làm, người kiểm và có bước chạy thật thì làm được việc đáng tin. Mọi sản phẩm trên trang này đều đi qua đủ 5 bước dưới đây.</p>
+                <ol class="quy-trinh">
+                    <li><b><span class="so">1</span>Spec</b><span class="mo">Viết rõ cần làm gì và thế nào là đạt. Mỗi tiêu chí phải kiểm được bằng chạy thật.</span></li>
+                    <li><b><span class="so">2</span>Review</b><span class="mo">Một bot khác duyệt spec. Tiêu chí mơ hồ hoặc thiếu nguồn thì trả về viết lại.</span></li>
+                    <li><b><span class="so">3</span>Dev</b><span class="mo">Bot lập trình làm theo spec. Bot kiểm thử viết bộ test ẩn, bot lập trình không được xem.</span></li>
+                    <li><b><span class="so">4</span>Test</b><span class="mo">Chạy bộ test ẩn, rồi cố tình làm hỏng sản phẩm xem test có bắt được không. Bài chấm chéo hãng, đủ 2 PASS mới qua.</span></li>
+                    <li><b><span class="so">5</span>Go-live</b><span class="mo">Đưa lên chạy thật, mở lại bản thật để kiểm, rồi mới báo xong.</span></li>
+                </ol>
+                <a href="doi-ai-50k/" class="btn">Xem hướng dẫn dựng Đội AI 50k</a>
+            </article>
+        </div>
+    </section>
+
     <!-- TỔNG HỢP MỚI NHẤT -->
     <section class="tong-hop" id="tong-hop" data-khoi="tong-hop">
         <div class="container">

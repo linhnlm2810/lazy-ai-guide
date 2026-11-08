@@ -84,6 +84,19 @@ Mỗi bot = 1 Hermes Agent ──► CLIProxy (chạy trên máy bạn) ──�
 
 <figure><img src="anh/32-bot-tra-loi.jpg" alt="Bot Điều phối trả lời trên Discord"><figcaption>Chạy thật 30/10/2026: nhắn bot Điều phối trên Discord, bot mở chủ đề riêng và trả lời tiếng Việt sau 4,9 giây.</figcaption></figure>
 
+<h2>Đội này làm việc theo quy trình nào</h2>
+<div class="box ok">
+<p>Đội AI không chỉ là nhiều bot. Điều làm nên khác biệt là quy trình. Đội của người viết chạy mọi việc lớn qua 5 bước, và bản demo này dựng sẵn đủ vai để các bạn làm giống vậy:</p>
+<ol>
+<li><b>Spec:</b> Viết rõ cần làm gì và thế nào là đạt. Mỗi tiêu chí phải kiểm được bằng chạy thật.</li>
+<li><b>Review:</b> Một bot khác duyệt spec. Tiêu chí mơ hồ hoặc thiếu nguồn thì trả về viết lại.</li>
+<li><b>Dev:</b> Bot lập trình làm theo spec. Bot kiểm thử viết bộ test ẩn, bot lập trình không được xem.</li>
+<li><b>Test:</b> Chạy bộ test ẩn, rồi cố tình làm hỏng sản phẩm xem test có bắt được không. Bài chấm chéo hãng, đủ 2 PASS mới qua.</li>
+<li><b>Go-live:</b> Đưa lên chạy thật, mở lại bản thật để kiểm, rồi mới báo xong.</li>
+</ol>
+<p>Bước nào chưa đạt thì quay lại bước trước, tối đa 3 vòng. Quá 3 vòng thì dừng lại hỏi người.</p>
+</div>
+
 <h2>Đọc trước: bạn cần một AI để hỏi ngay từ đầu</h2>
 <div class="box note">
 <p>Hướng dẫn này có những bước gõ lệnh. Bạn không cần biết lập trình, nhưng <b>lúc nào cũng phải có một AI bên cạnh để hỏi</b>:</p>
