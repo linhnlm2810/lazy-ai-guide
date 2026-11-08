@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5FQGBV5X2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5FQGBV5X2');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude hay ChatGPT tốt hơn? Đội AI của chúng mình đo bằng việc thật — Lazy AI Guide</title>
+<meta name="description" content="Chúng mình không chọn một hãng AI. Bài kể việc nào giao hãng nào, số test đo cùng một đề, và 3 bước để các bạn tự thử.">
+<meta property="og:title" content="Claude hay ChatGPT tốt hơn? Đội AI của chúng mình đo bằng việc thật">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Theme Gumroad cho bài viết: nền nóng đặc, viền đen dày, bóng cứng */
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background-color:#ff90e8;background-image:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#000;line-height:1.65;max-width:100%;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:#000;font-weight:600}
+img{max-width:100%;height:auto}
+.nav{background:#fff;border-bottom:2px solid #000;padding:12px max(20px,calc((100% - 860px)/2 + 20px));display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+.nav a{color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:4px 10px;border:2px solid transparent;border-radius:4px}
+.nav a:hover{border-color:#000;background:#ff90e8}.nav .brand{color:#000;font-weight:800;font-size:16px;padding-left:0;border-left:0;margin-right:auto}
+.hero{background-color:#ffe600;background-image:none;color:#000;padding:56px 24px 48px;text-align:center;border-bottom:2px solid #000}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:960px;margin:0 auto 16px;color:#000}
+.hero p{color:#000;max-width:680px;margin:0 auto;font-size:17px}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.pill{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:4px 12px;font-size:14px;font-weight:600}
+main{max-width:860px;width:100%;margin:0 auto;padding:40px 20px 80px}
+h2{font-size:clamp(32px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:48px 0 14px;color:#000}
+h1,h2,h3{text-wrap:balance}
+h3{font-size:20px;font-weight:800;margin:28px 0 8px;color:#000}
+p,li{font-size:16px}ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+p{margin:8px 0}
+.box{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px 20px;margin:20px 0}
+.note{background:#fff3b0}.ok{background:#c9f5d3}.warn{background:#ffc9d1}
+.diagram{font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre;overflow-x:auto;max-width:100%;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:18px}
+code{font-family:ui-monospace,Menlo,monospace;background:#fff;color:#000;border:1px solid #000;border-radius:4px;padding:0 4px;font-size:14px}
+pre{background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:16px;overflow-x:auto;max-width:100%;font-size:13.5px;line-height:1.5;margin:12px 0}
+pre code{background:none;border:0;padding:0;color:inherit}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:4px 4px 0px #000}
+th,td{border:1px solid #000;padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:break-word}th{background:#ff90e8;font-weight:800}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:2px solid #000;border-radius:4px;padding:1px 6px;white-space:nowrap;color:#000}
+.nguoi{background:#ff90e8;color:#000}.tudong{background:#90d8ff;color:#000}
+figure{margin:20px 0}figure img{display:block;width:100%;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000}
+figcaption{font-size:14px;color:#222;margin-top:10px}
+.cta{display:inline-block;background:#ff6b81;color:#000;text-decoration:none;font-weight:700;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0px #000;padding:12px 20px;margin:6px 10px 6px 0;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0px #000}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0px #000}
+.cta.alt{background:#fff;color:#000}
+.small{font-size:14px;color:#222}
+footer{text-align:center;color:#000;font-size:14px;font-weight:600;padding:30px;background:#fff;border-top:2px solid #000}
+@media (max-width:600px){
+.nav{padding:10px 16px;gap:4px 4px}
+.nav a{padding:2px 6px}
+.nav .brand{flex-basis:100%;margin-right:0}
+.nav .brand+a{margin-left:-8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.hero{padding:40px 16px 36px}
+main{padding:28px 16px 64px}
+th,td{padding:8px;font-size:14px}
+.tag{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="../">Lazy AI Guide</a><a href="../#guides">Guides</a><a href="../doi-ai-50k/">Đội AI 50k</a></nav>
+<header class="hero">
+  <h1>Claude hay ChatGPT tốt hơn? Đội AI của chúng mình đo bằng việc thật</h1>
+  <p>Chúng mình không chọn một hãng AI. Bài kể việc nào giao hãng nào, số test đo cùng một đề, và 3 bước để các bạn tự thử.</p>
+  <div class="pills"><span class="pill">Claude vs ChatGPT</span><span class="pill">Đo bằng việc thật</span><span class="pill">Chấm chéo hãng</span></div>
+</header>
+<main>
+<p>Trên Threads đang có một câu hỏi rất ngắn: Claude hay ChatGPT tốt hơn? Bài hỏi như vậy gom được 58 bình luận và 34 lượt thích, và phần trả lời thì mỗi người một ý.</p>
+<p>Chúng mình không chọn một hãng. Đội AI của chúng mình có 8 bot, chạy trên nhiều hãng khác nhau, và mỗi lần đổi model đều phải có số đo từ việc thật. Bài này kể chúng mình giao việc thế nào và đã đo ra gì.</p>
+
+<h2>Câu trả lời ngắn: tùy việc</h2>
+<p>Hỏi "hãng nào giỏi hơn" cũng như hỏi "nhân viên nào giỏi hơn" mà không nói công việc. Một model có thể viết tiếng Việt rất mượt nhưng chấm bài lỏng. Một model khác code chắc tay nhưng dễ bỏ sót ý khi viết dài. Vì vậy chúng mình giao theo vai, không giao theo tên hãng.</p>
+
+<h2>Việc nào giao hãng nào trong đội</h2>
+<table>
+<tr><th>Vai</th><th>Hãng đang dùng</th><th>Vì sao</th></tr>
+<tr><td>Điều phối</td><td>Claude (bản mạnh nhất)</td><td>Phải nói chuyện với chủ dự án, chia việc, nhớ bối cảnh dài. Chúng mình giữ bản mạnh cho vai này.</td></tr>
+<tr><td>Lập trình</td><td>GPT cho bot lập trình; Claude cho phần code nặng</td><td>Code mới hoặc sửa từ khoảng 30 dòng trở lên giao cho công cụ chạy Claude cỡ vừa. Lý do nằm ở phép đo bên dưới.</td></tr>
+<tr><td>Nghiên cứu</td><td>Gemini; tra web sâu dùng công cụ nghiên cứu của Google</td><td>Tra nhiều nguồn, tóm tắt nhanh. Kết quả luôn phải mở lại từng link để kiểm ngày và nội dung, vì có lần model đưa tin cũ và nói là tin mới.</td></tr>
+<tr><td>Chấm bài</td><td>GPT, hoặc Claude, tùy bài do hãng nào làm</td><td>Người chấm phải khác hãng với người làm. Lý do ở phần sau.</td></tr>
+<tr><td>Viết</td><td>Claude cỡ vừa</td><td>Văn tiếng Việt tự nhiên, ít phải sửa lại. Tài liệu dài thì dùng bản mạnh hơn.</td></tr>
+<tr><td>Kiểm thử</td><td>Claude bản nhỏ; bộ test ẩn dùng bản mạnh</td><td>Việc kiểm thử lặp nhiều, cần rẻ và nhanh. Bộ test ẩn phải kỹ nên mới dùng bản mạnh.</td></tr>
+</table>
+<p>Bảng này không cố định. Mỗi lần chúng mình đổi, có một dòng ghi lại đổi gì và vì sao, để cả đội áp dụng cùng lúc.</p>
+
+<h2>Đối chứng thật: cùng một đề, ba model</h2>
+<p>Chúng mình giao cùng một đề cho ba model: dựng một CRM nội bộ cho cửa hàng, làm qua 5 lượt. Bộ test gồm 62 ca, do bot kiểm thử viết sẵn và bot lập trình không được xem. Mỗi model chạy một lần.</p>
+<ul>
+<li><strong>Claude cỡ vừa:</strong> đạt 61/62 test.</li>
+<li><strong>GPT bản mạnh:</strong> đạt 52/62 test, tốn khoảng gấp đôi tài nguyên.</li>
+<li><strong>Claude bản nhỏ:</strong> đạt 51/62 test, tốn ít nhất.</li>
+</ul>
+<p>Từ phép đo này, chúng mình chuyển phần code nặng sang Claude cỡ vừa. Các bạn nhớ giúp ba điều để không hiểu quá tay.</p>
+<ol>
+<li>Mới có một dự án và mỗi model chạy một lần. Đây là chỉ dấu, chưa phải kết luận.</li>
+<li>Ở hai model thua, một số ca test chết ngay bước chuẩn bị, nên phần nghiệp vụ phía sau chưa được kiểm hết.</li>
+<li>Kết quả này nói về việc của chúng mình. Nó không phải bảng xếp hạng chung cho mọi người.</li>
+</ol>
+<p>Ở nhóm việc cỡ vừa thì khác. Chúng mình giao 5 đề code, sửa lỗi, viết test và chấm bài, mỗi đề chạy 2 lần. Cả năm model được thử đều đạt 10/10. Khi đó cái khác nhau chỉ là chi phí, nên chúng mình chọn model nhỏ nhất làm được.</p>
+<p>Với tài liệu dài, chúng mình thử rút một văn bản khoảng 20.000 chữ xuống 5.000 chữ. Hai model Claude, bản mạnh và bản cỡ vừa, đều ra khoảng 5.400 chữ và không bịa thêm số liệu nào. Nhưng bản cỡ vừa gộp 15 mục lớn còn 9 mục, còn bản mạnh giữ đủ 15 mục. Vì vậy tài liệu dài chúng mình giao bản mạnh, còn bản cỡ vừa chỉ lên dàn ý.</p>
+
+<h2>Vì sao người làm và người chấm phải khác hãng</h2>
+<p>Luật của chúng mình rất cứng. Bài do Claude làm thì GPT chấm. Bài do GPT làm thì Claude chấm. Phải có 2 lượt PASS mới được tính là đạt.</p>
+<p>Lý do là một model tự chấm bài của chính hãng mình thường dễ bỏ qua đúng những lỗi mà nó cũng sẽ mắc. Đây là suy luận của chúng mình, chưa phải số đo riêng. Nhưng có một chuyện thật khiến chúng mình siết luật. Có một model chấm PASS ba lần liền, trong khi kết quả chạy mà nó ghi ra không hề có thật. Chúng mình đổi người chấm sang hãng khác, và từ đó chỉ nhận PASS khi có file hoặc log chứng minh.</p>
+<p>Nói gọn thì người chấm đáng tin khi họ không cùng thói quen với người làm.</p>
+
+<h2>Model rẻ thì yếu tiếng Việt</h2>
+<p>Chúng mình cho nhiều model rẻ chạy cùng một đề tóm tắt tiếng Việt ngắn, dưới 300 từ, mỗi model hai lần, rồi chấm tay.</p>
+<ul>
+<li>Đạt 2/2: các model Claude, GPT và một số model khác.</li>
+<li>Đạt 1/2: hai model.</li>
+<li>Đạt 0/2: hai model còn lại, tức là cả hai lần đều hỏng.</li>
+</ul>
+<p>Hai model rẻ GLM và MiniMax vẫn chấm code được, vì ở đề chấm code chúng đạt 2/2. Nhưng chúng yếu khi sửa lỗi trong code có sẵn và yếu khi viết tiếng Việt. Vì vậy chúng mình dùng chúng để tham khảo thêm, không để quyết định. Nếu sản phẩm của các bạn có chữ tiếng Việt đến tay khách, đừng chọn model theo giá trước khi thử.</p>
+
+<h2>Các bạn áp dụng thế nào: 3 bước</h2>
+<ol>
+<li><strong>Thử cùng một việc thật trên hai hãng.</strong> Chọn một việc các bạn làm hằng tuần, ví dụ viết email trả lời khách hoặc tóm tắt một báo cáo. Đưa đúng cùng một đề, cùng một dữ liệu cho Claude và ChatGPT. Đừng thử bằng câu hỏi chung chung.</li>
+<li><strong>Viết tiêu chí đạt trước khi chạy.</strong> Ví dụ: đủ 5 ý bắt buộc, không bịa số, giọng văn đúng với khách, không quá 200 chữ. Có tiêu chí thì các bạn đếm được bao nhiêu ý đạt, thay vì chỉ thấy bài nào "đọc sướng hơn".</li>
+<li><strong>Đổi vai chấm.</strong> Dán bài của Claude cho ChatGPT chấm theo tiêu chí, rồi làm ngược lại. Chỗ nào cả hai cùng chê thì sửa. Chỗ nào chỉ một bên chê thì các bạn tự đọc lại và quyết.</li>
+</ol>
+<p>Làm đủ ba bước này trong một buổi chiều là các bạn có câu trả lời cho chính công việc của mình. Câu trả lời đó đáng tin hơn mọi bảng xếp hạng trên mạng, và các bạn nên làm lại mỗi khi hãng ra bản mới.</p>
+
+<h2>Các bạn muốn dựng đội AI dùng đúng model cho từng việc?</h2>
+<p>Follow chúng mình trên Threads và inbox, hoặc để lại số Zalo, chúng mình nhắn lại tư vấn.</p>
+<div class="box ok">
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfOIOlyGcQS3QS79r0rfY3Z9z23K8s3UH71CaKuLEWuSJI1Qw/viewform">Để lại Zalo</a>
+<a class="cta alt" href="https://www.threads.com/@aiforfun2810/">Follow trên Threads</a>
+<p class="small">Muốn tự thử trước? Xem <a href="../doi-ai-50k/">hướng dẫn dựng đội AI với 50.000đ</a>.</p>
+</div>
+<p class="small">Cập nhật 08/11/2026.</p>
+</main>
+<footer>linhnlm · <a href="../">Lazy AI Guide</a> · <a href="https://github.com/linhnlm2810/lazy-ai-guide">GitHub</a></footer>
+</body>
+</html>
